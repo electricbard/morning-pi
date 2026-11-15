@@ -58,8 +58,12 @@ def _plane_at(comp, z_mm):
     return plane
 
 
+PREFIX = ''  # becomes 'REF - ' when the bodies go straight into a Part Design document
+
+
 def _slab(comp, name, z_top, depth, x0, y0, x1, y1, holes=(), hole_d=0.0):
     """Rectangle (with optional round holes) from z_top going `depth` mm towards -Z."""
+    name = PREFIX + name
     sk = comp.sketches.add(_plane_at(comp, z_top))
     sk.name = name
     sk.sketchCurves.sketchLines.addTwoPointRectangle(_p(x0, y0), _p(x1, y1))
@@ -103,9 +107,17 @@ def run(_context):
             M25 = [(-x, y) for x, y in M25]
             M3 = [(-x, y) for x, y in M3]
             FRAME_X0, FRAME_X1 = -FRAME_X1, -FRAME_X0
-        occ = design.rootComponent.occurrences.addNewComponent(adsk.core.Matrix3D.create())
-        comp = occ.component
-        comp.name = 'Pi 7in display + Pi 4 (reference)'
+        global PREFIX
+        try:
+            occ = design.rootComponent.occurrences.addNewComponent(adsk.core.Matrix3D.create())
+            comp = occ.component
+            comp.name = 'Pi 7in display + Pi 4 (reference)'
+            where = 'component "Pi 7in display + Pi 4 (reference)"'
+        except RuntimeError:
+            # Part Design documents allow only one component: add plain bodies instead.
+            comp = design.rootComponent
+            PREFIX = 'REF - '
+            where = 'bodies named "REF - …"'
 
         # Front glass with rounded corners.
         glass = _slab(comp, 'Glass', 0.0, GLASS_T,
@@ -113,11 +125,11 @@ def run(_context):
         _round_vertical_edges(comp, glass, GLASS_CORNER_R_MM)
 
         # LCD + metal back frame, with M3 (display mounting) and M2.5 (Pi) holes.
-        _slab(comp, 'LCD and metal back frame', -GLASS_T, MODULE_T - GLASS_T,
-              FRAME_X0, FRAME_Y0, FRAME_X1, FRAME_Y1)
+        frame = _slab(comp, 'LCD and metal back frame', -GLASS_T, MODULE_T - GLASS_T,
+                      FRAME_X0, FRAME_Y0, FRAME_X1, FRAME_Y1)
         back = -MODULE_T
         sk = comp.sketches.add(_plane_at(comp, back))
-        sk.name = 'Back frame holes'
+        sk.name = PREFIX + 'Back frame holes'
         for hx, hy in M3:
             sk.sketchCurves.sketchCircles.addByCenterRadius(_p(hx, hy), 0.15)
         for hx, hy in M25:
@@ -127,11 +139,12 @@ def run(_context):
             holes.add(pr)
         cut = comp.features.extrudeFeatures.createInput(holes, adsk.fusion.FeatureOperations.CutFeatureOperation)
         cut.setDistanceExtent(False, _v(3.0))  # 3 mm into the frame (positive = towards the glass)
+        cut.participantBodies = [frame]       # never touch anything else in the design
         comp.features.extrudeFeatures.add(cut)
 
         # Pi standoffs (M2.5, 5 mm hex modelled as round).
         sk = comp.sketches.add(_plane_at(comp, back))
-        sk.name = 'Pi standoffs'
+        sk.name = PREFIX + 'Pi standoffs'
         for hx, hy in M25:
             sk.sketchCurves.sketchCircles.addByCenterRadius(_p(hx, hy), 0.25)
             sk.sketchCurves.sketchCircles.addByCenterRadius(_p(hx, hy), 0.125)
@@ -142,7 +155,7 @@ def run(_context):
         so = comp.features.extrudeFeatures.addSimple(
             rings, _v(-PI_STANDOFF_MM), adsk.fusion.FeatureOperations.NewBodyFeatureOperation)
         for i in range(so.bodies.count):
-            so.bodies.item(i).name = f'Pi standoff {i + 1}'
+            so.bodies.item(i).name = f'{PREFIX}Pi standoff {i + 1}'
 
         # Pi 4 board, holes on the display's M2.5 pattern.
         xs = sorted({x for x, _ in M25})
@@ -168,10 +181,10 @@ def run(_context):
 
         back_of_ports = -(MODULE_T + PI_STANDOFF_MM + PI_T + PORT_BLOCK_H)
         ui.messageBox(
-            'Added "Pi 7in display + Pi 4 (reference)".\n\n'
+            f'Added the display + Pi reference as {where}.\n\n'
             'Glass front face is at Z = 0, centred on the origin, seen from the front.\n'
             f'Pi standoff gap: {PI_STANDOFF_MM} mm; ports to the {PORTS_TO_THE} (from the front).\n'
             f'Deepest point (top of the USB ports): {back_of_ports:.1f} mm.\n\n'
-            'Move it into place in your case, then run PiMountHoles and click the 4 holes in the Pi board.')
+            'Move it into place in your case (select all the REF bodies together if they are bodies), then run PiMountHoles and click the 4 holes in the Pi board.')
     except Exception:  # noqa: BLE001
         ui.messageBox('DisplayPiReference failed:\n' + traceback.format_exc())
