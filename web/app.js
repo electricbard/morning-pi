@@ -355,11 +355,11 @@
       el.innerHTML = '<div class="c-fill"><span class="o" id="ct"></span><span class="s" id="cs"></span></div>';
       return (d, t) => { $('#ct').textContent = t; $('#cs').textContent = t; $('#cs').style.clipPath = `inset(${(12 + 76 * (1 - d.getSeconds() / 59)).toFixed(1)}% 0 0 0)`; };
     },
-    (el) => { el.innerHTML = '<span class="c-breathe" id="ct"></span>'; return (d, t) => { $('#ct').textContent = t; }; },
+    (el) => { el.innerHTML = '<div class="c-breathe-g"><span class="c-breathe" id="ct"></span></div>'; return (d, t) => { $('#ct').textContent = t; }; },
     (el) => {
       const ring = (r, track, color, id, extra = '') => `<circle cx="230" cy="230" r="${r}" stroke="${track}"/><circle id="${id}" cx="230" cy="230" r="${r}" stroke="${color}" stroke-dasharray="${(2 * Math.PI * r).toFixed(1)}" ${extra}/>`;
       el.innerHTML = `<svg width="460" height="460" viewBox="0 0 460 460" aria-hidden="true" style="position:absolute;left:170px;top:10px"><g transform="rotate(-90 230 230)" fill="none" stroke-linecap="round" stroke-width="12">
-        ${ring(214, '#1A0D14', '#F472B6', 'rh')}${ring(190, '#150F1F', '#A78BFA', 'rm')}${ring(166, '#0B1720', '#38BDF8', 'rs', 'style="transition:stroke-dashoffset 1s linear"')}</g></svg><span class="c-rings-t" id="ct"></span>`;
+        ${ring(214, '#1A1608', '#FBBF24', 'rh')}${ring(190, '#0A1A18', '#2DD4BF', 'rm')}${ring(166, '#0B1720', '#38BDF8', 'rs', 'style="transition:stroke-dashoffset 1s linear"')}</g></svg><span class="c-rings-t" id="ct"></span>`;
       return (d, t) => {
         const h = d.getHours() % 12, m = d.getMinutes(), s = d.getSeconds();
         const off = (r, frac) => (2 * Math.PI * r * (1 - frac)).toFixed(1);
@@ -404,7 +404,9 @@
   }
   function enterClock() {
     let idx = 0;
-    try { idx = (parseInt(localStorage.getItem('mp.clock') || '-1', 10) + 1) % CLOCKS.length; localStorage.setItem('mp.clock', String(idx)); }
+    const force = Number(QS.get('clock')); // testing aid: ?clock=N (1-8) opens that clock style
+    if (force >= 1 && force <= CLOCKS.length) idx = force - 1;
+    else try { idx = (parseInt(localStorage.getItem('mp.clock') || '-1', 10) + 1) % CLOCKS.length; localStorage.setItem('mp.clock', String(idx)); }
     catch (e) { idx = Math.floor(Math.random() * CLOCKS.length); }
     const el = $('#clock');
     el.hidden = false;
@@ -432,6 +434,7 @@
     return !isSchoolDay(now) || minsOf(now) >= hm(S.cfg.discover.cycleFrom || '17:00');
   }
   function autoTick() {
+    if (QS.get('clock')) return; // ?clock=N holds that clock still
     const now = clockNow();
     if (!autoWindow(now)) { S.autoStep = -1; S.autoAt = 0; return; }
     const idleMs = (S.cfg.discover.idleResetSec || 180) * 1000;
@@ -486,6 +489,7 @@
     catch (e) { $('#app').innerHTML = `<div class="boot">Waiting for the Morning Pi server… (${esc(e.message)})</div>`; setTimeout(boot, 5000); return; }
     await Promise.all([loadWeather(), loadTransit()]);
     render();
+    if (QS.get('clock')) enterClock();
     setInterval(tickHeader, 1000);
     setInterval(clockTick, 1000);
     setInterval(autoTick, 5000);

@@ -148,7 +148,9 @@ button { font: inherit; color: inherit; cursor: none; }
 #clock[hidden] { display: none; }
 @keyframes aurora { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
 @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: .25; transform: scale(.7); } }
-@keyframes breathe { 0%, 100% { opacity: .78; text-shadow: 0 0 10px rgba(96,165,250,.30); } 50% { opacity: 1; text-shadow: 0 0 40px rgba(96,165,250,.85), 0 0 110px rgba(129,140,248,.55); } }
+@keyframes warmshift { 0% { color: #FFB4A2; text-shadow: 0 0 30px #FF8A70, 0 0 70px #FF6A4D; } 100% { color: #FF5A2E; text-shadow: 0 0 30px #FF4A1C, 0 0 70px #E8300F; } }
+@keyframes warmglow { 0% { filter: drop-shadow(0 0 28px #FF8A70); } 100% { filter: drop-shadow(0 0 28px #FF4A1C); } }
+@keyframes breathewarm { 0%, 100% { opacity: .72; transform: scale(.985); } 50% { opacity: 1; transform: scale(1); } }
 @keyframes tw { 0%, 100% { opacity: 1; box-shadow: 0 0 14px rgba(255,226,180,.55); } 50% { opacity: .55; box-shadow: 0 0 2px rgba(255,226,180,.15); } }
 @keyframes slide { 0% { background-position: 0 0; } 100% { background-position: 79.2px 0; } }
 .c-aurora { font-family: Sora, sans-serif; font-weight: 800; font-size: 250px; letter-spacing: -12px; line-height: 1; background: linear-gradient(100deg, #5EEAD4 0%, #A78BFA 35%, #FB7185 65%, #5EEAD4 100%); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: aurora 14s ease-in-out infinite alternate; }
@@ -160,7 +162,8 @@ button { font: inherit; color: inherit; cursor: none; }
 .c-fill { position: relative; font-family: 'Big Shoulders Display', sans-serif; font-weight: 900; font-size: 360px; line-height: 1; letter-spacing: -4px; }
 .c-fill .o { display: block; color: transparent; -webkit-text-stroke: 3px #34D399; }
 .c-fill .s { position: absolute; inset: 0; display: block; color: #34D399; transition: clip-path 1s linear; }
-.c-breathe { font-family: Manrope, sans-serif; font-weight: 800; font-size: 270px; letter-spacing: -10px; line-height: 1; color: #BFDBFE; animation: breathe 7s ease-in-out infinite; }
+.c-breathe-g { filter: drop-shadow(0 0 28px #FF4A1C); animation: warmglow 14s ease-in-out infinite alternate; }
+.c-breathe { display: block; font-family: Manrope, sans-serif; font-weight: 800; font-size: 270px; letter-spacing: -10px; line-height: 1; color: #FF5A2E; text-shadow: 0 0 30px #FF4A1C, 0 0 70px #E8300F; animation: breathewarm 7s ease-in-out infinite, warmshift 14s ease-in-out infinite alternate; }
 .c-rings-t { position: relative; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 112px; letter-spacing: -4px; line-height: 1; color: #F5F5F5; }
 .c-matrix { display: flex; flex-direction: column; gap: 7px; }
 .c-matrix .r { display: flex; gap: 7px; }
