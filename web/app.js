@@ -16,6 +16,8 @@
   const QS = new URLSearchParams(location.search);
   const AT = QS.get('at');
   const FORCE_MODE = QS.get('mode'); // testing aid: ?mode=school or ?mode=discover
+  if (QS.get('art')) S.view = 'art';
+  if (QS.get('view')) S.view = QS.get('view'); // testing aid: ?view=art|learn
   if (QS.get('full')) S.full = true; // testing aid: ?full=1 opens today's art full screen
   const T0 = Date.now();
   const clockNow = () => (AT ? new Date(new Date(AT).getTime() + (Date.now() - T0)) : new Date());
@@ -279,26 +281,61 @@
   // ---------------------------------------------------------------- discover mode
   function defaultView(now) { return minsOf(now) < hm(S.cfg.discover.artUntil) ? 'art' : 'learn'; }
 
+  function laterWeather(now) {
+    const rows = [];
+    for (let k = 1; k <= 4; k++) {
+      const d = new Date(now); d.setMinutes(0, 0, 0); d.setHours(d.getHours() + k * 2);
+      const w = wxAt(d);
+      if (!w) continue;
+      const h = d.getHours();
+      rows.push(`<div class="hr"><span class="hh">${h % 12 || 12} ${h < 12 ? 'AM' : 'PM'}</span>${wxIcon(w.code, w.day, 22)}<span class="ht">${deg(w.t)}</span>
+        <span class="hp${w.p >= 40 ? ' wet' : ''}">${svg(P.drop, 12, 'currentColor', 'aria-hidden="true"')}${r0(w.p)}%</span></div>`);
+    }
+    const dl = S.wx.daily;
+    return `<section class="wx-more" aria-label="Weather later"><span class="eyebrow" style="color:var(--muted)">LATER</span>${rows.join('')}
+      <div class="wx-foot"><span>H ${deg(dl.temperature_2m_max[0])} · L ${deg(dl.temperature_2m_min[0])}</span>
+      <span class="sun">${svg(P.sunset, 16, '#FFB066', 'role="img" aria-label="Sunset"')}${sunTime('sunset')}</span></div></section>`;
+  }
+
   function discoverView(now) {
     const view = S.view || defaultView(now);
     const di = dayIndex(now);
     if (S.revealDay !== di) { S.reveal = {}; S.revealDay = di; }
     const c = S.wx && S.wx.current;
-    const nowTile = c ? `<div class="now-tile">${wxIcon(c.weather_code, c.is_day === 1, 40)}<div style="display:flex;flex-direction:column;gap:2px">
+    const windTxt = c ? (c.wind_gusts_10m >= 30 ? `gusts ${r0(c.wind_gusts_10m)} km/h` : `wind ${r0(c.wind_speed_10m)} km/h`) : '';
+    let nowTile = c ? `<div class="now-tile">${wxIcon(c.weather_code, c.is_day === 1, 40)}<div style="display:flex;flex-direction:column;gap:2px">
         <span class="eyebrow" style="color:var(--muted);letter-spacing:1px;font-weight:700">NOW</span><span class="t">${deg(c.temperature_2m)}</span>
         <span class="f">feels ${deg(c.apparent_temperature)}</span><span class="w">${c.wind_gusts_10m >= 30 ? `gusts ${r0(c.wind_gusts_10m)} km/h` : `wind ${r0(c.wind_speed_10m)} km/h`}</span></div></div>`
       : '<div class="now-tile"><span class="w">Weather loading…</span></div>';
-    let side = '', main = '';
+    let side = '', main = '', extra = '', layout = '';
     if (view === 'art' && S.art.length) {
-      const a = S.art[di % S.art.length];
-      side = `<section class="side" aria-label="About the art"><span class="eyebrow gold">ART OF THE DAY${a.tag ? ' · ' + esc(a.tag.toUpperCase()) : ''}</span>
+      const n = S.art.length, ai = QS.get('art') ? Number(QS.get('art')) - 1 : di; // testing aid: ?art=N shows piece N
+      const a = S.art[((ai % n) + n) % n];
+      const port = a.w && a.h && a.h / a.w > 1.05;
+      layout = port ? ' port' : ' land';
+      // Landscape art: text on the left under a slim weather tile. Portrait art: text gets the full-height right column
+      // and the left column has room for more weather.
+      side = `<section class="side art-info" aria-label="About the art"><span class="eyebrow gold">ART OF THE DAY${a.tag ? ' · ' + esc(a.tag.toUpperCase()) : ''}</span>
         <span class="art-title serif">${esc(a.title)}</span><span class="art-meta">${esc(a.artist)} · ${esc(a.year)}${a.place ? ' · ' + esc(a.place) : ''}</span>
-        <button class="btn" data-act="look" style="align-self:flex-start">${S.look ? 'Hide ▴' : 'Look closer ▾'}</button></section>`;
+        <div class="art-more"><span class="eyebrow green">CAN YOU SPOT IT?</span><p class="spot">${esc(a.spot)}</p><p class="story">${esc(a.story)}</p></div>
+        <button class="btn look-btn" data-act="look">${S.look ? 'Hide ▴' : 'Look closer ▾'}</button></section>`;
+      if (!port && c) {
+        nowTile = `<div class="now-tile slim">${wxIcon(c.weather_code, c.is_day === 1, 34)}<span class="t">${deg(c.temperature_2m)}</span>
+          <div class="fw"><span class="f">feels ${deg(c.apparent_temperature)}</span><span class="w">${windTxt}</span></div></div>`;
+      }
+      if (port && S.wx) extra = laterWeather(now);
       main = `<section class="main art-frame" aria-label="Art of the day"><button class="art-tap" data-act="full" aria-label="Show full screen"><img src="content/art/${esc(a.file)}" alt="${esc(a.title)} by ${esc(a.artist)}"></button>
         ${S.full ? `<button class="art-full" data-act="unfull" aria-label="Back to dashboard"><img src="content/art/${esc(a.file)}" alt=""></button>` : ''}
         ${S.look ? `<div class="look"><span class="eyebrow green">CAN YOU SPOT IT?</span><p class="spot">${esc(a.spot)}</p><p class="story">${esc(a.story)}</p></div>` : ''}</section>`;
     } else {
-      const subj = ['math', 'physics', 'biology'].map((k) => { const l = (S.qs && S.qs[k]) || []; return l.length ? [k, l[di % l.length]] : null; }).filter(Boolean);
+      // One question per school level each day. Each level's pool alternates subjects so days vary.
+      const SUBJ = ['math', 'physics', 'biology'];
+      const subj = ['primary', 'junior', 'senior'].map((lv) => {
+        const lists = SUBJ.map((k) => ((S.qs && S.qs[k]) || []).filter((x) => x.lv === lv).map((x) => ({ ...x, subj: k })));
+        const pool = [];
+        for (let i = 0; i < Math.max(0, ...lists.map((l) => l.length)); i++) lists.forEach((l) => { if (l[i]) pool.push(l[i]); });
+        return pool.length ? [lv, pool[di % pool.length]] : null;
+      }).filter(Boolean);
       const lang = di % 2 === 0 ? 'en' : 'fr';
       const list = S.words[lang] || [];
       const w = list.length ? list[Math.floor(di / 2) % list.length] : null;
@@ -309,14 +346,15 @@
           ${w.exEn ? `<span class="word-en">${esc(w.exEn)}</span>` : ''}</section>`;
       }
       if (subj.length) {
-        const card = ([k, q]) => `<button class="q${S.reveal[k] ? ' open' : ''}" data-act="reveal-${k}" aria-label="${S.reveal[k] ? 'Show question' : 'Show answer'}">
+        const card = ([k, q]) => `<button class="q lv-${k}${S.reveal[k] ? ' open' : ''}" data-act="reveal-${k}" aria-label="${S.reveal[k] ? 'Show question' : 'Show answer'}">
+          <span class="qlv">${k.toUpperCase()} · ${q.subj.toUpperCase()}${S.reveal[k] ? ' · ANSWER' : ''}</span>
           <span class="qq serif${!S.reveal[k] && q.q.length > 80 ? ' long' : ''}">${esc(S.reveal[k] ? q.a : q.q)}</span></button>`;
         main = `<section class="main qcard" aria-label="Question of the day"><div class="qhead"><span class="eyebrow gold">QUESTION OF THE DAY</span></div>
           <div class="qgrid">${subj.map(card).join('')}</div></section>`;
       }
     }
     const counts = countdowns(now).map((c2) => `<div class="count"><span class="l">${esc(c2.label)}</span><span class="n">${c2.n}</span></div>`).join('');
-    return `<div class="disc">${header(now, true)}${nowTile}${side}${main}<section class="counts" aria-label="Countdowns">${counts}</section></div>`;
+    return `<div class="disc${layout}">${header(now, true)}${nowTile}${extra}${side}${main}<section class="counts" aria-label="Countdowns">${counts}</section></div>`;
   }
 
   // ---------------------------------------------------------------- render
@@ -325,6 +363,8 @@
     if (S.clockOn) return;
     const now = clockNow();
     $('#app').innerHTML = mode(now) === 'school' ? schoolView(now) : discoverView(now);
+    const info = $('.art-info');
+    if (info && info.scrollHeight > info.clientHeight + 1) info.classList.add('tight');
   }
   function tickHeader() {
     const el = $('#hdrTime');
@@ -434,7 +474,7 @@
     return !isSchoolDay(now) || minsOf(now) >= hm(S.cfg.discover.cycleFrom || '17:00');
   }
   function autoTick() {
-    if (QS.get('clock')) return; // ?clock=N holds that clock still
+    if (QS.get('clock') || QS.get('art') || QS.get('view')) return; // ?clock / ?art / ?view hold still for testing
     const now = clockNow();
     if (!autoWindow(now)) { S.autoStep = -1; S.autoAt = 0; return; }
     const idleMs = (S.cfg.discover.idleResetSec || 180) * 1000;

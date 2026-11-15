@@ -8,7 +8,9 @@
   "year": "1926",
   "place": "Guggenheim, New York",
   "spot": "Find a circle with a tiny black dot in the middle, like an eye. How many can you count?",
-  "story": "Kandinsky thought colours worked like music — he even named many paintings \"Compositions.\" Does this one look loud or quiet to you?"
+  "story": "Kandinsky thought colours worked like music — he even named many paintings \"Compositions.\" Does this one look loud or quiet to you?",
+  "w": 960,
+  "h": 978
  },
  {
   "id": "haeckel-jellyfish",
@@ -19,7 +21,9 @@
   "year": "1904",
   "place": "",
   "spot": "This jellyfish is drawn from below and from the side. Follow one long frilly arm from top to bottom.",
-  "story": "Haeckel was a scientist who drew the sea creatures he studied, many under a microscope. He named thousands of new species."
+  "story": "Haeckel was a scientist who drew the sea creatures he studied, many under a microscope. He named thousands of new species.",
+  "w": 960,
+  "h": 1377
  },
  {
   "id": "composition-8",
@@ -30,7 +34,9 @@
   "year": "1923",
   "place": "Guggenheim, New York",
   "spot": "Find the big black circle, a checkerboard and something that looks like a ladder.",
-  "story": "Kandinsky painted this while teaching at the Bauhaus, a famous German art and design school. It's one of his calmest, most geometric paintings."
+  "story": "Kandinsky painted this while teaching at the Bauhaus, a famous German art and design school. It's one of his calmest, most geometric paintings.",
+  "w": 960,
+  "h": 668
  },
  {
   "id": "merian-banana",
@@ -41,7 +47,9 @@
   "year": "1705",
   "place": "Metamorphosis of the Insects of Surinam",
   "spot": "Find the caterpillar and the moth. Could they be the same animal at different ages?",
-  "story": "In 1699, at age 52, Merian sailed to South America to study insects and how they change — something almost no woman did back then."
+  "story": "In 1699, at age 52, Merian sailed to South America to study insects and how they change — something almost no woman did back then.",
+  "w": 960,
+  "h": 1319
  },
  {
   "id": "castle-and-sun",
@@ -52,7 +60,9 @@
   "year": "1928",
   "place": "",
   "spot": "Count the triangles. Can you find the sun?",
-  "story": "Klee built this whole castle from simple shapes, like building blocks. He was also a very good violin player."
+  "story": "Klee built this whole castle from simple shapes, like building blocks. He was also a very good violin player.",
+  "w": 960,
+  "h": 788
  },
  {
   "id": "hiroshige-plum",
@@ -63,7 +73,9 @@
   "year": "1857",
   "place": "One Hundred Famous Views of Edo",
   "spot": "Which branch is closest to you? Find the people behind the fence.",
-  "story": "Hiroshige zoomed in on one branch like a photographer. Van Gogh loved this print so much he painted his own copy."
+  "story": "Hiroshige zoomed in on one branch like a photographer. Van Gogh loved this print so much he painted his own copy.",
+  "w": 960,
+  "h": 1406
  },
  {
   "id": "mondrian-1930",
@@ -74,7 +86,9 @@
   "year": "1930",
   "place": "Kunsthaus Zürich",
   "spot": "Which colour has the biggest box? How many rectangles can you count?",
-  "story": "Mondrian used only straight lines, black, white, grey and three main colours. He wanted the simplest possible picture to feel perfectly balanced."
+  "story": "Mondrian used only straight lines, black, white, grey and three main colours. He wanted the simplest possible picture to feel perfectly balanced.",
+  "w": 960,
+  "h": 973
  },
  {
   "id": "carr-forest",
@@ -85,7 +99,9 @@
   "year": "1931–32",
   "place": "Vancouver Art Gallery",
   "spot": "Find the path that leads deep into the forest. Where do you think it goes?",
-  "story": "Carr painted the giant trees of the BC coast so they seem to sway and breathe. She was also a writer and won a Governor General's Award."
+  "story": "Carr painted the giant trees of the BC coast so they seem to sway and breathe. She was also a writer and won a Governor General's Award.",
+  "w": 960,
+  "h": 1435
  },
  {
   "id": "malevich-airplane",
@@ -96,7 +112,9 @@
   "year": "1915",
   "place": "MoMA, New York",
   "spot": "Do these shapes look like an airplane to you? Which way is it flying?",
-  "story": "Malevich wanted paintings with no objects at all — just pure shapes and colour. He called it Suprematism."
+  "story": "Malevich wanted paintings with no objects at all — just pure shapes and colour. He called it Suprematism.",
+  "w": 960,
+  "h": 1157
  },
  {
   "id": "haeckel-hummingbirds",
@@ -107,7 +125,9 @@
   "year": "1904",
   "place": "",
   "spot": "How many hummingbirds can you count? Which one has the longest tail?",
-  "story": "Hummingbirds are the only birds that can fly backwards. Their hearts can beat more than 1,000 times a minute."
+  "story": "Hummingbirds are the only birds that can fly backwards. Their hearts can beat more than 1,000 times a minute.",
+  "w": 960,
+  "h": 1346
  },
  {
   "id": "af-klint-7",
@@ -118,7 +138,9 @@
   "year": "1907",
   "place": "",
   "spot": "Find spirals, flowers and letters hiding in the swirls.",
-  "story": "Af Klint painted abstract art years before most famous abstract painters — and asked that it not be shown until 20 years after her death."
+  "story": "Af Klint painted abstract art years before most famous abstract painters — and asked that it not be shown until 20 years after her death.",
+  "w": 960,
+  "h": 1273
  },
  {
   "id": "dove-silver-sun",
@@ -129,7 +151,9 @@
   "year": "1929",
   "place": "Art Institute of Chicago",
   "spot": "Is that a sun, an eye, or something else? What do you see?",
-  "story": "Dove is often called America's first abstract painter. He tried to paint how nature feels, not just how it looks."
+  "story": "Dove is often called America's first abstract painter. He tried to paint how nature feels, not just how it looks.",
+  "w": 960,
+  "h": 703
  },
  {
   "id": "sun-and-moon",
@@ -140,7 +164,9 @@
   "year": "1912–13",
   "place": "MoMA, New York",
   "spot": "Where is the sun, and where is the moon?",
-  "story": "Delaunay was fascinated by how colours seem to change when they sit right next to each other. Try covering half the painting with your hand."
+  "story": "Delaunay was fascinated by how colours seem to change when they sit right next to each other. Try covering half the painting with your hand.",
+  "w": 848,
+  "h": 836
  },
  {
   "id": "harris-superior",
@@ -151,7 +177,9 @@
   "year": "1926",
   "place": "National Gallery of Canada",
   "spot": "What does the tree stump remind you of? Follow the light from the sky.",
-  "story": "Harris, from Brantford, Ontario, was a founder of the Group of Seven. Later in life his paintings became completely abstract."
+  "story": "Harris, from Brantford, Ontario, was a founder of the Group of Seven. Later in life his paintings became completely abstract.",
+  "w": 960,
+  "h": 779
  },
  {
   "id": "senecio",
@@ -162,7 +190,9 @@
   "year": "1922",
   "place": "Kunstmuseum Basel",
   "spot": "Which eyebrow is raised? What is this face feeling?",
-  "story": "Klee described drawing as taking a line for a walk. This whole face is built from a circle, squares and triangles."
+  "story": "Klee described drawing as taking a line for a walk. This whole face is built from a circle, squares and triangles.",
+  "w": 960,
+  "h": 1046
  },
  {
   "id": "brooker-ascending",
@@ -173,7 +203,9 @@
   "year": "1920s",
   "place": "",
   "spot": "Find the black circles stacked like a tower. What's at the very top?",
-  "story": "In 1927 Brooker showed abstract paintings at the Arts and Letters Club in Toronto — the first abstract art exhibition by a Canadian artist."
+  "story": "In 1927 Brooker showed abstract paintings at the Arts and Letters Club in Toronto — the first abstract art exhibition by a Canadian artist.",
+  "w": 514,
+  "h": 640
  },
  {
   "id": "yellow-red-blue",
@@ -184,7 +216,9 @@
   "year": "1925",
   "place": "Centre Pompidou, Paris",
   "spot": "Find a yellow shape, a red one and a blue one. Which one feels the loudest?",
-  "story": "Kandinsky believed yellow felt warm and bright, and blue felt calm and deep. Do you agree?"
+  "story": "Kandinsky believed yellow felt warm and bright, and blue felt calm and deep. Do you agree?",
+  "w": 960,
+  "h": 612
  },
  {
   "id": "stella-bridge",
@@ -195,7 +229,9 @@
   "year": "1919–20",
   "place": "Yale University Art Gallery",
   "spot": "Find the bridge cables, the arches and the city lights.",
-  "story": "Stella came to New York from Italy and saw the Brooklyn Bridge as a great cathedral made of steel."
+  "story": "Stella came to New York from Italy and saw the Brooklyn Bridge as a great cathedral made of steel.",
+  "w": 960,
+  "h": 1062
  },
  {
   "id": "kand-squares",
@@ -206,7 +242,9 @@
   "year": "1913",
   "place": "Lenbachhaus, Munich",
   "spot": "Find two squares that use the same colours. Which circle is the smallest?",
-  "story": "Kandinsky made this as a colour study, testing which colours sing together. It turned into one of his best-loved pictures."
+  "story": "Kandinsky made this as a colour study, testing which colours sing together. It turned into one of his best-loved pictures.",
+  "w": 960,
+  "h": 717
  },
  {
   "id": "kand-white2",
@@ -217,7 +255,9 @@
   "year": "1923",
   "place": "Centre Pompidou, Paris",
   "spot": "Find the checkerboards, the dice and the black lines shooting across.",
-  "story": "Kandinsky painted this while teaching at the Bauhaus. He said a white background is like a great silence, full of possibilities."
+  "story": "Kandinsky painted this while teaching at the Bauhaus. He said a white background is like a great silence, full of possibilities.",
+  "w": 960,
+  "h": 1029
  },
  {
   "id": "klee-fish",
@@ -228,7 +268,9 @@
   "year": "1925",
   "place": "Philadelphia Museum of Art",
   "spot": "Find the clock, a flower and as many fish as you can.",
-  "story": "Klee glued a square of thin cloth onto the middle of this painting. Can you spot its edges?"
+  "story": "Klee glued a square of thin cloth onto the middle of this painting. Can you spot its edges?",
+  "w": 960,
+  "h": 753
  },
  {
   "id": "klee-balloon",
@@ -239,7 +281,9 @@
   "year": "1922",
   "place": "Guggenheim, New York",
   "spot": "Find the red balloon. What is it floating over?",
-  "story": "Klee and Kandinsky both taught at the Bauhaus. For years they lived next door to each other."
+  "story": "Klee and Kandinsky both taught at the Bauhaus. For years they lived next door to each other.",
+  "w": 960,
+  "h": 1001
  },
  {
   "id": "marc-cow",
@@ -250,7 +294,9 @@
   "year": "1911",
   "place": "Guggenheim, New York",
   "spot": "Is the cow jumping, dancing or running? Find the blue mountains.",
-  "story": "Marc gave colours feelings. To him yellow meant gentle and cheerful, which is why this cow is anything but brown."
+  "story": "Marc gave colours feelings. To him yellow meant gentle and cheerful, which is why this cow is anything but brown.",
+  "w": 960,
+  "h": 717
  },
  {
   "id": "macke-green",
@@ -261,7 +307,9 @@
   "year": "1913",
   "place": "Museum Ludwig, Cologne",
   "spot": "Count the people. Who is wearing green? Find the lake behind them.",
-  "story": "Macke loved bright colours and people strolling in parks. He was killed early in World War I, at just 27."
+  "story": "Macke loved bright colours and people strolling in parks. He was killed early in World War I, at just 27.",
+  "w": 960,
+  "h": 975
  },
  {
   "id": "delaunay-windows",
@@ -272,7 +320,9 @@
   "year": "1912",
   "place": "",
   "spot": "Can you find the green Eiffel Tower hiding among the coloured panes?",
-  "story": "Delaunay painted light pouring through a window as if it were broken into coloured pieces, like looking through a prism."
+  "story": "Delaunay painted light pouring through a window as if it were broken into coloured pieces, like looking through a prism.",
+  "w": 960,
+  "h": 1178
  },
  {
   "id": "popova",
@@ -283,7 +333,9 @@
   "year": "1917",
   "place": "",
   "spot": "Which shape is on top? Which one is at the very back?",
-  "story": "Popova was a leader of the Russian avant-garde. Later she designed fabrics and stage sets using the same bold shapes."
+  "story": "Popova was a leader of the Russian avant-garde. Later she designed fabrics and stage sets using the same bold shapes.",
+  "w": 960,
+  "h": 1166
  },
  {
   "id": "rozanova",
@@ -294,7 +346,9 @@
   "year": "1917",
   "place": "",
   "spot": "Are the stripe's edges sharp or soft? Does it look like it's glowing?",
-  "story": "Rozanova painted a single stripe decades before famous American painters did the same. She died the next year, at just 32."
+  "story": "Rozanova painted a single stripe decades before famous American painters did the same. She died the next year, at just 32.",
+  "w": 960,
+  "h": 1384
  },
  {
   "id": "lissitzky",
@@ -305,7 +359,9 @@
   "year": "1919",
   "place": "",
   "spot": "Find the red wedge and the white circle. Which one seems to be winning?",
-  "story": "A poster from the Russian Civil War: the red wedge stood for the \"Reds\" and the white circle for the \"Whites.\" Lissitzky told a story with only shapes."
+  "story": "A poster from the Russian Civil War: the red wedge stood for the \"Reds\" and the white circle for the \"Whites.\" Lissitzky told a story with only shapes.",
+  "w": 960,
+  "h": 786
  },
  {
   "id": "doesburg-cow",
@@ -316,7 +372,9 @@
   "year": "1917–18",
   "place": "MoMA, New York",
   "spot": "Can you find the cow? Hint: it has turned into rectangles.",
-  "story": "Van Doesburg drew a cow again and again, simplifying each time until only coloured blocks were left. With Mondrian he started the De Stijl movement."
+  "story": "Van Doesburg drew a cow again and again, simplifying each time until only coloured blocks were left. With Mondrian he started the De Stijl movement.",
+  "w": 960,
+  "h": 564
  },
  {
   "id": "demuth",
@@ -327,7 +385,9 @@
   "year": "1928",
   "place": "The Met, New York",
   "spot": "How many 5s can you find? Look for the names BILL and CARLO too.",
-  "story": "It's a picture of a poem: Demuth's friend William Carlos Williams wrote about a red fire truck numbered 5 racing through the rainy city."
+  "story": "It's a picture of a poem: Demuth's friend William Carlos Williams wrote about a red fire truck numbered 5 racing through the rainy city.",
+  "w": 960,
+  "h": 1159
  },
  {
   "id": "hartley",
@@ -338,7 +398,9 @@
   "year": "1914",
   "place": "The Met, New York",
   "spot": "Find the letters K v F and the number 24.",
-  "story": "There's no face, but it's a portrait. Hartley made it for his friend Karl von Freyburg, killed in World War I at age 24."
+  "story": "There's no face, but it's a portrait. Hartley made it for his friend Karl von Freyburg, killed in World War I at age 24.",
+  "w": 960,
+  "h": 1531
  },
  {
   "id": "signac",
@@ -349,7 +411,9 @@
   "year": "1890",
   "place": "MoMA, New York",
   "spot": "What is Fénéon holding out? Find the stars behind him.",
-  "story": "Signac painted it all with tiny dots of pure colour. Fénéon was an art critic who gave this dotty style its name: Neo-Impressionism."
+  "story": "Signac painted it all with tiny dots of pure colour. Fénéon was an art critic who gave this dotty style its name: Neo-Impressionism.",
+  "w": 960,
+  "h": 766
  },
  {
   "id": "redon",
@@ -360,7 +424,9 @@
   "year": "c. 1914",
   "place": "Kröller-Müller Museum, Netherlands",
   "spot": "Find the giant's one eye, then the person sleeping on the hillside.",
-  "story": "In a Greek myth, the cyclops Polyphemus falls in love with the sea nymph Galatea. Redon makes him shy, just peeking over the hill."
+  "story": "In a Greek myth, the cyclops Polyphemus falls in love with the sea nymph Galatea. Redon makes him shy, just peeking over the hill.",
+  "w": 960,
+  "h": 1207
  },
  {
   "id": "afklint-swan",
@@ -371,7 +437,9 @@
   "year": "1915",
   "place": "",
   "spot": "Which half is light and which is dark? Find black, white, yellow and blue.",
-  "story": "Af Klint's Swan series starts with a black swan and a white swan. Painting by painting, they turn into pure shapes about opposites."
+  "story": "Af Klint's Swan series starts with a black swan and a white swan. Painting by painting, they turn into pure shapes about opposites.",
+  "w": 960,
+  "h": 953
  },
  {
   "id": "hasui",
@@ -382,7 +450,9 @@
   "year": "1925",
   "place": "",
   "spot": "Find the person with the umbrella. Is the snow still falling?",
-  "story": "Hasui made more than 600 prints of Japanese landscapes. Japan later named him a Living National Treasure."
+  "story": "Hasui made more than 600 prints of Japanese landscapes. Japan later named him a Living National Treasure.",
+  "w": 897,
+  "h": 1350
  },
  {
   "id": "koson",
@@ -393,7 +463,9 @@
   "year": "c. 1910",
   "place": "",
   "spot": "Find the crow's eye. How many blossoms are open?",
-  "story": "Koson made hundreds of bird-and-flower prints, many of them sold to collectors in Europe and America."
+  "story": "Koson made hundreds of bird-and-flower prints, many of them sold to collectors in Europe and America.",
+  "w": 960,
+  "h": 1399
  },
  {
   "id": "kirifuri",
@@ -404,7 +476,9 @@
   "year": "c. 1832",
   "place": "A Tour of the Waterfalls of the Provinces",
   "spot": "Find the tiny travellers looking up at the falls.",
-  "story": "This is by the artist of the famous Great Wave. He drew the water like fingers or roots reaching down the mountain."
+  "story": "This is by the artist of the famous Great Wave. He drew the water like fingers or roots reaching down the mountain.",
+  "w": 960,
+  "h": 1359
  },
  {
   "id": "haeckel-actiniae",
@@ -415,7 +489,9 @@
   "year": "1904",
   "place": "Art Forms in Nature",
   "spot": "These look like flowers, but they're animals! Find one with tentacles like spaghetti.",
-  "story": "Sea anemones catch food with stinging tentacles. Clownfish are protected from the stings, so they live safely inside them."
+  "story": "Sea anemones catch food with stinging tentacles. Clownfish are protected from the stings, so they live safely inside them.",
+  "w": 960,
+  "h": 1347
  },
  {
   "id": "carr-totem",
@@ -426,7 +502,9 @@
   "year": "1931",
   "place": "Vancouver Art Gallery",
   "spot": "Find the carved faces on the pole. How tall do you think it is?",
-  "story": "Carr spent years visiting First Nations villages along the BC coast, painting their carved poles among the giant trees."
+  "story": "Carr spent years visiting First Nations villages along the BC coast, painting their carved poles among the giant trees.",
+  "w": 960,
+  "h": 2231
  },
  {
   "id": "thomson",
@@ -437,7 +515,9 @@
   "year": "1917",
   "place": "Art Gallery of Ontario, Toronto",
   "spot": "Which way is the wind blowing? How can you tell?",
-  "story": "Thomson painted the lakes of Algonquin Park, a few hours north of Toronto. You can see this one in person at the AGO."
+  "story": "Thomson painted the lakes of Algonquin Park, a few hours north of Toronto. You can see this one in person at the AGO.",
+  "w": 960,
+  "h": 835
  },
  {
   "id": "duchamp-nude",
@@ -448,7 +528,9 @@
   "year": "1912",
   "place": "Philadelphia Museum of Art",
   "spot": "Find the figure walking down the stairs. How many times can you see it?",
-  "story": "It shows movement like a stack of photos taken in a row. At a 1913 show in New York, one critic called it \"an explosion in a shingle factory.\""
+  "story": "It shows movement like a stack of photos taken in a row. At a 1913 show in New York, one critic called it \"an explosion in a shingle factory.\"",
+  "w": 960,
+  "h": 1583
  },
  {
   "id": "kand-bluemtn",
@@ -459,7 +541,9 @@
   "year": "1908–09",
   "place": "Guggenheim, New York",
   "spot": "Find the riders on horseback at the bottom. Which way are they galloping?",
-  "story": "Kandinsky painted this in the Bavarian countryside, where his colours broke free of real life: a blue mountain, red and yellow trees."
+  "story": "Kandinsky painted this in the Bavarian countryside, where his colours broke free of real life: a blue mountain, red and yellow trees.",
+  "w": 960,
+  "h": 1038
  },
  {
   "id": "kand-impro28",
@@ -470,7 +554,9 @@
   "year": "1912",
   "place": "Guggenheim, New York",
   "spot": "Look for shapes that almost look like things: a boat, a rainbow, a mountain. What do you find?",
-  "story": "Kandinsky called his quicker, freer paintings \"Improvisations,\" like a musician making up a tune on the spot."
+  "story": "Kandinsky called his quicker, freer paintings \"Improvisations,\" like a musician making up a tune on the spot.",
+  "w": 902,
+  "h": 610
  },
  {
   "id": "kand-circles",
@@ -481,7 +567,9 @@
   "year": "1923",
   "place": "Philadelphia Museum of Art",
   "spot": "Count the circles inside the big black ring. Where do the coloured beams cross?",
-  "story": "Kandinsky said the circle was the calmest shape, one that holds all the others in balance."
+  "story": "Kandinsky said the circle was the calmest shape, one that holds all the others in balance.",
+  "w": 960,
+  "h": 993
  },
  {
   "id": "kand-yellow-acc",
@@ -492,7 +580,9 @@
   "year": "1924",
   "place": "Guggenheim, New York",
   "spot": "Find a checkerboard, a ladder and a black circle.",
-  "story": "The title is a music word: an accompaniment is the music that plays along with the melody."
+  "story": "The title is a music word: an accompaniment is the music that plays along with the melody.",
+  "w": 960,
+  "h": 983
  },
  {
   "id": "klee-highways",
@@ -503,7 +593,9 @@
   "year": "1929",
   "place": "Museum Ludwig, Cologne",
   "spot": "Follow the main road up the middle. How many side roads branch off it?",
-  "story": "Klee painted this after a trip to Egypt, where he saw fields in neat strips along the river Nile."
+  "story": "Klee painted this after a trip to Egypt, where he saw fields in neat strips along the river Nile.",
+  "w": 816,
+  "h": 1022
  },
  {
   "id": "gris-picasso",
@@ -514,7 +606,9 @@
   "year": "1912",
   "place": "Art Institute of Chicago",
   "spot": "Find Picasso's eyes, his buttons and the palette in his hand.",
-  "story": "Gris painted his friend Picasso in the new Cubist style they were both exploring, as if seen from many angles at once."
+  "story": "Gris painted his friend Picasso in the new Cubist style they were both exploring, as if seen from many angles at once.",
+  "w": 960,
+  "h": 1221
  },
  {
   "id": "exter-composition",
@@ -525,7 +619,9 @@
   "year": "1917",
   "place": "",
   "spot": "Which shapes look like they are moving fastest?",
-  "story": "Ekster ran an art studio in Kyiv where young artists learned to paint without pictures. She later designed costumes for theatre and film."
+  "story": "Ekster ran an art studio in Kyiv where young artists learned to paint without pictures. She later designed costumes for theatre and film.",
+  "w": 960,
+  "h": 1282
  },
  {
   "id": "klee-insula",
@@ -536,7 +632,9 @@
   "year": "1938",
   "place": "Zentrum Paul Klee, Bern",
   "spot": "Find a face, a boat and some snake-like lines.",
-  "story": "One of Klee's biggest paintings, made near the end of his life. The thick black lines look like single strokes of a big brush."
+  "story": "One of Klee's biggest paintings, made near the end of his life. The thick black lines look like single strokes of a big brush.",
+  "w": 960,
+  "h": 465
  },
  {
   "id": "malevich-8red",
@@ -547,7 +645,9 @@
   "year": "1915",
   "place": "Stedelijk Museum, Amsterdam",
   "spot": "Count the red rectangles. Are they flying or falling?",
-  "story": "Some people see fields from an airplane window. Malevich wanted you to feel like you were floating in space."
+  "story": "Some people see fields from an airplane window. Malevich wanted you to feel like you were floating in space.",
+  "w": 800,
+  "h": 940
  },
  {
   "id": "malevich-supremus",
@@ -558,7 +658,9 @@
   "year": "1916",
   "place": "",
   "spot": "Find the black cross and the yellow lines.",
-  "story": "Malevich called his style Suprematism because he believed pure shape and colour were \"supreme,\" better than pictures of things."
+  "story": "Malevich called his style Suprematism because he believed pure shape and colour were \"supreme,\" better than pictures of things.",
+  "w": 519,
+  "h": 595
  },
  {
   "id": "rodchenko",
@@ -569,7 +671,9 @@
   "year": "c. 1918",
   "place": "Ivanovo Regional Art Museum",
   "spot": "Find the curve, the red bar and the thin lines like wires.",
-  "story": "Rodchenko later became famous for photography and posters, shooting buildings from dizzying angles."
+  "story": "Rodchenko later became famous for photography and posters, shooting buildings from dizzying angles.",
+  "w": 830,
+  "h": 1252
  },
  {
   "id": "sonia-prismes",
@@ -580,7 +684,9 @@
   "year": "1914",
   "place": "Centre Pompidou, Paris",
   "spot": "Find the circles that look like glowing street lamps.",
-  "story": "Sonia Delaunay painted the new electric lights of Paris. She also designed clothes, fabrics and even cars in the same bright patterns."
+  "story": "Sonia Delaunay painted the new electric lights of Paris. She also designed clothes, fabrics and even cars in the same bright patterns.",
+  "w": 620,
+  "h": 621
  },
  {
   "id": "picabia-udnie",
@@ -591,7 +697,9 @@
   "year": "1913",
   "place": "Centre Pompidou, Paris",
   "spot": "Can you see a dancer's twists and turns in the shapes?",
-  "story": "Picabia was inspired by a dancer he watched on a ship to New York. He painted the energy of the dance, not the dancer."
+  "story": "Picabia was inspired by a dancer he watched on a ship to New York. He painted the energy of the dance, not the dancer.",
+  "w": 960,
+  "h": 961
  },
  {
   "id": "goncharova-cyclist",
@@ -602,7 +710,9 @@
   "year": "1913",
   "place": "Russian Museum, St. Petersburg",
   "spot": "Count the cyclist's legs and wheels. Why does it look like so many?",
-  "story": "Goncharova painted the bike over and over, like frames of a film, to show speed. Look for words on the signs behind him."
+  "story": "Goncharova painted the bike over and over, like frames of a film, to show speed. Look for words on the signs behind him.",
+  "w": 960,
+  "h": 718
  },
  {
   "id": "larionov-rayonism",
@@ -613,7 +723,9 @@
   "year": "1911",
   "place": "",
   "spot": "Follow the streaks of light. Which way do they shoot?",
-  "story": "Larionov invented Rayonism: painting the rays of light bouncing off things instead of the things themselves."
+  "story": "Larionov invented Rayonism: painting the rays of light bouncing off things instead of the things themselves.",
+  "w": 960,
+  "h": 731
  },
  {
   "id": "larionov-glass",
@@ -624,7 +736,9 @@
   "year": "1912",
   "place": "Guggenheim, New York",
   "spot": "Can you find glasses and bottles hidden in the rays?",
-  "story": "Larionov painted how light shatters into streaks as it passes through glass. He and Natalia Goncharova were a couple."
+  "story": "Larionov painted how light shatters into streaks as it passes through glass. He and Natalia Goncharova were a couple.",
+  "w": 960,
+  "h": 1032
  },
  {
   "id": "marc-fate",
@@ -635,7 +749,9 @@
   "year": "1913",
   "place": "Kunstmuseum Basel",
   "spot": "Find a blue deer, a horse and some foxes in the chaos.",
-  "story": "Part of this painting was burned in a fire. Marc's friend Paul Klee repainted the damaged corner. Can you tell which part?"
+  "story": "Part of this painting was burned in a fire. Marc's friend Paul Klee repainted the damaged corner. Can you tell which part?",
+  "w": 960,
+  "h": 705
  },
  {
   "id": "marc-fighting",
@@ -646,7 +762,9 @@
   "year": "1914",
   "place": "Pinakothek der Moderne, Munich",
   "spot": "Find the red shape and the dark blue shape. Which one is winning?",
-  "story": "One of Marc's last paintings. The animals are gone, leaving just two forces swirling into each other."
+  "story": "One of Marc's last paintings. The animals are gone, leaving just two forces swirling into each other.",
+  "w": 960,
+  "h": 668
  },
  {
   "id": "schiele-trees",
@@ -657,7 +775,9 @@
   "year": "1917",
   "place": "Belvedere, Vienna",
   "spot": "Which of the four trees is different? Look at the stripes in the sky.",
-  "story": "Schiele is famous for twisty portraits, but he loved painting trees too, giving each one its own personality."
+  "story": "Schiele is famous for twisty portraits, but he loved painting trees too, giving each one its own personality.",
+  "w": 960,
+  "h": 754
  },
  {
   "id": "feininger-gelmeroda",
@@ -668,7 +788,9 @@
   "year": "1915",
   "place": "",
   "spot": "Find the church steeple. How many sharp points can you count?",
-  "story": "Feininger painted this little village church in Germany more than a dozen times. He also drew comic strips for a Chicago newspaper."
+  "story": "Feininger painted this little village church in Germany more than a dozen times. He also drew comic strips for a Chicago newspaper.",
+  "w": 960,
+  "h": 1200
  },
  {
   "id": "jawlensky",
@@ -679,7 +801,9 @@
   "year": "1925",
   "place": "",
   "spot": "Find the eyes, the nose and the mouth. Is this face awake or dreaming?",
-  "story": "Jawlensky painted hundreds of simple faces like this one, using just a few lines and colours."
+  "story": "Jawlensky painted hundreds of simple faces like this one, using just a few lines and colours.",
+  "w": 960,
+  "h": 1146
  },
  {
   "id": "giacometti-chromatic",
@@ -690,7 +814,9 @@
   "year": "1914",
   "place": "",
   "spot": "Is this a pattern, a garden or a stained-glass window?",
-  "story": "Giacometti also designed stained-glass windows, and he painted colour so it seems to glow like glass."
+  "story": "Giacometti also designed stained-glass windows, and he painted colour so it seems to glow like glass.",
+  "w": 960,
+  "h": 963
  },
  {
   "id": "russell-synchromy",
@@ -701,7 +827,9 @@
   "year": "1913–14",
   "place": "Buffalo AKG Art Museum",
   "spot": "Find the spiral of colours. Can you see a figure hidden inside it?",
-  "story": "Russell co-invented \"Synchromism,\" which means \"with colour.\" He believed colour could work like music."
+  "story": "Russell co-invented \"Synchromism,\" which means \"with colour.\" He believed colour could work like music.",
+  "w": 960,
+  "h": 1064
  },
  {
   "id": "bruce-composition",
@@ -712,7 +840,9 @@
   "year": "c. 1916",
   "place": "Museum of Fine Arts, Houston",
   "spot": "Which shapes look flat, and which look 3D?",
-  "story": "Bruce studied in Paris with Henri Matisse. Later he destroyed many of his own paintings, so only a small number survive."
+  "story": "Bruce studied in Paris with Henri Matisse. Later he destroyed many of his own paintings, so only a small number survive.",
+  "w": 960,
+  "h": 1192
  },
  {
   "id": "stella-coney",
@@ -723,7 +853,9 @@
   "year": "1913–14",
   "place": "Yale University Art Gallery",
   "spot": "Find the rides and the electric lights. Can you almost hear the noise?",
-  "story": "Stella painted Coney Island's amusement park at night, when thousands of new electric lights made it glow."
+  "story": "Stella painted Coney Island's amusement park at night, when thousands of new electric lights made it glow.",
+  "w": 960,
+  "h": 866
  },
  {
   "id": "schwitters-merz50",
@@ -734,7 +866,9 @@
   "year": "1920",
   "place": "",
   "spot": "Find the number 50 and scraps of paper with printing on them.",
-  "story": "Schwitters made art from things he picked up off the street: tickets, wrappers and labels. He called it \"Merz.\""
+  "story": "Schwitters made art from things he picked up off the street: tickets, wrappers and labels. He called it \"Merz.\"",
+  "w": 960,
+  "h": 1260
  },
  {
   "id": "taeuber",
@@ -745,7 +879,9 @@
   "year": "c. 1930",
   "place": "",
   "spot": "Find the circles and the squares. Which colour appears only once?",
-  "story": "Taeuber-Arp was a dancer, puppet-maker and designer as well as a painter. Her face was on the Swiss 50-franc note."
+  "story": "Taeuber-Arp was a dancer, puppet-maker and designer as well as a painter. Her face was on the Swiss 50-franc note.",
+  "w": 960,
+  "h": 1325
  },
  {
   "id": "afklint-chaos",
@@ -756,7 +892,9 @@
   "year": "1906–07",
   "place": "",
   "spot": "Find the spirals and the letters.",
-  "story": "Some of the earliest abstract paintings ever made. Af Klint believed she was guided by spirits as she painted this series."
+  "story": "Some of the earliest abstract paintings ever made. Af Klint believed she was guided by spirits as she painted this series.",
+  "w": 960,
+  "h": 1329
  },
  {
   "id": "afklint-youth",
@@ -767,7 +905,9 @@
   "year": "1907",
   "place": "",
   "spot": "Find the flower shapes and the little spirals.",
-  "story": "The Ten Largest show the stages of life, from childhood to old age. Each painting is over three metres tall."
+  "story": "The Ten Largest show the stages of life, from childhood to old age. Each painting is over three metres tall.",
+  "w": 960,
+  "h": 1280
  },
  {
   "id": "afklint-altar",
@@ -778,7 +918,9 @@
   "year": "1915",
   "place": "",
   "spot": "Find the rainbow staircase and the golden sun.",
-  "story": "Af Klint designed this series to hang in a spiral-shaped temple that was never built."
+  "story": "Af Klint designed this series to hang in a spiral-shaped temple that was never built.",
+  "w": 960,
+  "h": 1274
  },
  {
   "id": "pollock-shimmering",
@@ -789,7 +931,9 @@
   "year": "1946",
   "place": "MoMA, New York",
   "spot": "Look for yellow and white. Does it shimmer when you look away and back?",
-  "story": "Painted just before Pollock's famous drip paintings, with thick paint pressed straight from the tube."
+  "story": "Painted just before Pollock's famous drip paintings, with thick paint pressed straight from the tube.",
+  "w": 757,
+  "h": 960
  },
  {
   "id": "pollock-autumn",
@@ -800,7 +944,9 @@
   "year": "1950",
   "place": "The Met, New York",
   "spot": "Do the lines look like dancing, rain or branches?",
-  "story": "Pollock laid huge canvases on the floor and dripped and flung paint from above, walking all around them. This one is over 5 metres wide."
+  "story": "Pollock laid huge canvases on the floor and dripped and flung paint from above, walking all around them. This one is over 5 metres wide.",
+  "w": 960,
+  "h": 496
  },
  {
   "id": "pollock-convergence",
@@ -811,7 +957,9 @@
   "year": "1952",
   "place": "Buffalo AKG Art Museum",
   "spot": "Find red, yellow, blue and orange all tangled together.",
-  "story": "Pollock used house paint and sticks instead of brushes. People still argue about whether \"anyone could do that.\" Could you?"
+  "story": "Pollock used house paint and sticks instead of brushes. People still argue about whether \"anyone could do that.\" Could you?",
+  "w": 960,
+  "h": 582
  },
  {
   "id": "rothko-slow-swirl",
@@ -822,7 +970,9 @@
   "year": "1944",
   "place": "MoMA, New York",
   "spot": "Find the two figures. Do they look like people, birds or sea creatures?",
-  "story": "Before his famous colour blocks, Rothko painted dreamy creatures. This may be a picture of him and his wife, Mell."
+  "story": "Before his famous colour blocks, Rothko painted dreamy creatures. This may be a picture of him and his wife, Mell.",
+  "w": 960,
+  "h": 853
  },
  {
   "id": "rothko-61",
@@ -833,7 +983,9 @@
   "year": "1953",
   "place": "",
   "spot": "Stare at the blue band for 30 seconds. Do the edges start to glow?",
-  "story": "Rothko wanted people to stand close to his big paintings so the colour would wrap around them."
+  "story": "Rothko wanted people to stand close to his big paintings so the colour would wrap around them.",
+  "w": 729,
+  "h": 960
  },
  {
   "id": "rothko-orange-yellow",
@@ -844,7 +996,9 @@
   "year": "1956",
   "place": "Buffalo AKG Art Museum",
   "spot": "Where does the orange end and the yellow begin?",
-  "story": "Rothko painted many thin layers, so his colours seem to float and glow from inside."
+  "story": "Rothko painted many thin layers, so his colours seem to float and glow from inside.",
+  "w": 742,
+  "h": 960
  },
  {
   "id": "rousseau-exotic",
@@ -855,7 +1009,9 @@
   "year": "1910",
   "place": "Norton Simon Museum, Pasadena",
   "spot": "Find the monkeys and the oranges. How many kinds of leaves are there?",
-  "story": "Rousseau never saw a jungle. He painted these after visiting the botanical garden and zoo in Paris, and he taught himself to paint."
+  "story": "Rousseau never saw a jungle. He painted these after visiting the botanical garden and zoo in Paris, and he taught himself to paint.",
+  "w": 960,
+  "h": 763
  },
  {
   "id": "vallotton-sunset",
@@ -866,7 +1022,9 @@
   "year": "1913",
   "place": "",
   "spot": "Find the sun and its reflection. How many colours are in the sky?",
-  "story": "Vallotton was also famous for bold black-and-white woodcuts. Here he turned a sunset into simple bands of colour."
+  "story": "Vallotton was also famous for bold black-and-white woodcuts. Here he turned a sunset into simple bands of colour.",
+  "w": 960,
+  "h": 630
  },
  {
   "id": "thomson-jackpine",
@@ -877,7 +1035,9 @@
   "year": "1916–17",
   "place": "National Gallery of Canada, Ottawa",
   "spot": "Find the snowy hills far away. What time of day is it?",
-  "story": "Thomson painted this from a sketch made in Algonquin Park. It's one of the best-known paintings in Canada."
+  "story": "Thomson painted this from a sketch made in Algonquin Park. It's one of the best-known paintings in Canada.",
+  "w": 960,
+  "h": 877
  },
  {
   "id": "macdonald-garden",
@@ -888,7 +1048,9 @@
   "year": "1916",
   "place": "National Gallery of Canada, Ottawa",
   "spot": "Find the tall sunflowers bending over. Why are they drooping?",
-  "story": "MacDonald painted his own garden in Thornhill, just north of Toronto. Critics in 1916 disliked it; now it's a Canadian classic."
+  "story": "MacDonald painted his own garden in Thornhill, just north of Toronto. Critics in 1916 disliked it; now it's a Canadian classic.",
+  "w": 960,
+  "h": 767
  },
  {
   "id": "macdonald-solemn",
@@ -899,7 +1061,9 @@
   "year": "1921",
   "place": "National Gallery of Canada, Ottawa",
   "spot": "Find the river winding between the hills.",
-  "story": "Painted in Algoma, northern Ontario, where the Group of Seven travelled and lived in a railway boxcar to sketch."
+  "story": "Painted in Algoma, northern Ontario, where the Group of Seven travelled and lived in a railway boxcar to sketch.",
+  "w": 960,
+  "h": 737
  },
  {
   "id": "carmichael-autumn",
@@ -910,7 +1074,9 @@
   "year": "c. 1920",
   "place": "",
   "spot": "How many different leaf colours can you find?",
-  "story": "Carmichael was the youngest member of the Group of Seven. He also taught at the Ontario College of Art in Toronto."
+  "story": "Carmichael was the youngest member of the Group of Seven. He also taught at the Ontario College of Art in Toronto.",
+  "w": 960,
+  "h": 786
  },
  {
   "id": "carmichael-lone",
@@ -921,7 +1087,9 @@
   "year": "1929",
   "place": "",
   "spot": "Find the lake. How many hills are stacked one behind another?",
-  "story": "Carmichael loved the rolling hills of northern Ontario and smoothed them into simple, stacked shapes."
+  "story": "Carmichael loved the rolling hills of northern Ontario and smoothed them into simple, stacked shapes.",
+  "w": 960,
+  "h": 760
  },
  {
   "id": "harris-lefroy",
@@ -932,7 +1100,9 @@
   "year": "c. 1929",
   "place": "",
   "spot": "Follow the ridges up to the peak. Where is the snow?",
-  "story": "Mount Lefroy is in the Rockies near Lake Louise. Harris painted mountains as smooth, glowing shapes, almost like sculptures."
+  "story": "Mount Lefroy is in the Rockies near Lake Louise. Harris painted mountains as smooth, glowing shapes, almost like sculptures.",
+  "w": 960,
+  "h": 757
  },
  {
   "id": "carr-scorned",
@@ -943,7 +1113,9 @@
   "year": "1935",
   "place": "Vancouver Art Gallery",
   "spot": "Find the one tall, skinny tree left standing.",
-  "story": "Loggers left this tree because it was too thin to be worth cutting. Carr made it the hero, reaching for the sky."
+  "story": "Loggers left this tree because it was too thin to be worth cutting. Carr made it the hero, reaching for the sky.",
+  "w": 467,
+  "h": 768
  },
  {
   "id": "hokusai-ejiri",
@@ -954,7 +1126,9 @@
   "year": "c. 1832",
   "place": "Thirty-six Views of Mount Fuji",
   "spot": "Find the papers flying in the wind and the hat blowing away. Where is Mount Fuji?",
-  "story": "This is from the same series as Hokusai's famous Great Wave. Here Fuji is just a simple white outline."
+  "story": "This is from the same series as Hokusai's famous Great Wave. Here Fuji is just a simple white outline.",
+  "w": 960,
+  "h": 645
  },
  {
   "id": "hiroshige-fireworks",
@@ -965,7 +1139,9 @@
   "year": "1858",
   "place": "One Hundred Famous Views of Edo",
   "spot": "Find the boats on the river. Where did the firework burst?",
-  "story": "Summer fireworks over the Sumida River in Edo, now called Tokyo. The festival still happens every year."
+  "story": "Summer fireworks over the Sumida River in Edo, now called Tokyo. The festival still happens every year.",
+  "w": 960,
+  "h": 1476
  },
  {
   "id": "kuniyoshi-cats",
@@ -976,7 +1152,9 @@
   "year": "c. 1850",
   "place": "",
   "spot": "How many cats can you count? Find one with a fish.",
-  "story": "Kuniyoshi loved cats and kept many in his studio. Each cat's pose is a pun on the name of a stop along an old road."
+  "story": "Kuniyoshi loved cats and kept many in his studio. Each cat's pose is a pun on the name of a stop along an old road.",
+  "w": 960,
+  "h": 477
  },
  {
   "id": "hasui-ushibori",
@@ -987,7 +1165,9 @@
   "year": "1930",
   "place": "",
   "spot": "Find the boat with its sail up. What time of day is it?",
-  "story": "Hasui travelled all over Japan sketching quiet scenes like this one."
+  "story": "Hasui travelled all over Japan sketching quiet scenes like this one.",
+  "w": 960,
+  "h": 1359
  },
  {
   "id": "yoshida-sumida",
@@ -998,7 +1178,9 @@
   "year": "1926",
   "place": "",
   "spot": "Find the boats in the mist. Which one is closest?",
-  "story": "Yoshida travelled the world, including North America, and turned what he saw into woodblock prints."
+  "story": "Yoshida travelled the world, including North America, and turned what he saw into woodblock prints.",
+  "w": 800,
+  "h": 541
  },
  {
   "id": "yoshida-konoshima",
@@ -1009,7 +1191,9 @@
   "year": "1930",
   "place": "",
   "spot": "Find the sailing boat and the island behind it.",
-  "story": "Unusually for Japan at the time, Yoshida oversaw the carving and printing of his woodblocks himself."
+  "story": "Unusually for Japan at the time, Yoshida oversaw the carving and printing of his woodblocks himself.",
+  "w": 800,
+  "h": 552
  },
  {
   "id": "shoson-egrets",
@@ -1020,7 +1204,9 @@
   "year": "c. 1927",
   "place": "",
   "spot": "Count the egrets. Which one is about to land?",
-  "story": "Koson made many bird prints for collectors in Europe and America. Egrets were one of his favourites."
+  "story": "Koson made many bird prints for collectors in Europe and America. Egrets were one of his favourites.",
+  "w": 753,
+  "h": 1705
  },
  {
   "id": "haeckel-siphon",
@@ -1031,7 +1217,9 @@
   "year": "1904",
   "place": "Art Forms in Nature",
   "spot": "Is this one animal or many? Find the bell shapes at the top.",
-  "story": "A siphonophore looks like one creature but is really a colony of tiny animals working together. Some are longer than a blue whale."
+  "story": "A siphonophore looks like one creature but is really a colony of tiny animals working together. Some are longer than a blue whale.",
+  "w": 960,
+  "h": 1336
  },
  {
   "id": "haeckel-ophiodea",
@@ -1042,7 +1230,9 @@
   "year": "1904",
   "place": "Art Forms in Nature",
   "spot": "Count the arms on each brittle star.",
-  "story": "Brittle stars are cousins of starfish. If one loses an arm, it can grow it back."
+  "story": "Brittle stars are cousins of starfish. If one loses an arm, it can grow it back.",
+  "w": 960,
+  "h": 1364
  },
  {
   "id": "bentley-snowflakes",
@@ -1053,7 +1243,9 @@
   "year": "c. 1900",
   "place": "",
   "spot": "Find two snowflakes that look almost alike. How many points does each one have?",
-  "story": "Bentley, a farmer in Vermont, was the first person to photograph a single snowflake, in 1885. He took more than 5,000 snowflake photos."
+  "story": "Bentley, a farmer in Vermont, was the first person to photograph a single snowflake, in 1885. He took more than 5,000 snowflake photos.",
+  "w": 960,
+  "h": 1227
  },
  {
   "id": "lear-macaw",
@@ -1064,7 +1256,9 @@
   "year": "1832",
   "place": "Illustrations of the Family of Parrots",
   "spot": "Find the macaw's feet and its curved beak.",
-  "story": "Lear painted parrots when he was still a teenager. Later he became famous for funny poems like \"The Owl and the Pussy-cat.\""
+  "story": "Lear painted parrots when he was still a teenager. Later he became famous for funny poems like \"The Owl and the Pussy-cat.\"",
+  "w": 960,
+  "h": 1529
  },
  {
   "id": "merian-pineapple",
@@ -1075,7 +1269,9 @@
   "year": "1705",
   "place": "Metamorphosis of the Insects of Surinam",
   "spot": "Find the butterflies and the little insects.",
-  "story": "Merian painted pineapples in Suriname, where they grew. Most people in Europe had never seen one."
+  "story": "Merian painted pineapples in Suriname, where they grew. Most people in Europe had never seen one.",
+  "w": 960,
+  "h": 1432
  },
  {
   "id": "audubon-parakeet",
@@ -1086,7 +1282,9 @@
   "year": "1827–38",
   "place": "The Birds of America",
   "spot": "Count the parakeets. Which one is upside down?",
-  "story": "The Carolina parakeet was the only parrot native to eastern North America. It went extinct in 1918."
+  "story": "The Carolina parakeet was the only parrot native to eastern North America. It went extinct in 1918.",
+  "w": 960,
+  "h": 1316
  },
  {
   "id": "atkins-algae",
@@ -1097,7 +1295,9 @@
   "year": "1843–53",
   "place": "Photographs of British Algae",
   "spot": "Find the delicate branches of the seaweed.",
-  "story": "Atkins made one of the first books ever illustrated with photographs, using sunlight and chemicals that turn blue."
+  "story": "Atkins made one of the first books ever illustrated with photographs, using sunlight and chemicals that turn blue.",
+  "w": 583,
+  "h": 786
  },
  {
   "id": "blossfeldt",
@@ -1108,6 +1308,8 @@
   "year": "1928",
   "place": "Art Forms in Nature (Urformen der Kunst)",
   "spot": "These are plant buds up close. Do they look like buildings or sculptures?",
-  "story": "Blossfeldt taught art and used a homemade camera to magnify plants, showing his students nature's shapes."
+  "story": "Blossfeldt taught art and used a homemade camera to magnify plants, showing his students nature's shapes.",
+  "w": 960,
+  "h": 699
  }
 ]
