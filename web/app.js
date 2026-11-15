@@ -15,6 +15,7 @@
   const QS = new URLSearchParams(location.search);
   const AT = QS.get('at');
   const FORCE_MODE = QS.get('mode'); // testing aid: ?mode=school or ?mode=discover
+  if (QS.get('full')) S.full = true; // testing aid: ?full=1 opens today's art full screen
   const T0 = Date.now();
   const clockNow = () => (AT ? new Date(new Date(AT).getTime() + (Date.now() - T0)) : new Date());
   const $ = (s) => document.querySelector(s);
@@ -295,7 +296,8 @@
         <span class="art-title serif">${esc(a.title)}</span><span class="art-meta">${esc(a.artist)} · ${esc(a.year)}${a.place ? ' · ' + esc(a.place) : ''}</span>
         <button class="btn" data-act="look" style="align-self:flex-start">${S.look ? 'Hide ▴' : 'Look closer ▾'}</button>
         <div class="side-foot">${dots(0)}${next}</div></section>`;
-      main = `<section class="main art-frame" aria-label="Art of the day"><img src="content/art/${esc(a.file)}" alt="${esc(a.title)} by ${esc(a.artist)}">
+      main = `<section class="main art-frame" aria-label="Art of the day"><button class="art-tap" data-act="full" aria-label="Show full screen"><img src="content/art/${esc(a.file)}" alt="${esc(a.title)} by ${esc(a.artist)}"></button>
+        ${S.full ? `<button class="art-full" data-act="unfull" aria-label="Back to dashboard"><img src="content/art/${esc(a.file)}" alt=""></button>` : ''}
         ${S.look ? `<div class="look"><span class="eyebrow green">CAN YOU SPOT IT?</span><p class="spot">${esc(a.spot)}</p><p class="story">${esc(a.story)}</p></div>` : ''}</section>`;
     } else {
       const subj = ['math', 'physics', 'biology'].map((k) => { const l = (S.qs && S.qs[k]) || []; return l.length ? [k, l[di % l.length]] : null; }).filter(Boolean);
@@ -422,7 +424,7 @@
   // ---------------------------------------------------------------- interaction
   function touched() {
     clearTimeout(S.idleTimer);
-    S.idleTimer = setTimeout(() => { S.view = null; S.look = false; render(); }, (S.cfg?.discover?.idleResetSec || 180) * 1000);
+    S.idleTimer = setTimeout(() => { S.view = null; S.look = false; S.full = false; render(); }, (S.cfg?.discover?.idleResetSec || 180) * 1000);
   }
   document.addEventListener('pointerdown', () => {
     // At night the backlight is off; any touch wakes it for a couple of minutes.
@@ -436,6 +438,8 @@
     if (act === 'clock') { enterClock(); return; }
     if (act === 'next') { S.view = (S.view || defaultView(now)) === 'art' ? 'learn' : 'art'; S.look = false; }
     if (act === 'look') S.look = !S.look;
+    if (act === 'full') S.full = true;
+    if (act === 'unfull') S.full = false;
     if (act.startsWith('reveal-')) S.reveal[act.slice(7)] = !S.reveal[act.slice(7)];
     touched();
     render();
