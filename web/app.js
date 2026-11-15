@@ -7,6 +7,7 @@
     cfg: null, cal: [], wx: null, tr: null, trError: false,
     art: [], qs: [], words: { en: [], fr: [] },
     view: null, look: false, reveal: {}, revealDay: null, idleTimer: null,
+    autoStep: -1, autoAt: 0, lastTouch: 0,
     clockOn: false, clockUpdate: null, clockMinute: null,
   };
 
@@ -419,10 +420,33 @@
 
   // ---------------------------------------------------------------- interaction
   function touched() {
+    S.lastTouch = Date.now();
     clearTimeout(S.idleTimer);
-    S.idleTimer = setTimeout(() => { S.view = null; S.look = false; S.full = false; render(); }, (S.cfg?.discover?.idleResetSec || 180) * 1000);
+    S.idleTimer = setTimeout(() => { S.view = null; S.look = false; S.full = false; S.autoAt = 0; render(); autoTick(); }, (S.cfg?.discover?.idleResetSec || 180) * 1000);
+  }
+
+  // Evenings and weekends: rotate full-screen art → question → full-screen clock on a timer.
+  // Any touch pauses the rotation until the idle reset (idleResetSec) passes.
+  function autoWindow(now) {
+    if (!S.cfg || mode(now) !== 'discover') return false;
+    return !isSchoolDay(now) || minsOf(now) >= hm(S.cfg.discover.cycleFrom || '17:00');
+  }
+  function autoTick() {
+    const now = clockNow();
+    if (!autoWindow(now)) { S.autoStep = -1; S.autoAt = 0; return; }
+    const idleMs = (S.cfg.discover.idleResetSec || 180) * 1000;
+    if (Date.now() - S.lastTouch < idleMs) return;
+    if (S.autoAt && Date.now() - S.autoAt < (Number(QS.get('cycle')) || S.cfg.discover.cycleSec || 300) * 1000  /* testing aid: ?cycle=SECONDS */) return;
+    S.autoAt = Date.now();
+    S.autoStep = (S.autoStep + 1) % 3;
+    S.look = false;
+    if (S.autoStep === 2) { if (!S.clockOn) enterClock(); return; }
+    S.view = S.autoStep === 0 ? 'art' : 'learn';
+    S.full = S.autoStep === 0;
+    if (S.clockOn) exitClock(); else render();
   }
   document.addEventListener('pointerdown', () => {
+    touched();
     // At night the backlight is off; any touch wakes it for a couple of minutes.
     fetch('/api/wake', { method: 'POST' }).catch(() => {});
   }, true);
@@ -464,6 +488,7 @@
     render();
     setInterval(tickHeader, 1000);
     setInterval(clockTick, 1000);
+    setInterval(autoTick, 5000);
     setInterval(render, 15000);
     setInterval(async () => { await loadTransit(); render(); }, 30000);
     setInterval(async () => { await loadWeather(); render(); }, 10 * 60000);

@@ -55,6 +55,8 @@
 
   "discover": {
     "artUntil": "15:00",
-    "idleResetSec": 180
+    "idleResetSec": 180,
+    "cycleFrom": "17:00",
+    "cycleSec": 300
   }
 }
