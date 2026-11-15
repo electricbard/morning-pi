@@ -1,82 +1,488 @@
-[
-  {"j":{"q":"Why do leaves change colour in the fall?","a":"Green comes from chlorophyll, which helps leaves make food. In fall trees stop making it, so the yellow and orange hiding underneath finally show."},
-   "c":{"q":"Fold paper in half 42 times. How thick is it?","a":"Thick enough to reach the Moon. Each fold doubles it: 0.1 mm × 2⁴² ≈ 440,000 km. The real-world record is only 12 folds."}},
-  {"j":{"q":"Why is the sky blue?","a":"Sunlight has every colour in it. Air scatters blue light much more than red, so blue bounces all over the sky and into our eyes."},
-   "c":{"q":"If the sky is blue, why are sunsets orange and red?","a":"At sunset, light passes through far more air to reach you. Most of the blue gets scattered away, leaving the reds and oranges."}},
-  {"j":{"q":"How do bees make honey?","a":"Bees sip nectar from flowers and pass it between them, store it in wax cells, then fan it with their wings until most of the water dries off."},
-   "c":{"q":"About how many flowers do bees visit to make one jar of honey?","a":"Roughly 2 million flowers — and the hive flies more than twice around the Earth to do it."}},
-  {"j":{"q":"How many legs does a spider have? Is it an insect?","a":"Eight legs, so no! Insects have six. Spiders are arachnids, like scorpions and ticks."},
-   "c":{"q":"Why can't you tickle yourself?","a":"Your brain predicts exactly what your own hand will do and turns the feeling down. Tickling works best as a surprise."}},
-  {"j":{"q":"Why does the Moon change shape?","a":"It doesn't really! The Moon is always a ball, half lit by the Sun. As it circles Earth we see different amounts of the lit half."},
-   "c":{"q":"Why do we always see the same side of the Moon?","a":"The Moon spins exactly once for every trip around Earth, so the same face always points at us. It's called tidal locking."}},
-  {"j":{"q":"Where does a puddle go when it dries up?","a":"It evaporates — the water turns into an invisible gas and floats into the air. Later it can become clouds and rain."},
-   "c":{"q":"Could you be drinking the same water a dinosaur drank?","a":"Very likely! Earth keeps recycling its water through clouds, rain, rivers and oceans. Hardly any is new or lost."}},
-  {"j":{"q":"What's the biggest animal that has ever lived?","a":"The blue whale — bigger than any dinosaur. It can be about 30 metres long, as long as two and a half school buses."},
-   "c":{"q":"A blue whale's heart is about the size of what?","a":"A bumper car, weighing around 180 kg. Toronto's Royal Ontario Museum preserved a real one."}},
-  {"j":{"q":"Why is the ocean salty?","a":"Rain slowly washes tiny bits of salt out of rocks. Rivers carry it to the sea, and when seawater evaporates, the salt stays behind."},
-   "c":{"q":"Rivers carry salt into the Great Lakes too. Why are they fresh?","a":"Water also flows OUT of the Great Lakes, down the St. Lawrence to the ocean, so salt never builds up. The ocean has no exit."}},
-  {"j":{"q":"Why do we see lightning before we hear thunder?","a":"Light travels much faster than sound. Count the seconds between flash and boom, divide by 3, and that's about how many km away the storm is."},
-   "c":{"q":"How hot is a lightning bolt?","a":"About 30,000 °C — roughly five times hotter than the surface of the Sun."}},
-  {"j":{"q":"What are clouds made of?","a":"Billions of tiny water droplets or ice crystals, so small and light that they float."},
-   "c":{"q":"How much does a puffy cumulus cloud weigh?","a":"About 500,000 kg — as heavy as around 100 elephants. It floats because that water is spread over a huge space."}},
-  {"j":{"q":"Why do onions make you cry?","a":"Cutting an onion releases a gas that stings your eyes. Your eyes make tears to wash it away."},
-   "c":{"q":"Why does chilling an onion first help?","a":"Cold slows the chemical reaction that makes the stinging gas, so less of it reaches your eyes."}},
-  {"j":{"q":"How do fish breathe underwater?","a":"Fish have gills that pull oxygen out of the water as it flows over them."},
-   "c":{"q":"How do fish survive all winter under the ice?","a":"Water is heaviest at about 4 °C, so that warmer water sinks to the bottom. The ice on top acts like a blanket and the lake doesn't freeze solid."}},
-  {"j":{"q":"Why does a rubbed balloon stick to the wall?","a":"Rubbing moves tiny charges called electrons onto the balloon. That static electricity pulls it toward the wall."},
-   "c":{"q":"Why do you get more static shocks in winter?","a":"Cold winter air is very dry. Without moisture to let charge leak away, it builds up on you until — zap — it jumps to a doorknob."}},
-  {"j":{"q":"How long does sunlight take to reach us?","a":"About 8 minutes. When you see the Sun, you're seeing it as it was 8 minutes ago!"},
-   "c":{"q":"When you see a star, are you seeing it as it is now?","a":"No — you're seeing old light. Light from some stars you can see left them hundreds of years ago."}},
-  {"j":{"q":"Why do zebras have stripes?","a":"Scientists think stripes help keep biting flies away — flies get confused and have trouble landing on them."},
-   "c":{"q":"What colour is a polar bear's skin?","a":"Black! Its fur looks white, but each hair is actually see-through."}},
-  {"j":{"q":"Why do we get goosebumps?","a":"Tiny muscles pull your hairs upright when you're cold or scared. For furry animals it traps warm air; for us it's mostly a leftover."},
-   "c":{"q":"Why do your fingers wrinkle in the bath?","a":"Your nerves shrink blood vessels in your fingertips, wrinkling the skin. Scientists think it may help you grip wet things."}},
-  {"j":{"q":"How does a caterpillar become a butterfly?","a":"It makes a chrysalis, and inside its body breaks down and rebuilds into a butterfly. It's called metamorphosis."},
-   "c":{"q":"Where do Ontario's monarch butterflies go every winter?","a":"To mountain forests in central Mexico — more than 3,000 km away. None of them has ever made the trip before."}},
-  {"j":{"q":"Why do we have leap years?","a":"Earth takes about 365 and a quarter days to go around the Sun. Every four years those quarters add up to an extra day: February 29."},
-   "c":{"q":"Is 2100 a leap year?","a":"No! Years ending in 00 skip the leap day unless they divide by 400. So 2000 was a leap year, but 2100 won't be."}},
-  {"j":{"q":"What's the hottest planet?","a":"Venus, even though Mercury is closer to the Sun. Venus's thick clouds trap heat like a blanket — it's about 465 °C."},
-   "c":{"q":"On Venus, which is longer: a day or a year?","a":"A day! Venus spins so slowly that one turn takes 243 Earth days, but its year is only 225 Earth days."}},
-  {"j":{"q":"Why can't penguins fly?","a":"Their wings became flippers for swimming. Penguins \"fly\" underwater instead!"},
-   "c":{"q":"What's the fastest animal on Earth?","a":"The peregrine falcon. Diving for prey it can top 300 km/h. Peregrines even nest on tall Toronto buildings."}},
-  {"j":{"q":"Why does your voice sound different in a recording?","a":"When you talk you hear yourself through the air AND through the bones in your head, which sounds deeper. A recording only has the air part."},
-   "c":{"q":"Why does helium make your voice squeaky?","a":"Sound travels nearly three times faster in helium than in air, which changes the tone. Your vocal cords don't change at all."}},
-  {"j":{"q":"How do glow sticks glow?","a":"Bending one breaks a little tube inside. Two chemicals mix and make light without getting hot."},
-   "c":{"q":"Why does a glow stick last longer in the freezer?","a":"Cold slows down the chemical reaction, so it glows dimmer but for much longer."}},
-  {"j":{"q":"How many bones are in your body?","a":"Adults have 206. Babies are born with around 300 — some join together as they grow."},
-   "c":{"q":"What's the smallest bone in your body?","a":"The stirrup (stapes) in your ear — about the size of a grain of rice. It helps you hear."}},
-  {"j":{"q":"Why does popcorn pop?","a":"Each kernel has a tiny drop of water inside. Heat turns it to steam, pressure builds, and — POP — the kernel bursts inside out."},
-   "c":{"q":"Why do some kernels never pop?","a":"Their shells are cracked or they're too dry, so steam escapes instead of building up pressure."}},
-  {"j":{"q":"Where does the name Toronto come from?","a":"Probably from the Mohawk word \"tkaronto\", meaning \"where there are trees standing in the water.\""},
-   "c":{"q":"What was Toronto called before 1834?","a":"York — nicknamed \"Muddy York.\" It became the City of Toronto in 1834."}},
-  {"j":{"q":"How tall is the CN Tower?","a":"553 metres. For 32 years it was the tallest free-standing structure in the world."},
-   "c":{"q":"How long does the CN Tower elevator take to the LookOut?","a":"About 58 seconds, climbing at roughly 22 km/h."}},
-  {"j":{"q":"Why do woodpeckers peck?","a":"To find insects hiding in wood, to dig nest holes, and to drum loud messages to other woodpeckers."},
-   "c":{"q":"How fast can a woodpecker peck?","a":"Up to about 20 times per second."}},
-  {"j":{"q":"What makes a rainbow?","a":"Sunlight shines through raindrops. Each drop bends the light and splits it into colours."},
-   "c":{"q":"Where must the Sun be for you to see a rainbow?","a":"Behind you and low in the sky. A rainbow is always on the opposite side of the sky from the Sun."}},
-  {"j":{"q":"Why do dogs sniff everything?","a":"A dog's nose is thousands of times better than ours. Sniffing is how they \"read\" who's been around."},
-   "c":{"q":"Why are dogs' noses wet?","a":"A damp nose catches smell particles better. Dogs make mucus and lick their noses to keep them wet."}},
-  {"j":{"q":"Why does ice float?","a":"When water freezes, its molecules lock into a pattern with more space between them, so ice is lighter than the same amount of water."},
-   "c":{"q":"Why do water pipes sometimes burst in winter?","a":"Water expands by about 9% when it freezes. Trapped in a pipe, it pushes hard enough to crack metal."}},
-  {"j":{"q":"What's the biggest planet?","a":"Jupiter. More than 1,300 Earths could fit inside it."},
-   "c":{"q":"How long would it take to drive to the Moon at 100 km/h?","a":"About 160 days of non-stop driving — over five months."}},
-  {"j":{"q":"Why do we yawn?","a":"Scientists aren't totally sure! One idea is that yawning helps cool your brain. And yawns are catching — did you just yawn?"},
-   "c":{"q":"Why are yawns contagious?","a":"It may be linked to empathy: people catch yawns more often from family and friends than from strangers."}},
-  {"j":{"q":"How do plants drink water?","a":"Roots soak up water from the soil, and it travels up tiny tubes in the stem all the way to the leaves."},
-   "c":{"q":"How does water reach the top of a 100-metre tree without a pump?","a":"Water evaporating from the leaves pulls the water column up behind it, like sipping through a very long straw."}},
-  {"j":{"q":"Why is snow white?","a":"Snowflakes are clear ice, but their many tiny edges bounce light in every direction, mixing all the colours into white."},
-   "c":{"q":"Is it true no two snowflakes are alike?","a":"For big, complex flakes, practically yes — each takes its own path through the cloud, so an exact match is extremely unlikely."}},
-  {"j":{"q":"How fast is the Earth spinning?","a":"In Toronto we're whizzing around at about 1,200 km/h! We don't feel it because everything spins with us."},
-   "c":{"q":"If Earth spins so fast, why do you land in the same spot when you jump?","a":"You're already moving with the Earth and you keep that speed in the air — like jumping inside a moving train."}},
-  {"j":{"q":"Why do bears hibernate?","a":"There's little food in winter, so bears sleep through it. Their heartbeat slows and they live off fat stored in the fall."},
-   "c":{"q":"How long can a black bear go without eating or drinking?","a":"Up to about seven months in its winter den. Its body even recycles waste into protein."}},
-  {"j":{"q":"Why do cats purr?","a":"Mostly when they're happy and relaxed — but sometimes when hurt or scared, to calm themselves. Muscles in the voice box twitch very fast."},
-   "c":{"q":"Which is stronger for its weight: spider silk or steel?","a":"Some spider silk! Weight for weight it can beat steel — and it stretches too."}},
-  {"j":{"q":"Why do we need to sleep?","a":"Sleep helps your body grow and repair, and helps your brain sort and save what you learned today."},
-   "c":{"q":"How much sleep do experts recommend for teenagers?","a":"8 to 10 hours a night. Teen body clocks naturally shift later, which is why early mornings feel so hard."}},
-  {"j":{"q":"How do airplanes stay up?","a":"Their wings are shaped and tilted so moving air pushes them up. Engines keep the plane moving fast enough for the air to keep lifting."},
-   "c":{"q":"Why are flights from Toronto to Europe often faster than flights back?","a":"The jet stream — a fast river of wind high up — usually blows west to east, giving eastbound planes a tailwind."}},
-  {"j":{"q":"Which grow faster: fingernails or toenails?","a":"Fingernails — about three to four times faster than toenails."},
-   "c":{"q":"Where does the oxygen we breathe come from?","a":"Plants and tiny ocean plankton make it. Scientists estimate ocean plankton produce about half of Earth's oxygen."}}
-]
+{
+ "math": [
+  {
+   "q": "What comes next: 1, 1, 2, 3, 5, 8, …? What is the rule?",
+   "a": "13. Each number is the sum of the two before it. These are the Fibonacci numbers, and they show up in pinecones and sunflowers."
+  },
+  {
+   "q": "Fold paper in half 42 times. How thick is it?",
+   "a": "Thick enough to reach the Moon. Each fold doubles it: 0.1 mm × 2⁴² ≈ 440,000 km. The real-world record is only 12 folds."
+  },
+  {
+   "q": "Is 2100 a leap year?",
+   "a": "No! Years ending in 00 skip the leap day unless they divide by 400. So 2000 was a leap year, but 2100 won't be."
+  },
+  {
+   "q": "10 people each shake hands with everyone else once. How many handshakes?",
+   "a": "45. Each person shakes 9 hands: 10 × 9 = 90, but that counts every handshake twice."
+  },
+  {
+   "q": "What's the only even prime number?",
+   "a": "2. Every other even number can be divided by 2, so it isn't prime."
+  },
+  {
+   "q": "Add up all the numbers from 1 to 100. Is there a shortcut?",
+   "a": "5,050. Pair them up: 1 + 100, 2 + 99, 3 + 98… That's 50 pairs that each make 101."
+  },
+  {
+   "q": "How many seconds are in a day?",
+   "a": "86,400. There are 60 × 60 = 3,600 seconds in an hour, times 24 hours."
+  },
+  {
+   "q": "Which is bigger: 0.5 or 0.45?",
+   "a": "0.5. Write it as 0.50: fifty hundredths beats forty-five hundredths."
+  },
+  {
+   "q": "What does 0.999… (nines forever) equal?",
+   "a": "Exactly 1. One third is 0.333…, so three thirds is 0.999…, and three thirds is 1."
+  },
+  {
+   "q": "Why can't you divide by zero?",
+   "a": "Dividing 6 by 2 asks how many 2s make 6. No number of zeros ever adds up to 6, so there's no answer."
+  },
+  {
+   "q": "How many squares are on a chessboard? (It's not 64!)",
+   "a": "204. There are 64 small squares, plus 49 of size 2×2, 36 of size 3×3, and so on up to one big 8×8."
+  },
+  {
+   "q": "In a room of 23 people, what are the chances two share a birthday?",
+   "a": "About 50%! 23 people make 253 different pairs, so a match is likelier than you'd guess. With 70 people it's over 99.9%."
+  },
+  {
+   "q": "Take 532, reverse it (235) and subtract. Now add that answer to its own reverse. What do you get?",
+   "a": "1,089. 532 − 235 = 297, and 297 + 792 = 1,089. Almost any three-digit number with different first and last digits gives 1,089."
+  },
+  {
+   "q": "A million seconds is about 11 days. How long is a billion seconds?",
+   "a": "Almost 32 years! A billion is a thousand millions, a much bigger jump than it sounds."
+  },
+  {
+   "q": "Which is more: 25% of 80, or 80% of 25?",
+   "a": "They're the same: both are 20. A percent of B always equals B percent of A."
+  },
+  {
+   "q": "Why do bees build honeycomb out of hexagons?",
+   "a": "Hexagons fit together with no gaps, and they hold the most honey for the least wax."
+  },
+  {
+   "q": "A bat and ball cost $1.10. The bat costs $1 more than the ball. How much is the ball?",
+   "a": "5 cents, not 10. Then the bat is $1.05, and together they make $1.10."
+  },
+  {
+   "q": "What do the three angles of any triangle add up to?",
+   "a": "180°. Tear off the three corners and line them up: they always make a straight line."
+  },
+  {
+   "q": "Start with 1 cent and double it every day. How much do you have on day 30?",
+   "a": "$5,368,709.12! Doubling grows slowly at first, then explodes."
+  },
+  {
+   "q": "What is 111,111,111 × 111,111,111?",
+   "a": "12,345,678,987,654,321. The digits count up to 9 and back down."
+  },
+  {
+   "q": "How many ways can you line up 3 books on a shelf?",
+   "a": "6: 3 choices for the first spot, 2 for the second, 1 for the last. With 10 books it's 3,628,800 ways."
+  },
+  {
+   "q": "Is there a biggest number?",
+   "a": "No. Whatever number you name, add 1 and you have a bigger one. Infinity isn't a number; it's the idea of going on forever."
+  },
+  {
+   "q": "Why is the distance around a circle always about 3.14 times its width?",
+   "a": "All circles are the same shape, just bigger or smaller, so the ratio never changes. It's called pi, and its digits never end or repeat."
+  },
+  {
+   "q": "9 × 9 = 81 and 99 × 99 = 9,801. Can you guess 999 × 999?",
+   "a": "998,001. Each extra 9 adds another 9 at the front and another 0 in the middle."
+  },
+  {
+   "q": "How can you tell if a number divides evenly by 3?",
+   "a": "Add up its digits. If that sum divides by 3, so does the number. 1 + 2 + 3 = 6, so 123 = 3 × 41."
+  },
+  {
+   "q": "A snail climbs 3 m up a 10 m well each day and slides back 2 m each night. How many days to get out?",
+   "a": "8 days. After 7 days and nights it's at 7 m. On day 8 it climbs 3 m and reaches the top before it can slide back."
+  },
+  {
+   "q": "What comes next: 2, 3, 5, 7, 11, …?",
+   "a": "13. These are the prime numbers: numbers that only divide evenly by 1 and themselves."
+  },
+  {
+   "q": "How many times a day do a clock's hour and minute hands overlap?",
+   "a": "22 times, not 24. They meet about every 65 minutes, which is only 11 times every 12 hours."
+  },
+  {
+   "q": "Which is more pizza: one 30 cm pizza, or two 20 cm pizzas?",
+   "a": "The one 30 cm pizza. Area grows with width times width: 30 × 30 = 900, but 2 × 20 × 20 = 800."
+  },
+  {
+   "q": "What is a negative number times a negative number?",
+   "a": "A positive number. Taking away a debt is like gaining money: −3 × −2 = 6."
+  },
+  {
+   "q": "How many people do you need to be sure two share a birth month?",
+   "a": "13. Twelve people could all have different months, so the 13th has to match someone."
+  },
+  {
+   "q": "What is a googol?",
+   "a": "A 1 followed by 100 zeros. That's more than the number of atoms in the whole observable universe, which is about a 1 with 80 zeros."
+  },
+  {
+   "q": "A clock says 3:00. What's the angle between its hands?",
+   "a": "90°, a right angle. The 12 hour marks split the 360° circle into steps of 30°."
+  },
+  {
+   "q": "Why are manhole covers round?",
+   "a": "A circle is the same width in every direction, so it can't fall through its own hole. A square cover could slip through diagonally."
+  },
+  {
+   "q": "A coin lands heads 5 times in a row. Is tails more likely next?",
+   "a": "No, it's still 50/50. A coin has no memory. Thinking otherwise is called the gambler's fallacy."
+  },
+  {
+   "q": "How many edges, corners and faces does a cube have?",
+   "a": "12 edges, 8 corners and 6 faces. Corners − edges + faces = 2 for any box-like solid without holes. That's Euler's formula."
+  },
+  {
+   "q": "What is 1 + 2 + 4 + 8 + … + 512?",
+   "a": "1,023. Each total is one less than the next doubling: 1,024 − 1."
+  },
+  {
+   "q": "About how many days old are you on your 10th birthday?",
+   "a": "About 3,650: 365 × 10, plus 2 or 3 extra leap days."
+  },
+  {
+   "q": "Which is bigger: 2¹⁰ or 10²?",
+   "a": "2¹⁰ = 1,024 is way bigger than 10² = 100."
+  },
+  {
+   "q": "What is 10% of 10% of 1,000?",
+   "a": "10. 10% of 1,000 is 100, and 10% of 100 is 10."
+  }
+ ],
+ "physics": [
+  {
+   "q": "Why does a feather fall slower than a stone on Earth, but not on the Moon?",
+   "a": "On Earth, air pushes back on the light, fluffy feather. The Moon has no air, so both fall at the same speed. An astronaut tested it with a hammer and a feather in 1971."
+  },
+  {
+   "q": "Why do we see lightning before we hear thunder?",
+   "a": "Light travels much faster than sound. Count the seconds between flash and boom, divide by 3, and that's about how many km away the storm is."
+  },
+  {
+   "q": "How hot is a lightning bolt?",
+   "a": "About 30,000 °C — roughly five times hotter than the surface of the Sun."
+  },
+  {
+   "q": "Why does a rubbed balloon stick to the wall?",
+   "a": "Rubbing moves tiny charges called electrons onto the balloon. That static electricity pulls it toward the wall."
+  },
+  {
+   "q": "Why do you get more static shocks in winter?",
+   "a": "Cold winter air is very dry. Without moisture to let charge leak away, it builds up on you until — zap — it jumps to a doorknob."
+  },
+  {
+   "q": "How long does sunlight take to reach us?",
+   "a": "About 8 minutes. When you see the Sun, you're seeing it as it was 8 minutes ago!"
+  },
+  {
+   "q": "When you see a star, are you seeing it as it is now?",
+   "a": "No — you're seeing old light. Light from some stars you can see left them hundreds of years ago."
+  },
+  {
+   "q": "Why does your voice sound different in a recording?",
+   "a": "When you talk you hear yourself through the air AND through the bones in your head, which sounds deeper. A recording only has the air part."
+  },
+  {
+   "q": "Why does helium make your voice squeaky?",
+   "a": "Sound travels nearly three times faster in helium than in air, which changes the tone. Your vocal cords don't change at all."
+  },
+  {
+   "q": "Why does ice float?",
+   "a": "When water freezes, its molecules lock into a pattern with more space between them, so ice is lighter than the same amount of water."
+  },
+  {
+   "q": "Why do water pipes sometimes burst in winter?",
+   "a": "Water expands by about 9% when it freezes. Trapped in a pipe, it pushes hard enough to crack metal."
+  },
+  {
+   "q": "If Earth spins so fast, why do you land in the same spot when you jump?",
+   "a": "You're already moving with the Earth and you keep that speed in the air — like jumping inside a moving train."
+  },
+  {
+   "q": "How do airplanes stay up?",
+   "a": "Their wings are shaped and tilted so moving air pushes them up. Engines keep the plane moving fast enough for the air to keep lifting."
+  },
+  {
+   "q": "Why are flights from Toronto to Europe often faster than flights back?",
+   "a": "The jet stream — a fast river of wind high up — usually blows west to east, giving eastbound planes a tailwind."
+  },
+  {
+   "q": "Why is the sky blue?",
+   "a": "Sunlight has every colour in it. Air scatters blue light much more than red, so blue bounces all over the sky and into our eyes."
+  },
+  {
+   "q": "If the sky is blue, why are sunsets orange and red?",
+   "a": "At sunset, light passes through far more air to reach you. Most of the blue gets scattered away, leaving the reds and oranges."
+  },
+  {
+   "q": "What makes a rainbow?",
+   "a": "Sunlight shines through raindrops. Each drop bends the light and splits it into colours."
+  },
+  {
+   "q": "Where must the Sun be for you to see a rainbow?",
+   "a": "Behind you and low in the sky. A rainbow is always on the opposite side of the sky from the Sun."
+  },
+  {
+   "q": "Why is snow white?",
+   "a": "Snowflakes are clear ice, but their many tiny edges bounce light in every direction, mixing all the colours into white."
+  },
+  {
+   "q": "Why does the Moon change shape?",
+   "a": "It doesn't really! The Moon is always a ball, half lit by the Sun. As it circles Earth we see different amounts of the lit half."
+  },
+  {
+   "q": "Why do we always see the same side of the Moon?",
+   "a": "The Moon spins exactly once for every trip around Earth, so the same face always points at us. It's called tidal locking."
+  },
+  {
+   "q": "How do fish survive all winter under the ice?",
+   "a": "Water is heaviest at about 4 °C, so that warmer water sinks to the bottom. The ice on top acts like a blanket and the lake doesn't freeze solid."
+  },
+  {
+   "q": "How fast is the Earth spinning?",
+   "a": "In Toronto we're whizzing around at about 1,200 km/h! We don't feel it because everything spins with us."
+  },
+  {
+   "q": "Why does a spoon look bent in a glass of water?",
+   "a": "Light changes direction when it passes from water into air. That bending is called refraction."
+  },
+  {
+   "q": "Why do astronauts float on the space station?",
+   "a": "Gravity up there is still about 90% as strong as on the ground! They float because the station and everyone inside are falling around Earth together."
+  },
+  {
+   "q": "Why can't sound travel through space?",
+   "a": "Sound is a vibration passed from molecule to molecule. Space is nearly empty, so there's nothing to carry it."
+  },
+  {
+   "q": "How can a huge steel ship float?",
+   "a": "Its hollow shape pushes aside a lot of water. If the water pushed aside weighs more than the ship, the ship floats."
+  },
+  {
+   "q": "Why does metal feel colder than wood in the same room?",
+   "a": "They're the same temperature, but metal pulls heat out of your hand much faster, so it feels colder."
+  },
+  {
+   "q": "Why do your ears pop on a plane or in a fast elevator?",
+   "a": "Air pressure changes as you go up or down. The pop is air moving through a tiny tube to even out the pressure inside your ear."
+  },
+  {
+   "q": "Why does a dropped ball bounce a little lower each time?",
+   "a": "Each bounce turns some of its energy into heat and sound, so there's less left to lift the ball."
+  },
+  {
+   "q": "What's the fastest thing in the universe?",
+   "a": "Light, at about 300,000 km per second. In one second it could circle the Earth more than 7 times."
+  },
+  {
+   "q": "Why does a magnet stick to the fridge but not to a pop can?",
+   "a": "Fridge doors contain iron, which magnets pull on strongly. Pop cans are aluminum, which magnets barely affect."
+  },
+  {
+   "q": "How does a microwave heat food?",
+   "a": "Microwaves make the water in food wiggle back and forth billions of times a second. All that jiggling is heat."
+  },
+  {
+   "q": "Why can you see your breath on a cold day?",
+   "a": "Your breath is warm and full of water vapour. Cold air cools it so fast that the vapour turns into tiny droplets: a mini cloud."
+  },
+  {
+   "q": "Why does a hockey puck slide so far on ice?",
+   "a": "The surface of ice has a thin, slippery layer, so there's very little friction to slow the puck down."
+  },
+  {
+   "q": "Why does salt melt ice on the sidewalk?",
+   "a": "Salt dissolves into the thin film of water on the ice and lowers the temperature water freezes at. It works much less well in deep cold."
+  },
+  {
+   "q": "Why is a door easier to push open far from its hinges?",
+   "a": "Leverage. The farther from the hinge you push, the more turning force you get for the same effort."
+  },
+  {
+   "q": "Why do we have seasons?",
+   "a": "Earth is tilted. In summer our half leans toward the Sun, so sunlight hits more directly and days are longer. Earth is actually closest to the Sun in January!"
+  },
+  {
+   "q": "Why does a spinning skater speed up when pulling their arms in?",
+   "a": "Bringing weight closer to the centre makes anything spin faster. It's called conservation of angular momentum."
+  },
+  {
+   "q": "Why does popcorn pop?",
+   "a": "Each kernel has a tiny drop of water inside. Heat turns it to steam, pressure builds, and — POP — the kernel bursts inside out."
+  }
+ ],
+ "biology": [
+  {
+   "q": "Why do we get goosebumps when we are cold?",
+   "a": "Tiny muscles pull your hairs upright when you're cold or scared. For furry animals it traps warm air; for us it's mostly a leftover."
+  },
+  {
+   "q": "Why do leaves change colour in the fall?",
+   "a": "Green comes from chlorophyll, which helps leaves make food. In fall trees stop making it, so the yellow and orange hiding underneath finally show."
+  },
+  {
+   "q": "How do bees make honey?",
+   "a": "Bees sip nectar from flowers and pass it between them, store it in wax cells, then fan it with their wings until most of the water dries off."
+  },
+  {
+   "q": "About how many flowers do bees visit to make one jar of honey?",
+   "a": "Roughly 2 million flowers — and the hive flies more than twice around the Earth to do it."
+  },
+  {
+   "q": "How many legs does a spider have? Is it an insect?",
+   "a": "Eight legs, so no! Insects have six. Spiders are arachnids, like scorpions and ticks."
+  },
+  {
+   "q": "Why can't you tickle yourself?",
+   "a": "Your brain predicts exactly what your own hand will do and turns the feeling down. Tickling works best as a surprise."
+  },
+  {
+   "q": "What's the biggest animal that has ever lived?",
+   "a": "The blue whale — bigger than any dinosaur. It can be about 30 metres long, as long as two and a half school buses."
+  },
+  {
+   "q": "A blue whale's heart is about the size of what?",
+   "a": "A bumper car, weighing around 180 kg. Toronto's Royal Ontario Museum preserved a real one."
+  },
+  {
+   "q": "Why do onions make you cry?",
+   "a": "Cutting an onion releases a gas that stings your eyes. Your eyes make tears to wash it away."
+  },
+  {
+   "q": "How do fish breathe underwater?",
+   "a": "Fish have gills that pull oxygen out of the water as it flows over them."
+  },
+  {
+   "q": "Why do zebras have stripes?",
+   "a": "Scientists think stripes help keep biting flies away — flies get confused and have trouble landing on them."
+  },
+  {
+   "q": "What colour is a polar bear's skin?",
+   "a": "Black! Its fur looks white, but each hair is actually see-through."
+  },
+  {
+   "q": "Why do your fingers wrinkle in the bath?",
+   "a": "Your nerves shrink blood vessels in your fingertips, wrinkling the skin. Scientists think it may help you grip wet things."
+  },
+  {
+   "q": "How does a caterpillar become a butterfly?",
+   "a": "It makes a chrysalis, and inside its body breaks down and rebuilds into a butterfly. It's called metamorphosis."
+  },
+  {
+   "q": "Where do Ontario's monarch butterflies go every winter?",
+   "a": "To mountain forests in central Mexico — more than 3,000 km away. None of them has ever made the trip before."
+  },
+  {
+   "q": "Why can't penguins fly?",
+   "a": "Their wings became flippers for swimming. Penguins \"fly\" underwater instead!"
+  },
+  {
+   "q": "What's the fastest animal on Earth?",
+   "a": "The peregrine falcon. Diving for prey it can top 300 km/h. Peregrines even nest on tall Toronto buildings."
+  },
+  {
+   "q": "How many bones are in your body?",
+   "a": "Adults have 206. Babies are born with around 300 — some join together as they grow."
+  },
+  {
+   "q": "What's the smallest bone in your body?",
+   "a": "The stirrup (stapes) in your ear — about the size of a grain of rice. It helps you hear."
+  },
+  {
+   "q": "Why do woodpeckers peck?",
+   "a": "To find insects hiding in wood, to dig nest holes, and to drum loud messages to other woodpeckers."
+  },
+  {
+   "q": "How fast can a woodpecker peck?",
+   "a": "Up to about 20 times per second."
+  },
+  {
+   "q": "Why do dogs sniff everything?",
+   "a": "A dog's nose is thousands of times better than ours. Sniffing is how they \"read\" who's been around."
+  },
+  {
+   "q": "Why are dogs' noses wet?",
+   "a": "A damp nose catches smell particles better. Dogs make mucus and lick their noses to keep them wet."
+  },
+  {
+   "q": "Why do we yawn?",
+   "a": "Scientists aren't totally sure! One idea is that yawning helps cool your brain. And yawns are catching — did you just yawn?"
+  },
+  {
+   "q": "Why are yawns contagious?",
+   "a": "It may be linked to empathy: people catch yawns more often from family and friends than from strangers."
+  },
+  {
+   "q": "How do plants drink water?",
+   "a": "Roots soak up water from the soil, and it travels up tiny tubes in the stem all the way to the leaves."
+  },
+  {
+   "q": "How does water reach the top of a 100-metre tree without a pump?",
+   "a": "Water evaporating from the leaves pulls the water column up behind it, like sipping through a very long straw."
+  },
+  {
+   "q": "Why do bears hibernate?",
+   "a": "There's little food in winter, so bears sleep through it. Their heartbeat slows and they live off fat stored in the fall."
+  },
+  {
+   "q": "How long can a black bear go without eating or drinking?",
+   "a": "Up to about seven months in its winter den. Its body even recycles waste into protein."
+  },
+  {
+   "q": "Why do cats purr?",
+   "a": "Mostly when they're happy and relaxed — but sometimes when hurt or scared, to calm themselves. Muscles in the voice box twitch very fast."
+  },
+  {
+   "q": "Which is stronger for its weight: spider silk or steel?",
+   "a": "Some spider silk! Weight for weight it can beat steel — and it stretches too."
+  },
+  {
+   "q": "Why do we need to sleep?",
+   "a": "Sleep helps your body grow and repair, and helps your brain sort and save what you learned today."
+  },
+  {
+   "q": "How much sleep do experts recommend for teenagers?",
+   "a": "8 to 10 hours a night. Teen body clocks naturally shift later, which is why early mornings feel so hard."
+  },
+  {
+   "q": "Which grow faster: fingernails or toenails?",
+   "a": "Fingernails — about three to four times faster than toenails."
+  },
+  {
+   "q": "Where does the oxygen we breathe come from?",
+   "a": "Plants and tiny ocean plankton make it. Scientists estimate ocean plankton produce about half of Earth's oxygen."
+  },
+  {
+   "q": "Why does your heart beat faster when you run?",
+   "a": "Working muscles need more oxygen. Your heart pumps faster to deliver it in your blood."
+  },
+  {
+   "q": "How does a cut turn into a scab?",
+   "a": "Tiny blood cells called platelets and a protein called fibrin make a sticky net that plugs the cut. It dries into a scab that protects new skin growing underneath."
+  },
+  {
+   "q": "How many hearts does an octopus have?",
+   "a": "Three! Two pump blood through the gills and one sends it around the body. Its blood is blue."
+  },
+  {
+   "q": "Why do squirrels bury nuts?",
+   "a": "To save food for winter. A squirrel buries thousands, and the ones it forgets can grow into new trees."
+  },
+  {
+   "q": "Why do we have two eyes instead of one?",
+   "a": "Each eye sees from a slightly different spot. Your brain combines the two views to judge depth and distance."
+  }
+ ]
+}

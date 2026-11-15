@@ -298,7 +298,7 @@
       main = `<section class="main art-frame" aria-label="Art of the day"><img src="content/art/${esc(a.file)}" alt="${esc(a.title)} by ${esc(a.artist)}">
         ${S.look ? `<div class="look"><span class="eyebrow green">CAN YOU SPOT IT?</span><p class="spot">${esc(a.spot)}</p><p class="story">${esc(a.story)}</p></div>` : ''}</section>`;
     } else {
-      const q = S.qs.length ? S.qs[di % S.qs.length] : null;
+      const subj = ['math', 'physics', 'biology'].map((k) => { const l = (S.qs && S.qs[k]) || []; return l.length ? [k, l[di % l.length]] : null; }).filter(Boolean);
       const lang = di % 2 === 0 ? 'en' : 'fr';
       const list = S.words[lang] || [];
       const w = list.length ? list[Math.floor(di / 2) % list.length] : null;
@@ -308,12 +308,12 @@
           <span class="word-def">${esc(w.def)}</span><span class="word-ex" style="margin-top:auto">${lang === 'fr' ? `« ${esc(w.ex)} »` : esc(w.ex)}</span>
           ${w.exEn ? `<span class="word-en">${esc(w.exEn)}</span>` : ''}</section>`;
       }
-      if (q) {
-        const part = (k, cls, label, colorCls, size) => `<div class="q"><span class="eyebrow ${colorCls}">${label}</span><span class="qq serif" style="font-size:${size}px">${esc(q[k].q)}</span>
-          ${S.reveal[k] ? `<span class="qa">${esc(q[k].a)}</span>` : `<button class="reveal ${cls}" data-act="reveal-${k}">Show answer</button>`}</div>`;
+      if (subj.length) {
+        const card = ([k, q]) => `<button class="q${S.reveal[k] ? ' open' : ''}" data-act="reveal-${k}" aria-label="${S.reveal[k] ? 'Show question' : 'Show answer'}">
+          <span class="qq serif${!S.reveal[k] && q.q.length > 80 ? ' long' : ''}">${esc(S.reveal[k] ? q.a : q.q)}</span></button>`;
         main = `<section class="main qcard" aria-label="Question of the day"><div class="qhead"><span class="eyebrow gold">QUESTION OF THE DAY</span>
           <div style="display:flex;align-items:center;gap:12px">${dots(1)}${next}</div></div>
-          <div class="qgrid">${part('j', 'j', 'JUNIOR', 'green', 19)}${part('c', 'c', 'CHALLENGE', 'amber', 17)}</div></section>`;
+          <div class="qgrid">${subj.map(card).join('')}</div></section>`;
       }
     }
     const counts = countdowns(now).map((c2) => `<div class="count"><span class="l">${esc(c2.label)}</span><span class="n">${c2.n}</span></div>`).join('');
@@ -436,7 +436,7 @@
     if (act === 'clock') { enterClock(); return; }
     if (act === 'next') { S.view = (S.view || defaultView(now)) === 'art' ? 'learn' : 'art'; S.look = false; }
     if (act === 'look') S.look = !S.look;
-    if (act.startsWith('reveal-')) S.reveal[act.slice(7)] = true;
+    if (act.startsWith('reveal-')) S.reveal[act.slice(7)] = !S.reveal[act.slice(7)];
     touched();
     render();
   });
