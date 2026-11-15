@@ -11,6 +11,12 @@
   };
 
   // ---------------------------------------------------------------- helpers
+  // Testing aid: ?at=2026-11-16T08:30 pretends the display started at that local time.
+  const QS = new URLSearchParams(location.search);
+  const AT = QS.get('at');
+  const FORCE_MODE = QS.get('mode'); // testing aid: ?mode=school or ?mode=discover
+  const T0 = Date.now();
+  const clockNow = () => (AT ? new Date(new Date(AT).getTime() + (Date.now() - T0)) : new Date());
   const $ = (s) => document.querySelector(s);
   const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const getJSON = async (u) => { const r = await fetch(u, { cache: 'no-store' }); if (!r.ok) throw new Error(u + ' ' + r.status); return r.json(); };
@@ -18,7 +24,7 @@
   const minsOf = (d) => d.getHours() * 60 + d.getMinutes();
   const at = (base, s) => { const d = new Date(base); d.setHours(0, 0, 0, 0); d.setMinutes(hm(s)); return d; };
   const fmt = (d) => (d.getHours() % 12 || 12) + ':' + String(d.getMinutes()).padStart(2, '0');
-  const fmtHM = (s) => fmt(at(new Date(), s));
+  const fmtHM = (s) => fmt(at(clockNow(), s));
   const pad = (n) => String(n).padStart(2, '0');
   const ymd = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
   const dayIndex = (d) => Math.floor(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5);
@@ -161,6 +167,7 @@
 
   // ---------------------------------------------------------------- mode
   function mode(now) {
+    if (FORCE_MODE) return FORCE_MODE;
     const sc = S.cfg.school;
     const m = minsOf(now);
     if (isSchoolDay(now) && m >= hm(sc.morningFrom) && m < hm(sc.transitUntil)) return 'school';
@@ -317,12 +324,12 @@
   function render() {
     if (!S.cfg) return;
     if (S.clockOn) return;
-    const now = new Date();
+    const now = clockNow();
     $('#app').innerHTML = mode(now) === 'school' ? schoolView(now) : discoverView(now);
   }
   function tickHeader() {
     const el = $('#hdrTime');
-    if (el) el.textContent = fmt(new Date());
+    if (el) el.textContent = fmt(clockNow());
   }
 
   // ---------------------------------------------------------------- clock mode
@@ -425,7 +432,7 @@
   $('#app').addEventListener('click', (ev) => {
     const b = ev.target.closest('[data-act]');
     if (!b) return;
-    const act = b.dataset.act, now = new Date();
+    const act = b.dataset.act, now = clockNow();
     if (act === 'clock') { enterClock(); return; }
     if (act === 'next') { S.view = (S.view || defaultView(now)) === 'art' ? 'learn' : 'art'; S.look = false; }
     if (act === 'look') S.look = !S.look;
@@ -438,7 +445,7 @@
   async function loadConfig() { S.cfg = await getJSON('/api/config'); S.cal = (await getJSON('/api/calendar')).entries || []; }
   async function loadWeather() { try { S.wx = await getJSON('/api/weather'); } catch (e) { console.warn(e); } }
   async function loadTransit() {
-    if (!S.cfg || mode(new Date()) !== 'school') return;
+    if (!S.cfg || mode(clockNow()) !== 'school') return;
     try { S.tr = await getJSON('/api/transit'); S.trError = false; } catch (e) { S.trError = true; console.warn(e); }
   }
   async function loadContent() {

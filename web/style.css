@@ -41,7 +41,7 @@ button { font: inherit; color: inherit; cursor: none; }
 .icon-btn { width: 44px; height: 36px; border-radius: 10px; border: 1px solid var(--border); background: var(--card); color: var(--muted); display: flex; align-items: center; justify-content: center; padding: 0; }
 .eyebrow { font-size: 11px; font-weight: 800; letter-spacing: 1.5px; }
 .gold { color: var(--gold); } .green { color: var(--green); } .amber { color: var(--amber); } .blue { color: var(--blue); }
-.badge { display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 24px; padding: 0 6px; border-radius: 6px; background: var(--ttc); color: #fff; font-size: 14px; font-weight: 800; }
+.badge { flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center; min-width: 34px; height: 24px; padding: 0 6px; border-radius: 6px; background: var(--ttc); color: #fff; font-size: 14px; font-weight: 800; }
 .badge.sm { min-width: 0; height: 18px; padding: 0 4px; border-radius: 4px; font-size: 11px; }
 .badge.off { background: #4A5160; color: var(--text-2); }
 .serif { font-family: Fraunces, Georgia, serif; font-weight: 700; }
@@ -68,7 +68,7 @@ button { font: inherit; color: inherit; cursor: none; }
 .slot-time { font-size: 12px; color: var(--muted); }
 .slot-temp { font-size: 26px; font-weight: 800; line-height: 1; }
 .slot-feels { font-size: 13px; font-weight: 600; color: var(--blue); }
-.slot-foot { font-size: 12px; color: var(--muted); margin-top: auto; }
+.slot-foot { font-size: 11px; color: var(--muted); margin-top: auto; white-space: nowrap; letter-spacing: -0.2px; }
 .slot-foot.wet { font-weight: 800; color: var(--blue); }
 .strip { background: #1C2433; border-radius: 14px; padding: 10px 16px; display: flex; align-items: center; gap: 14px; height: 62px; }
 .strip.alert { border: 1px solid var(--late); }
@@ -83,20 +83,20 @@ button { font: inherit; color: inherit; cursor: none; }
 .hero.go { background: var(--go); color: var(--go-ink); }
 .hero.late { background: var(--late); color: var(--late-ink); }
 .hero.none { background: var(--card); color: var(--text); }
-.hero-top { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 800; letter-spacing: 1px; }
+.hero-top { display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; letter-spacing: 0.6px; white-space: nowrap; }
 .hero-main { display: flex; align-items: baseline; justify-content: space-between; }
 .hero-title { font-size: 38px; font-weight: 800; letter-spacing: -1px; line-height: 1.05; }
 .hero-in { font-size: 15px; font-weight: 700; }
-.hero-line { font-size: 14px; font-weight: 600; }
+.hero-line { font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .chip { align-self: flex-start; margin-top: 3px; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
 .go .chip { background: var(--go-ink); color: #7CF0B0; }
 .late .chip { background: var(--late-ink); color: #FFC58A; }
 .rows { background: var(--card); border-radius: 14px; padding: 2px 14px; display: flex; flex-direction: column; }
 .row { display: flex; align-items: center; gap: 10px; height: 40px; }
 .row + .row { border-top: 1px solid var(--line); }
-.row-main { font-size: 14px; font-weight: 600; flex: 1; white-space: nowrap; display: flex; align-items: center; gap: 5px; min-width: 0; }
+.row-main { font-size: 13px; font-weight: 600; flex: 1; white-space: nowrap; display: flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; letter-spacing: -0.2px; }
 .row.missed .row-main { color: var(--dim); text-decoration: line-through; }
-.row-tag { font-size: 13px; font-weight: 800; white-space: nowrap; }
+.row-tag { font-size: 12px; font-weight: 800; white-space: nowrap; flex-shrink: 0; }
 .row-tag.late { color: var(--amber); } .row-tag.ok { color: #7CF0B0; } .row-tag.missed { color: var(--muted); font-weight: 700; }
 .other { background: var(--card); border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; margin-top: auto; }
 .other-head { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; }
