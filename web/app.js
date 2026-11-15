@@ -179,7 +179,7 @@
   function header(now, withClockBtn) {
     const sun = S.wx ? `<span class="sun">${svg(P.sunrise, 18, '#FFC857', 'role="img" aria-label="Sunrise"')}${sunTime('sunrise')}</span>` +
       `<span class="sun">${svg(P.sunset, 18, '#FFB066', 'role="img" aria-label="Sunset"')}${sunTime('sunset')}</span>` : '';
-    const btn = withClockBtn ? `<button class="icon-btn" data-act="clock" aria-label="Clock mode">${svg(P.clock, 18, 'currentColor', 'aria-hidden="true"')}</button>` : '';
+    const btn = withClockBtn ? `<button class="icon-btn" data-act="clock" aria-label="Next: art, question, clock">${svg(P.clock, 18, 'currentColor', 'aria-hidden="true"')}</button>` : '';
     return `<header class="hdr"><div class="hdr-l"><span class="hdr-time" id="hdrTime">${fmt(now)}</span>` +
       `<span class="hdr-date">${DAYS[now.getDay()]}, ${MONTHS[now.getMonth()]} ${now.getDate()}</span></div>` +
       `<div class="hdr-r">${sun}${btn}</div></header>`;
@@ -287,15 +287,12 @@
         <span class="eyebrow" style="color:var(--muted);letter-spacing:1px;font-weight:700">NOW</span><span class="t">${deg(c.temperature_2m)}</span>
         <span class="f">feels ${deg(c.apparent_temperature)}</span><span class="w">${c.wind_gusts_10m >= 30 ? `gusts ${r0(c.wind_gusts_10m)} km/h` : `wind ${r0(c.wind_speed_10m)} km/h`}</span></div></div>`
       : '<div class="now-tile"><span class="w">Weather loading…</span></div>';
-    const dots = (i) => `<div class="dots" aria-label="Item ${i + 1} of 2"><span class="${i === 0 ? 'on' : ''}"></span><span class="${i === 1 ? 'on' : ''}"></span></div>`;
-    const next = '<button class="btn" data-act="next" style="height:36px">Next ›</button>';
     let side = '', main = '';
     if (view === 'art' && S.art.length) {
       const a = S.art[di % S.art.length];
       side = `<section class="side" aria-label="About the art"><span class="eyebrow gold">ART OF THE DAY${a.tag ? ' · ' + esc(a.tag.toUpperCase()) : ''}</span>
         <span class="art-title serif">${esc(a.title)}</span><span class="art-meta">${esc(a.artist)} · ${esc(a.year)}${a.place ? ' · ' + esc(a.place) : ''}</span>
-        <button class="btn" data-act="look" style="align-self:flex-start">${S.look ? 'Hide ▴' : 'Look closer ▾'}</button>
-        <div class="side-foot">${dots(0)}${next}</div></section>`;
+        <button class="btn" data-act="look" style="align-self:flex-start">${S.look ? 'Hide ▴' : 'Look closer ▾'}</button></section>`;
       main = `<section class="main art-frame" aria-label="Art of the day"><button class="art-tap" data-act="full" aria-label="Show full screen"><img src="content/art/${esc(a.file)}" alt="${esc(a.title)} by ${esc(a.artist)}"></button>
         ${S.full ? `<button class="art-full" data-act="unfull" aria-label="Back to dashboard"><img src="content/art/${esc(a.file)}" alt=""></button>` : ''}
         ${S.look ? `<div class="look"><span class="eyebrow green">CAN YOU SPOT IT?</span><p class="spot">${esc(a.spot)}</p><p class="story">${esc(a.story)}</p></div>` : ''}</section>`;
@@ -313,8 +310,7 @@
       if (subj.length) {
         const card = ([k, q]) => `<button class="q${S.reveal[k] ? ' open' : ''}" data-act="reveal-${k}" aria-label="${S.reveal[k] ? 'Show question' : 'Show answer'}">
           <span class="qq serif${!S.reveal[k] && q.q.length > 80 ? ' long' : ''}">${esc(S.reveal[k] ? q.a : q.q)}</span></button>`;
-        main = `<section class="main qcard" aria-label="Question of the day"><div class="qhead"><span class="eyebrow gold">QUESTION OF THE DAY</span>
-          <div style="display:flex;align-items:center;gap:12px">${dots(1)}${next}</div></div>
+        main = `<section class="main qcard" aria-label="Question of the day"><div class="qhead"><span class="eyebrow gold">QUESTION OF THE DAY</span></div>
           <div class="qgrid">${subj.map(card).join('')}</div></section>`;
       }
     }
@@ -435,8 +431,12 @@
     const b = ev.target.closest('[data-act]');
     if (!b) return;
     const act = b.dataset.act, now = clockNow();
-    if (act === 'clock') { enterClock(); return; }
-    if (act === 'next') { S.view = (S.view || defaultView(now)) === 'art' ? 'learn' : 'art'; S.look = false; }
+    if (act === 'clock') {
+      // One button cycles the Discover screens: art → question → clock → art.
+      S.look = false; S.full = false;
+      if ((S.view || defaultView(now)) === 'art') S.view = 'learn';
+      else { S.view = 'art'; touched(); enterClock(); return; }
+    }
     if (act === 'look') S.look = !S.look;
     if (act === 'full') S.full = true;
     if (act === 'unfull') S.full = false;
