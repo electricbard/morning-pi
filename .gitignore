@@ -1,0 +1,7 @@
+# Private, per-household files — never commit
+calendar.txt
+config.json
+
+__pycache__/
+*.pyc
+.DS_Store

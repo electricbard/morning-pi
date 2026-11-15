@@ -1,0 +1,29 @@
+# Morning Pi calendar — example. Copy to calendar.txt (git-ignored) and edit.
+#
+# One entry per line:   type | date | label
+#   type:   birthday | holiday | pa-day | pa-day:elem | pa-day:sec | no-school
+#   date:   YYYY-MM-DD, a range "YYYY-MM-DD to YYYY-MM-DD", or MM-DD for birthdays (repeats every year)
+# Lines starting with # are ignored.
+#
+# School days: holidays, pa-day, pa-day:sec and no-school days hide the morning bus panel
+# (the bus panel follows the secondary-school calendar). pa-day:elem only shows in the countdown.
+
+# ---- Birthdays ----
+birthday | 03-14 | Alex
+birthday | 10-31 | Sam
+
+# ---- TDSB 2026–27 (from the board's official Key Dates PDF) ----
+pa-day      | 2026-11-20 | PA day
+pa-day:elem | 2027-01-15 | PA day (elementary)
+pa-day:sec  | 2027-02-02 | PA day (secondary)
+pa-day      | 2027-02-12 | PA day
+pa-day:elem | 2027-06-04 | PA day (elementary)
+pa-day:sec  | 2027-06-29 | PA day (secondary)
+pa-day      | 2027-06-30 | PA day
+holiday     | 2026-12-21 to 2027-01-01 | Winter break
+holiday     | 2027-02-15 | Family Day
+holiday     | 2027-03-15 to 2027-03-19 | March break
+holiday     | 2027-03-26 | Good Friday
+holiday     | 2027-03-29 | Easter Monday
+holiday     | 2027-05-24 | Victoria Day
+holiday     | 2027-07-01 to 2027-09-06 | Summer

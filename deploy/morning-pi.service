@@ -1,0 +1,14 @@
+[Unit]
+Description=Morning Pi kitchen display server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=__USER__
+WorkingDirectory=__APP__
+ExecStart=/usr/bin/python3 __APP__/server.py
+Restart=always
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

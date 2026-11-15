@@ -1,0 +1,60 @@
+{
+  "location": { "lat": 43.6534, "lon": -79.3839, "tz": "America/Toronto" },
+
+  "school": {
+    "days": [1, 2, 3, 4, 5],
+    "morningFrom": "05:00",
+    "transitUntil": "10:00",
+    "bell": "09:00",
+    "offBusBy": "08:50",
+    "walkToStopMin": 5,
+    "stopToSeatMin": 10,
+    "noSchoolDates": []
+  },
+
+  "schoolRoute": {
+    "route": "ROUTE_NUMBER",
+    "direction": "South",
+    "board": "STOP_TAG_WHERE_YOU_GET_ON",
+    "alight": "STOP_TAG_WHERE_YOU_GET_OFF",
+    "alightName": "Stop name",
+    "fallbackRideMin": 7
+  },
+
+  "otherStops": [
+    { "label": "Street · direction at cross street", "route": "ROUTE_NUMBER", "stop": "STOP_TAG" }
+  ],
+
+  "slots": {
+    "school": [
+      { "label": "Recess", "time": "10:00" },
+      { "label": "Lunch", "time": "12:00" },
+      { "label": "Recess", "time": "14:00" },
+      { "label": "Home time", "time": "15:30" },
+      { "label": "Commute home", "time": "18:00" }
+    ]
+  },
+
+  "transitRules": {
+    "windowFrom": "08:00",
+    "windowTo": "09:00",
+    "precipProbAtLeast": 50,
+    "precipMmAtLeast": 0.5,
+    "feelsLikeAtOrBelow": -15,
+    "gustsAtLeast": 50,
+    "rainAlertProbAtLeast": 40
+  },
+
+  "night": {
+    "dimAt": "19:30",
+    "offAt": "22:00",
+    "onAt": "06:30",
+    "dayBrightness": 255,
+    "dimBrightness": 70
+  },
+
+  "discover": {
+    "artUntil": "15:00",
+    "idleResetSec": 180
+  }
+}
