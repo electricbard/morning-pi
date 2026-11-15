@@ -24,13 +24,21 @@ def _sample_points(face):
     """Points along every edge of the face (arcs sampled), world space."""
     pts = []
     for e in face.edges:
-        ev = e.evaluator
-        ok, t0, t1 = ev.getParameterExtents()
-        n = 1 if isinstance(e.geometry, adsk.core.Line3D) else 24
-        for i in range(n + 1):
-            ok, p = ev.getPointAtParameter(t0 + (t1 - t0) * i / n)
+        got = False
+        try:
+            ev = e.evaluator
+            ok, t0, t1 = ev.getParameterExtents()
             if ok:
-                pts.append(p)
+                ok, strokes = ev.getStrokes(t0, t1, 0.005)  # polyline within 0.05 mm of the edge
+                if ok and strokes:
+                    pts.extend(strokes)
+                    got = True
+        except RuntimeError:
+            pass
+        if not got:  # fall back to the edge's end points
+            for v in (e.startVertex, e.endVertex):
+                if v:
+                    pts.append(v.geometry)
     return pts
 
 
