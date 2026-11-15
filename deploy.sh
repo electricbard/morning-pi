@@ -4,5 +4,5 @@
 set -euo pipefail
 HOST="${MORNING_PI_HOST:?Set MORNING_PI_HOST, e.g. MORNING_PI_HOST=pi@morning-pi.local ./deploy.sh}"
 cd "$(dirname "$0")"
-rsync -az --delete --exclude .git --exclude .DS_Store --exclude __pycache__ ./ "$HOST:morning-pi/"
+rsync -az --delete --exclude .git --exclude .DS_Store --exclude __pycache__ --exclude candidates ./ "$HOST:morning-pi/"
 ssh "$HOST" 'bash ~/morning-pi/deploy/install.sh'
