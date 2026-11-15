@@ -1,0 +1,8 @@
+{
+  "autodeskProduct": "Fusion360",
+  "type": "script",
+  "author": "Morning Pi",
+  "description": {"": "Project the Raspberry Pi mounting holes onto the case floor and cut M2.5 clearance holes."},
+  "supportedOS": "windows|mac",
+  "editEnabled": true
+}
