@@ -1,0 +1,8 @@
+{
+  "autodeskProduct": "Fusion360",
+  "type": "script",
+  "author": "Morning Pi",
+  "description": {"": "Move the display + Pi reference so the glass sits centred on the top face of the case box."},
+  "supportedOS": "windows|mac",
+  "editEnabled": true
+}
