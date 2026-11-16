@@ -255,17 +255,32 @@ def _fetch_recipes(rc, avoid):
     q = {
         "apiKey": rc["apiKey"], "diet": rc.get("diet", "pescetarian"),  # Spoonacular's pescetarian includes vegetarian
         "type": rc.get("type", "main course"), "maxReadyTime": rc.get("maxMinutes", 30),
-        "instructionsRequired": "true", "sort": "random", "number": 12,
+        "instructionsRequired": "true", "sort": "random",
     }
-    found = json.loads(fetch(f"{SPOON}/complexSearch?{urllib.parse.urlencode(q)}", timeout=15))
-    ids = [r["id"] for r in found.get("results", []) if r["id"] not in avoid]
+    diets = [q["diet"]] + (["vegetarian"] if q["diet"] == "pescetarian" else [])  # a vegetarian search too, so it's not all fish
+    results = []
+    for diet in diets:
+        found = json.loads(fetch(f"{SPOON}/complexSearch?{urllib.parse.urlencode(dict(q, diet=diet, number=8))}", timeout=15))
+        results += [r["id"] for r in found.get("results", []) if r["id"] not in results]
+    ids = [i for i in results if i not in avoid]
     if len(ids) < 3:
-        ids += [r["id"] for r in found.get("results", []) if r["id"] in avoid]
-    ids = ids[:6]  # a few spares in case some come back without steps
+        ids += [i for i in results if i in avoid]
+    # Interleave the two searches so the spares include both kinds.
+    half = len(ids) // 2
+    ids = [x for pair in zip(ids[:half], ids[half:]) for x in pair] + ids[2 * half:]
+    ids = ids[:8]  # a few spares in case some come back without steps, and room for a veg/fish mix
     full = json.loads(fetch(f"{SPOON}/informationBulk?" + urllib.parse.urlencode({"apiKey": rc["apiKey"], "ids": ",".join(map(str, ids))}), timeout=15))
     out = [_slim_recipe(r) for r in full]
     out = [r for r in out if r["steps"] and r["ingredients"] and (r["minutes"] or 0) <= rc.get("maxMinutes", 30)]
-    return out[:3]
+    # Mix it up: vegetarian and fish dishes alternate (veg first) instead of three of one kind.
+    veg = [r for r in out if r["kind"] == "vegetarian"]
+    fish = [r for r in out if r["kind"] != "vegetarian"]
+    mixed = []
+    while veg or fish:
+        for pool in (veg, fish):
+            if pool:
+                mixed.append(pool.pop(0))
+    return mixed[:3]
 
 
 def _read_json(path, default):
