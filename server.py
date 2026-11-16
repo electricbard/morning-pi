@@ -12,8 +12,11 @@ import statistics
 import threading
 import time
 import urllib.request
+import re
+import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -25,6 +28,12 @@ CALENDAR_EXAMPLE = os.path.join(ROOT, "calendar.example.txt")
 UA = "morning-pi/1.0 (home kitchen display)"
 NEXTBUS = "https://webservices.umoiq.com/service/publicXMLFeed"
 PORT = int(os.environ.get("MORNING_PI_PORT", "8080"))
+SPOON = "https://api.spoonacular.com/recipes"
+# Outside the app folder so deploy.sh's rsync --delete never wipes it.
+RECIPE_CACHE = os.path.expanduser(os.environ.get("MORNING_PI_RECIPE_CACHE", "~/.cache/morning-pi/recipes.json"))
+# Thumbs up/down. Liked recipes are kept whole so they can come back without another API call.
+RECIPE_RATINGS = os.path.expanduser(os.environ.get("MORNING_PI_RECIPE_RATINGS", "~/.local/share/morning-pi/recipe-ratings.json"))
+FAVOURITE_GAP_DAYS = 10  # a liked recipe returns at most this often
 
 _cache = {}
 _cache_lock = threading.Lock()
@@ -212,6 +221,132 @@ def backlight_loop():
         time.sleep(5)
 
 
+# ---------------------------------------------------------------- dinner recipes (Spoonacular)
+_recipe_lock = threading.Lock()
+
+
+def _strip_html(t):
+    return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", t or "")).strip()
+
+
+def _slim_recipe(r):
+    steps = []
+    for block in r.get("analyzedInstructions") or []:
+        if block.get("name"):
+            steps.append({"head": block["name"]})
+        steps += [{"text": st["step"].strip()} for st in block.get("steps", []) if st.get("step", "").strip()]
+    if not steps and r.get("instructions"):
+        steps = [{"text": x.strip()} for x in re.split(r"(?<=[.!?])\s+(?=[A-Z])", _strip_html(r["instructions"])) if x.strip()]
+    seen, ings = set(), []
+    for i in r.get("extendedIngredients") or []:
+        line = (i.get("original") or i.get("name") or "").strip()
+        if line and line.lower() not in seen:
+            seen.add(line.lower()); ings.append(line)
+    return {
+        "id": r["id"], "title": r.get("title", "").strip(), "image": r.get("image"),
+        "minutes": r.get("readyInMinutes"), "servings": r.get("servings"),
+        "kind": "vegetarian" if r.get("vegetarian") else "pescatarian",
+        "source": r.get("sourceName") or "", "url": r.get("sourceUrl") or "",
+        "ingredients": ings, "steps": steps,
+    }
+
+
+def _fetch_recipes(rc, avoid):
+    q = {
+        "apiKey": rc["apiKey"], "diet": rc.get("diet", "pescetarian"),  # Spoonacular's pescetarian includes vegetarian
+        "type": rc.get("type", "main course"), "maxReadyTime": rc.get("maxMinutes", 30),
+        "instructionsRequired": "true", "sort": "random", "number": 12,
+    }
+    found = json.loads(fetch(f"{SPOON}/complexSearch?{urllib.parse.urlencode(q)}", timeout=15))
+    ids = [r["id"] for r in found.get("results", []) if r["id"] not in avoid]
+    if len(ids) < 3:
+        ids += [r["id"] for r in found.get("results", []) if r["id"] in avoid]
+    ids = ids[:6]  # a few spares in case some come back without steps
+    full = json.loads(fetch(f"{SPOON}/informationBulk?" + urllib.parse.urlencode({"apiKey": rc["apiKey"], "ids": ",".join(map(str, ids))}), timeout=15))
+    out = [_slim_recipe(r) for r in full]
+    out = [r for r in out if r["steps"] and r["ingredients"] and (r["minutes"] or 0) <= rc.get("maxMinutes", 30)]
+    return out[:3]
+
+
+def _read_json(path, default):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, ValueError):
+        return default
+
+
+def _write_json(path, obj):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path + ".tmp", "w", encoding="utf-8") as f:
+        json.dump(obj, f)
+    os.replace(path + ".tmp", path)
+
+
+def _with_votes(resp):
+    ratings = _read_json(RECIPE_RATINGS, {})
+    for r in resp.get("recipes", []):
+        r["vote"] = (ratings.get(str(r["id"])) or {}).get("vote", 0)
+    return resp
+
+
+def rate_recipe(rid, vote):
+    """vote 1 = show again (favourite), -1 = never again, 0 = clear."""
+    with _recipe_lock:
+        store = _read_json(RECIPE_CACHE, {})
+        ratings = _read_json(RECIPE_RATINGS, {})
+        recipe = next((r for r in store.get("recipes", []) if r["id"] == rid), None) or (ratings.get(str(rid)) or {}).get("recipe")
+        if vote == 0:
+            ratings.pop(str(rid), None)
+        else:
+            entry = ratings.get(str(rid)) or {}
+            entry.update(vote=vote, at=int(time.time()))
+            if vote > 0 and recipe:
+                entry["recipe"] = {k: v for k, v in recipe.items() if k not in ("vote", "favourite")}
+                entry.setdefault("lastShown", store.get("date"))
+            else:
+                entry.pop("recipe", None)
+            ratings[str(rid)] = entry
+        _write_json(RECIPE_RATINGS, ratings)
+    return {"id": rid, "vote": vote}
+
+
+def get_recipes(cfg):
+    """Three dinner ideas per day, fetched once and kept on disk (the free plan allows ~150 points/day; this uses ~3)."""
+    rc = cfg.get("recipes") or {}
+    if not rc.get("apiKey"):
+        return {"configured": False, "recipes": []}
+    today = datetime.now(ZoneInfo(cfg["location"].get("tz", "America/Toronto"))).strftime("%Y-%m-%d")
+    with _recipe_lock:
+        store = _read_json(RECIPE_CACHE, {})
+        if store.get("date") == today and store.get("recipes"):
+            return _with_votes({"configured": True, "date": today, "recipes": store["recipes"]})
+        if store.get("failedAt", 0) > time.time() - 1800:  # don't hammer the API after a failure
+            return _with_votes({"configured": True, "date": store.get("date"), "recipes": store.get("recipes", []), "stale": True, "error": store.get("error")})
+        ratings = _read_json(RECIPE_RATINGS, {})
+        disliked = {int(k) for k, v in ratings.items() if v.get("vote", 0) < 0}
+        # One favourite a day, the one that has waited longest, once it's been FAVOURITE_GAP_DAYS since it last showed.
+        cutoff = datetime.strptime(today, "%Y-%m-%d").toordinal() - FAVOURITE_GAP_DAYS
+        due = sorted((v.get("lastShown") or "", k) for k, v in ratings.items() if v.get("vote", 0) > 0 and v.get("recipe")
+                     and (not v.get("lastShown") or datetime.strptime(v["lastShown"], "%Y-%m-%d").toordinal() <= cutoff))
+        fav = dict(ratings[due[0][1]]["recipe"], favourite=True) if due else None
+        try:
+            fresh = _fetch_recipes(rc, set(store.get("recent", [])) | disliked | {int(k) for k in ratings})
+            fresh = [r for r in fresh if r["id"] not in disliked]
+            recipes = ([fav] if fav else []) + fresh[: 3 - (1 if fav else 0)]
+            if not fresh:
+                raise RuntimeError("no recipes matched")
+            store = {"date": today, "recipes": recipes, "recent": ([r["id"] for r in recipes] + store.get("recent", []))[:90]}
+            if fav:
+                ratings[str(fav["id"])]["lastShown"] = today
+                _write_json(RECIPE_RATINGS, ratings)
+        except Exception as e:
+            store.update(failedAt=time.time(), error=str(e))
+        _write_json(RECIPE_CACHE, store)
+        ok = store.get("date") == today
+        return _with_votes({"configured": True, "date": store.get("date"), "recipes": store.get("recipes", []), **({} if ok else {"stale": True, "error": store.get("error")})})
+
+
 # ---------------------------------------------------------------- http
 class Handler(SimpleHTTPRequestHandler):
     def __init__(self, *a, **kw):
@@ -238,7 +373,12 @@ class Handler(SimpleHTTPRequestHandler):
         path = self.path.split("?")[0]
         try:
             if path == "/api/config":
-                return self._json(load_config())
+                cfg = load_config()
+                if isinstance(cfg.get("recipes"), dict):
+                    cfg["recipes"] = {k: v for k, v in cfg["recipes"].items() if k != "apiKey"}  # keep the key server-side
+                return self._json(cfg)
+            if path == "/api/recipes":
+                return self._json(get_recipes(load_config()))
             if path == "/api/calendar":
                 return self._json(load_calendar())
             if path == "/api/weather":
@@ -255,6 +395,13 @@ class Handler(SimpleHTTPRequestHandler):
 
     def do_POST(self):
         global _wake_until
+        if self.path == "/api/recipes/rate":
+            try:
+                body = json.loads(self.rfile.read(int(self.headers.get("Content-Length", 0)) or 0) or b"{}")
+                vote = int(body.get("vote", 0))
+                return self._json(rate_recipe(int(body["id"]), max(-1, min(1, vote))))
+            except Exception as e:
+                return self._json({"error": str(e)}, 400)
         if self.path == "/api/wake":
             _wake_until = time.time() + 120
             return self._json({"awakeUntil": int(_wake_until)})

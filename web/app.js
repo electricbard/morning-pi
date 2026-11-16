@@ -9,6 +9,7 @@
     view: null, look: false, reveal: {}, revealDay: null, idleTimer: null,
     autoStep: -1, autoAt: 0, lastTouch: 0,
     clockOn: false, clockUpdate: null, clockMinute: null,
+    recipes: [], recipeOpen: null, recipeDone: {},
   };
 
   // ---------------------------------------------------------------- helpers
@@ -19,6 +20,7 @@
   if (QS.get('art')) S.view = 'art';
   if (QS.get('view')) S.view = QS.get('view'); // testing aid: ?view=art|learn
   if (QS.get('full')) S.full = true; // testing aid: ?full=1 opens today's art full screen
+  const FORCE_DINNER = QS.get('dinner') || QS.get('recipe'); // testing aid: ?dinner=1 shows dinner ideas; ?recipe=N opens idea N
   const T0 = Date.now();
   const clockNow = () => (AT ? new Date(new Date(AT).getTime() + (Date.now() - T0)) : new Date());
   const $ = (s) => document.querySelector(s);
@@ -59,6 +61,8 @@
     shirt: '<path d="M8 3l-5 3 2 5 2-1v11h10V10l2 1 2-5-5-3a4 4 0 0 1-8 0z"/>',
     umbrella: '<path d="M12 3a9 9 0 0 1 9 9H3a9 9 0 0 1 9-9zM12 12v7a2 2 0 0 0 4 0"/>',
     clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    up: '<path d="M7 10v12M15 5.9L14 10h5.8a2 2 0 0 1 1.9 2.6l-2.3 8a2 2 0 0 1-1.9 1.4H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.8a2 2 0 0 0 1.8-1.1L12 2a3.1 3.1 0 0 1 3 3.9z"/>',
+    down: '<path d="M17 14V2M9 18.1L10 14H4.2a2 2 0 0 1-1.9-2.6l2.3-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.8a2 2 0 0 0-1.8 1.1L12 22a3.1 3.1 0 0 1-3-3.9z"/>',
   };
   const ICON_COLOR = { sun: '#FFC857', partly: '#C5CEDB', cloud: '#C5CEDB', rain: '#8CC8FF', snow: '#E6F0FF', storm: '#FFC857', fog: '#C5CEDB', moon: '#FFE3A3' };
   const LABEL = { sun: 'Sunny', partly: 'Partly cloudy', cloud: 'Cloudy', rain: 'Rain', snow: 'Snow', storm: 'Thunderstorm', fog: 'Fog', moon: 'Clear night' };
@@ -320,6 +324,57 @@
       <span class="sun">${svg(P.sunset, 16, '#FFB066', 'role="img" aria-label="Sunset"')}${sunTime('sunset')}</span></div></section>`;
   }
 
+  function wordSide(di) {
+    const lang = di % 2 === 0 ? 'en' : 'fr';
+    const list = S.words[lang] || [];
+    const w = list.length ? list[Math.floor(di / 2) % list.length] : null;
+    if (!w) return '';
+    return `<section class="side" aria-label="Word of the day"><span class="eyebrow blue">${lang === 'fr' ? 'MOT DU JOUR · FRENCH' : 'WORD OF THE DAY'}</span>
+          <span class="word serif${w.w.length > 10 ? ' long' : ''}">${esc(w.w)}</span><span class="word-say">${w.say ? `say “${esc(w.say)}” · ` : ''}${esc(w.pos)}</span>
+          <span class="word-def">${esc(w.def)}</span><span class="word-ex" style="margin-top:auto">${lang === 'fr' ? `« ${esc(w.ex)} »` : esc(w.ex)}</span>
+          ${w.exEn ? `<span class="word-en">${esc(w.exEn)}</span>` : ''}</section>`;
+  }
+
+  // Dinner ideas replace the questions in the late afternoon (config "recipes": from/until).
+  function dinnerTime(now) {
+    const rc = S.cfg.recipes;
+    if (!S.recipes.length || !rc) return false;
+    if (FORCE_DINNER) return true;
+    const m = minsOf(now);
+    return m >= hm(rc.from || '16:30') && m < hm(rc.until || '18:30');
+  }
+  const kindLabel = (r) => (r.kind === 'vegetarian' ? 'VEGETARIAN' : 'PESCATARIAN');
+  const recipeImg = (r, cls) => (r.image ? `<img class="${cls}" src="${esc(r.image)}" alt="">` : `<div class="${cls} noimg" aria-hidden="true"></div>`);
+
+  function dinnerCards() {
+    const max = (S.cfg.recipes && S.cfg.recipes.maxMinutes) || 30;
+    const card = (r, i) => `<button class="dish" data-act="recipe-${i}" aria-label="Open recipe: ${esc(r.title)}">${recipeImg(r, 'dish-img')}
+      <span class="dish-kind ${r.kind}">${kindLabel(r)}${r.favourite ? ' · <b class="fav">FAVOURITE</b>' : ''}</span>${r.vote ? `<span class="dish-vote ${r.vote > 0 ? 'up' : 'down'}">${svg(P[r.vote > 0 ? 'up' : 'down'], 16, 'currentColor', 'aria-hidden="true"')}</span>` : ''}<span class="dish-title serif${r.title.length > 42 ? ' long' : ''}">${esc(r.title)}</span>
+      <span class="dish-meta">${r.minutes ? r.minutes + ' min' : ''}${r.servings ? ' · serves ' + r.servings : ''}</span></button>`;
+    return `<section class="main qcard" aria-label="Dinner ideas"><div class="qhead"><span class="eyebrow gold">DINNER IDEAS · ${max} MIN OR LESS</span><span class="dish-hint">Tap one for the recipe</span></div>
+      <div class="dishes">${S.recipes.map(card).join('')}</div></section>`;
+  }
+
+  // Full-screen recipe: ingredients on the left, steps on the right. Tap a line to tick it off.
+  function recipeView() {
+    const r = S.recipes[S.recipeOpen];
+    const done = (k) => (S.recipeDone[r.id + k] ? ' done' : '');
+    let n = 0;
+    const steps = r.steps.map((st, i) => (st.head ? `<li class="rc-head">${esc(st.head)}</li>`
+      : `<li><button class="rc-line${done('s' + i)}" data-act="tick-s${i}"><span class="rc-n">${++n}</span><span>${esc(st.text)}</span></button></li>`)).join('');
+    const ings = r.ingredients.map((x, i) => `<li><button class="rc-line${done('i' + i)}" data-act="tick-i${i}"><span class="rc-box" aria-hidden="true"></span><span>${esc(x)}</span></button></li>`).join('');
+    const meta = [r.minutes && r.minutes + ' min', r.servings && 'serves ' + r.servings, kindLabel(r).toLowerCase()].filter(Boolean).join(' · ');
+    return `<div class="recipe"><header class="rc-top"><div class="rc-tt"><span class="eyebrow gold">TONIGHT'S DINNER · ${esc(meta.toUpperCase())}</span>
+        <h1 class="serif">${esc(r.title)}</h1></div>
+        <div class="rc-acts"><button class="btn rc-vote${r.vote > 0 ? ' on up' : ''}" data-act="vote-up" aria-pressed="${r.vote > 0}" aria-label="Thumbs up: show this again">${svg(P.up, 22, 'currentColor', 'aria-hidden="true"')}</button>
+        <button class="btn rc-vote${r.vote < 0 ? ' on down' : ''}" data-act="vote-down" aria-pressed="${r.vote < 0}" aria-label="Thumbs down: never show this again">${svg(P.down, 22, 'currentColor', 'aria-hidden="true"')}</button>
+        <button class="btn rc-close" data-act="recipe-close">Close ✕</button></div></header>
+      ${r.vote ? `<p class="rc-voted">${r.vote > 0 ? 'Saved as a favourite. It will come back now and then.' : 'Got it. This one won’t come back.'}</p>` : ''}
+      <div class="rc-body"><section class="rc-ing" data-scroll="ing" aria-label="Ingredients">${recipeImg(r, 'rc-img')}<span class="eyebrow green">INGREDIENTS</span><ul>${ings}</ul>
+        <p class="rc-src">${r.source ? 'Recipe: ' + esc(r.source) + ' · ' : ''}via Spoonacular</p></section>
+        <section class="rc-steps" data-scroll="steps" aria-label="Steps"><span class="eyebrow blue">STEPS</span><ol>${steps}</ol></section></div></div>`;
+  }
+
   function discoverView(now) {
     const view = S.view || defaultView(now);
     const di = dayIndex(now);
@@ -350,6 +405,9 @@
       main = `<section class="main art-frame" aria-label="Art of the day"><button class="art-tap" data-act="full" aria-label="Show full screen"><img src="content/art/${esc(a.file)}" alt="${esc(a.title)} by ${esc(a.artist)}"></button>
         ${S.full ? `<button class="art-full" data-act="unfull" aria-label="Back to dashboard"><img src="content/art/${esc(a.file)}" alt=""></button>` : ''}
         ${S.look ? `<div class="look"><span class="eyebrow green">CAN YOU SPOT IT?</span><p class="spot">${esc(a.spot)}</p><p class="story">${esc(a.story)}</p></div>` : ''}</section>`;
+    } else if (dinnerTime(now)) {
+      side = wordSide(di);
+      main = dinnerCards();
     } else {
       // One question per school level each day. Each level's pool alternates subjects so days vary.
       const SUBJ = ['math', 'physics', 'biology'];
@@ -359,15 +417,7 @@
         for (let i = 0; i < Math.max(0, ...lists.map((l) => l.length)); i++) lists.forEach((l) => { if (l[i]) pool.push(l[i]); });
         return pool.length ? [lv, pool[di % pool.length]] : null;
       }).filter(Boolean);
-      const lang = di % 2 === 0 ? 'en' : 'fr';
-      const list = S.words[lang] || [];
-      const w = list.length ? list[Math.floor(di / 2) % list.length] : null;
-      if (w) {
-        side = `<section class="side" aria-label="Word of the day"><span class="eyebrow blue">${lang === 'fr' ? 'MOT DU JOUR · FRENCH' : 'WORD OF THE DAY'}</span>
-          <span class="word serif${w.w.length > 10 ? ' long' : ''}">${esc(w.w)}</span><span class="word-say">${w.say ? `say “${esc(w.say)}” · ` : ''}${esc(w.pos)}</span>
-          <span class="word-def">${esc(w.def)}</span><span class="word-ex" style="margin-top:auto">${lang === 'fr' ? `« ${esc(w.ex)} »` : esc(w.ex)}</span>
-          ${w.exEn ? `<span class="word-en">${esc(w.exEn)}</span>` : ''}</section>`;
-      }
+      side = wordSide(di);
       if (subj.length) {
         const card = ([k, q]) => `<button class="q lv-${k}${S.reveal[k] ? ' open' : ''}" data-act="reveal-${k}" aria-label="${S.reveal[k] ? 'Show question' : 'Show answer'}">
           <span class="qlv">${k.toUpperCase()} · ${q.subj.toUpperCase()}${S.reveal[k] ? ' · ANSWER' : ''}</span>
@@ -385,7 +435,11 @@
     if (!S.cfg) return;
     if (S.clockOn) return;
     const now = clockNow();
-    $('#app').innerHTML = mode(now) === 'school' ? schoolView(now) : discoverView(now);
+    const keep = {};
+    document.querySelectorAll('[data-scroll]').forEach((el) => { keep[el.dataset.scroll] = el.scrollTop; });
+    if (S.recipeOpen !== null && !S.recipes[S.recipeOpen]) S.recipeOpen = null;
+    $('#app').innerHTML = S.recipeOpen !== null ? recipeView() : mode(now) === 'school' ? schoolView(now) : discoverView(now);
+    document.querySelectorAll('[data-scroll]').forEach((el) => { if (keep[el.dataset.scroll]) el.scrollTop = keep[el.dataset.scroll]; });
     const info = $('.art-info');
     if (info && info.scrollHeight > info.clientHeight + 1) info.classList.add('tight');
   }
@@ -487,7 +541,13 @@
   function touched() {
     S.lastTouch = Date.now();
     clearTimeout(S.idleTimer);
-    S.idleTimer = setTimeout(() => { S.view = null; S.look = false; S.full = false; S.autoAt = 0; render(); autoTick(); }, (S.cfg?.discover?.idleResetSec || 180) * 1000);
+    S.idleTimer = setTimeout(idleReset, (S.cfg?.discover?.idleResetSec || 180) * 1000);
+  }
+  // An open recipe stays put while you cook (up to 2 hours without a touch); everything else resets after idleResetSec.
+  const RECIPE_HOLD_MS = 2 * 3600e3;
+  function idleReset() {
+    if (S.recipeOpen !== null && Date.now() - S.lastTouch < RECIPE_HOLD_MS) { S.idleTimer = setTimeout(idleReset, RECIPE_HOLD_MS - (Date.now() - S.lastTouch)); return; }
+    S.recipeOpen = null; S.view = null; S.look = false; S.full = false; S.autoAt = 0; render(); autoTick();
   }
 
   // Evenings and weekends: rotate full-screen art → question → full-screen clock on a timer.
@@ -498,6 +558,7 @@
   }
   function autoTick() {
     if (QS.get('clock') || QS.get('art') || QS.get('view')) return; // ?clock / ?art / ?view hold still for testing
+    if (S.recipeOpen !== null) return; // no art / clock rotation while a recipe is open
     const now = clockNow();
     if (!autoWindow(now)) { S.autoStep = -1; S.autoAt = 0; return; }
     const idleMs = (S.cfg.discover.idleResetSec || 180) * 1000;
@@ -532,6 +593,14 @@
     if (act === 'full') S.full = true;
     if (act === 'unfull') S.full = false;
     if (act.startsWith('reveal-')) S.reveal[act.slice(7)] = !S.reveal[act.slice(7)];
+    if (/^recipe-\d+$/.test(act)) { S.recipeOpen = Number(act.slice(7)); S.full = false; }
+    if (act === 'recipe-close') S.recipeOpen = null;
+    if (act.startsWith('tick-') && S.recipeOpen !== null) { const k = S.recipes[S.recipeOpen].id + act.slice(5); S.recipeDone[k] = !S.recipeDone[k]; }
+    if ((act === 'vote-up' || act === 'vote-down') && S.recipeOpen !== null) {
+      const r = S.recipes[S.recipeOpen], want = act === 'vote-up' ? 1 : -1;
+      r.vote = r.vote === want ? 0 : want; // tap again to undo
+      fetch('/api/recipes/rate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: r.id, vote: r.vote }) }).catch((e) => console.warn(e));
+    }
     touched();
     render();
   });
@@ -543,6 +612,14 @@
     if (!S.cfg || mode(clockNow()) !== 'school') return;
     try { S.tr = await getJSON('/api/transit'); S.trError = false; } catch (e) { S.trError = true; console.warn(e); }
   }
+  async function loadRecipes() {
+    try {
+      const d = await getJSON('/api/recipes');
+      const fresh = d.recipes || [];
+      // Don't swap the list out from under an open recipe; pick it up once it's closed.
+      if (S.recipeOpen === null) S.recipes = fresh;
+    } catch (e) { console.warn(e); }
+  }
   async function loadContent() {
     const [art, qs, words] = await Promise.all([getJSON('content/art.json'), getJSON('content/questions.json'), getJSON('content/words.json')]);
     S.art = art; S.qs = qs; S.words = words;
@@ -551,7 +628,8 @@
   async function boot() {
     try { await Promise.all([loadConfig(), loadContent()]); }
     catch (e) { $('#app').innerHTML = `<div class="boot">Waiting for the Morning Pi server… (${esc(e.message)})</div>`; setTimeout(boot, 5000); return; }
-    await Promise.all([loadWeather(), loadTransit()]);
+    await Promise.all([loadWeather(), loadTransit(), loadRecipes()]);
+    if (QS.get('recipe') && S.recipes[Number(QS.get('recipe')) - 1]) S.recipeOpen = Number(QS.get('recipe')) - 1;
     render();
     if (QS.get('clock')) enterClock();
     setInterval(tickHeader, 1000);
@@ -560,6 +638,7 @@
     setInterval(render, 15000);
     setInterval(async () => { await loadTransit(); render(); }, 30000);
     setInterval(async () => { await loadWeather(); render(); }, 10 * 60000);
+    setInterval(async () => { await loadRecipes(); render(); }, 30 * 60000);
     setInterval(async () => { try { await loadConfig(); } catch (e) { console.warn(e); } }, 5 * 60000);
     // Reload once a night to pick up new code and content.
     const n = new Date(), reloadAt = new Date(n); reloadAt.setHours(3, 0, 0, 0); if (reloadAt <= n) reloadAt.setDate(reloadAt.getDate() + 1);

@@ -224,3 +224,49 @@ button { font: inherit; color: inherit; cursor: none; }
 .lc-next { margin-top: 10px; align-self: flex-start; background: rgba(6, 24, 14, .82); color: var(--text-2); font-size: 19px; font-weight: 600; padding: 10px 16px; border-radius: 12px; }
 .lc-next strong { color: #FFB066; }
 .lc-foot { position: absolute; right: 44px; bottom: 26px; font-size: 13px; font-weight: 700; opacity: .7; }
+
+/* ---- dinner ideas (late afternoon, in place of the questions) */
+.dish-hint { font-size: 12px; color: var(--muted); }
+.dishes { flex: 1; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; min-height: 0; }
+.dish { all: unset; background: var(--card-2); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; gap: 4px; min-height: 0; cursor: pointer; padding-bottom: 10px; }
+.dish-img { width: 100%; height: 124px; object-fit: cover; display: block; flex: none; }
+.noimg { background: linear-gradient(135deg, #2A3444, #1B222D); }
+.dish-kind { font-size: 10px; font-weight: 800; letter-spacing: 1.2px; padding: 6px 10px 0; color: var(--green); }
+.dish-kind.pescatarian { color: var(--blue); }
+.dish-kind .fav { color: var(--gold); font-weight: 800; }
+.dish-title { font-size: 18px; line-height: 1.2; padding: 0 10px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.dish-title.long { font-size: 16px; }
+.dish-meta { margin-top: auto; padding: 0 10px; font-size: 13px; font-weight: 600; color: var(--text-2); }
+
+/* ---- full-screen recipe */
+.recipe { height: 480px; padding: 12px 14px 14px; display: flex; flex-direction: column; gap: 8px; }
+.rc-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.rc-tt { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.rc-top h1 { margin: 0; font-size: 24px; line-height: 1.15; font-weight: 700; }
+.rc-acts { display: flex; gap: 8px; flex: none; }
+.rc-vote { width: 48px; padding: 0; }
+.rc-vote.on.up { background: #1F4D33; border-color: var(--green); }
+.rc-vote.on.down { background: #4D2A1F; border-color: var(--late); }
+.rc-close { height: 40px; }
+.rc-voted { margin: -2px 0 0; font-size: 13px; color: var(--muted); }
+.rc-body { flex: 1; min-height: 0; display: grid; grid-template-columns: 290px minmax(0, 1fr); gap: 12px; }
+.rc-ing, .rc-steps { background: var(--card); border-radius: 12px; padding: 12px; overflow-y: auto; min-height: 0; overscroll-behavior: contain; touch-action: pan-y; }
+.rc-img { width: 100%; height: 150px; object-fit: cover; border-radius: 8px; display: block; margin-bottom: 10px; }
+.rc-ing ul, .rc-steps ol { list-style: none; margin: 6px 0 0; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.rc-line { all: unset; display: flex; gap: 10px; align-items: flex-start; width: 100%; padding: 7px 4px; border-radius: 8px; cursor: pointer; line-height: 1.35; }
+.rc-ing .rc-line { font-size: 16px; }
+.rc-steps .rc-line { font-size: 18px; padding: 9px 4px; }
+.rc-box { flex: none; width: 16px; height: 16px; margin-top: 2px; border: 2px solid var(--dim); border-radius: 4px; }
+.rc-n { flex: none; width: 26px; height: 26px; border-radius: 50%; background: var(--card-2); color: var(--gold); font-weight: 800; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+.rc-line.done { color: var(--dim); text-decoration: line-through; }
+.rc-line.done .rc-box { background: var(--green); border-color: var(--green); }
+.rc-line.done .rc-n { color: var(--dim); }
+.rc-head { font-size: 13px; font-weight: 800; letter-spacing: 1px; color: var(--muted); margin-top: 10px; text-transform: uppercase; }
+.rc-src { font-size: 11px; color: var(--dim); margin: 12px 0 0; }
+.dish { position: relative; }
+.dish-vote { position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(10, 13, 18, 0.8); }
+.dish-vote.up { color: var(--green); }
+.dish-vote.down { color: var(--late); }
+.rc-vote { display: flex; align-items: center; justify-content: center; color: var(--text-2); }
+.rc-vote.on.up { color: var(--green); }
+.rc-vote.on.down { color: var(--late); }

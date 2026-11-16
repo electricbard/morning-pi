@@ -53,6 +53,15 @@
     "dimBrightness": 70
   },
 
+  "recipes": {
+    "apiKey": "",
+    "from": "16:30",
+    "until": "18:30",
+    "maxMinutes": 30,
+    "diet": "pescetarian",
+    "type": "main course"
+  },
+
   "discover": {
     "artUntil": "15:00",
     "idleResetSec": 180,

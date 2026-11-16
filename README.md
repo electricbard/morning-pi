@@ -6,11 +6,14 @@ A kitchen-counter display for a Raspberry Pi with the official 7" touchscreen (8
   a walk/bike vs. transit call, and live TTC times turned into "Leave 8:39 → bus 8:44 → seated 9:01".
 - **Rest of the day & weekends ("Discover")**: current weather, art of the day (public-domain, modern-leaning),
   a two-level question of the day, an English/French word of the day, and countdowns.
+- **Dinner ideas** (16:30–18:30): three vegetarian/pescatarian dinners ready in 30 minutes or less replace the
+  questions. Tap one for the full recipe (tap lines to tick them off); art/clock rotation pauses while it's open.
+  Thumbs down and it never comes back; thumbs up and it returns now and then as a favourite.
 - **Clock mode** (evenings & weekends): eight animated full-screen clocks, a new one each time. Tap to exit.
 - **Night**: the screen dims in the evening and the backlight turns off overnight; touch wakes it.
 
 Weather: [Open-Meteo](https://open-meteo.com). Transit: TTC real-time feed (UmoIQ/NextBus).
-Art: Wikimedia Commons, public domain.
+Art: Wikimedia Commons, public domain. Recipes: [Spoonacular](https://spoonacular.com/food-api).
 
 ## Setup
 
@@ -23,6 +26,14 @@ Art: Wikimedia Commons, public domain.
 
 `https://webservices.umoiq.com/service/publicXMLFeed?command=routeConfig&a=ttc&r=<route>` lists every stop
 with its `tag` and the direction it belongs to.
+
+### Dinner ideas (`recipes` in `config.json`)
+
+Sign up for a free key at <https://spoonacular.com/food-api/console#Dashboard> and put it in `recipes.apiKey`.
+The server fetches three picks once a day (about 3 of the free plan's 150 daily points) and keeps them in
+`~/.cache/morning-pi/recipes.json`. Ratings live in `~/.local/share/morning-pi/recipe-ratings.json`.
+Without a key the questions stay up all afternoon. `diet` is `pescetarian` (Spoonacular's spelling; it
+includes vegetarian dishes) or `vegetarian`; `maxMinutes`, `from` and `until` set the time limit and window.
 
 ### Calendar (`calendar.txt`)
 
