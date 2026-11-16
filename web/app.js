@@ -224,9 +224,21 @@
     const rec = adv ? `<div class="rec${adv.transit ? ' transit' : ''}">${svg(adv.transit ? P.bus : P.bike, 30, adv.transit ? '#8CC8FF' : '#5FD99A', 'aria-hidden="true"')}
       <div style="display:flex;flex-direction:column;gap:1px;min-width:0"><span class="rec-title">${adv.title}</span><span class="rec-sub">${esc(adv.sub)}</span></div></div>` : '';
 
+    const bus = busBlock(now);
+    const lc = S.lastCall;
+    if (lc && S.lastCallOk !== +lc.hero.depart) {
+      const inMin = minsBetween(now, lc.hero.leave);
+      return `<button class="lastcall" data-act="lastcall-ok" aria-label="Back to the dashboard">
+        <span class="lc-pill">CATCH THIS BUS</span>
+        <span class="lc-top">${badge(lc.route)}<span>LAST BUS THAT GETS YOU TO SCHOOL ON TIME</span></span>
+        <span class="lc-title">${inMin <= 1 ? 'Leave now' : `Leave in ${inMin} min`}</span>
+        <span class="lc-line">Leave ${fmt(lc.hero.leave)} → bus ${fmt(lc.hero.depart)} → seated ${fmt(lc.hero.seated)} · ${-lc.hero.late} min to spare</span>
+        <span class="lc-next">Next bus ${fmt(lc.next.depart)} → seated ${fmt(lc.next.seated)} · <strong>${lc.next.late} min late</strong></span>
+        <span class="lc-foot">Tap to go back</span></button>`;
+    }
     return `<div class="school">${header(now, false)}<div class="school-body">
       <section class="wx-col" aria-label="Weather">${nowCard}<div class="slots">${slots}</div><div class="advice">${strip}${rec}</div></section>
-      <section class="bus-col" aria-label="Getting to school">${busBlock(now)}${otherStops(now)}</section></div></div>`;
+      <section class="bus-col" aria-label="Getting to school">${bus}${otherStops(now)}</section></div></div>`;
   }
 
   function busBlock(now) {
@@ -244,6 +256,9 @@
     });
     const live = buses.filter((b) => !b.missed);
     const hero = live[0];
+    // Last call: this bus still gets him there on time, the one after it doesn't.
+    S.lastCall = hero && hero.late <= 0 && live[1] && live[1].late > 0 ? { hero, next: live[1], route: sr.route } : null;
+    if (QS.get('lastcall') && hero && live[1]) S.lastCall = { hero, next: { ...live[1], late: 3 }, route: sr.route }; // testing aid: ?lastcall=1 forces the alert
     const line = (b) => `${fmt(b.leave)} → ${badge(sr.route, 'sm')} ${fmt(b.depart)} → seated ${fmt(b.seated)}`; // same order as the hero line: leave → bus → seated
     let heroHtml;
     if (!hero) {
@@ -513,6 +528,7 @@
       else { S.view = 'art'; touched(); enterClock(); return; }
     }
     if (act === 'look') S.look = !S.look;
+    if (act === 'lastcall-ok' && S.lastCall) S.lastCallOk = +S.lastCall.hero.depart; // hide until the next last call
     if (act === 'full') S.full = true;
     if (act === 'unfull') S.full = false;
     if (act.startsWith('reveal-')) S.reveal[act.slice(7)] = !S.reveal[act.slice(7)];

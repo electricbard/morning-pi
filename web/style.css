@@ -211,3 +211,16 @@ button { font: inherit; color: inherit; cursor: none; }
 .c-matrix i { width: 21px; height: 21px; border-radius: 50%; background: #17130E; }
 .c-matrix i.on { background: #FFF1DC; }
 .c-stripes { font-family: Anton, sans-serif; font-size: 330px; line-height: 1; letter-spacing: 2px; background: repeating-linear-gradient(-45deg, #FDE68A 0px, #FDE68A 14px, #000 14px, #000 28px); background-size: 79.2px 79.2px; -webkit-background-clip: text; background-clip: text; color: transparent; animation: slide 3s linear infinite; }
+
+/* ---------- last call: full screen when this is the last bus that arrives on time ---------- */
+@keyframes lcblink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: .15; } }
+@keyframes lcedge { 0%, 49% { box-shadow: inset 0 0 0 10px #FFB066; } 50%, 100% { box-shadow: inset 0 0 0 10px transparent; } }
+.lastcall { all: unset; box-sizing: border-box; width: 800px; height: 480px; padding: 34px 44px; display: flex; flex-direction: column; justify-content: center; gap: 10px;
+  background: var(--go); color: var(--go-ink); animation: lcedge 1s step-end infinite; cursor: pointer; position: relative; }
+.lc-pill { align-self: flex-start; background: var(--go-ink); color: #FFB066; font-size: 20px; font-weight: 900; letter-spacing: 2px; padding: 6px 16px; border-radius: 999px; animation: lcblink 1s step-end infinite; }
+.lc-top { display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 800; letter-spacing: .8px; }
+.lc-title { font-size: 104px; font-weight: 900; letter-spacing: -3px; line-height: 1; }
+.lc-line { font-size: 22px; font-weight: 700; }
+.lc-next { margin-top: 10px; align-self: flex-start; background: rgba(6, 24, 14, .82); color: var(--text-2); font-size: 19px; font-weight: 600; padding: 10px 16px; border-radius: 12px; }
+.lc-next strong { color: #FFB066; }
+.lc-foot { position: absolute; right: 44px; bottom: 26px; font-size: 13px; font-weight: 700; opacity: .7; }
