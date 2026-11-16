@@ -26,6 +26,11 @@ if [ -f "$HOME/.config/labwc/autostart" ] && ! grep -q morning-pi "$HOME/.config
 fi
 echo "/usr/bin/lwrespawn $APP/deploy/kiosk.sh &" > "$HOME/.config/labwc/autostart"
 
+# Keep Wi-Fi awake: power saving makes the Pi 4 stop answering on the LAN (ssh/deploy) while
+# its own outgoing requests still work. 2 = disabled. Applies to every Wi-Fi connection.
+printf '[connection]\nwifi.powersave = 2\n' | sudo tee /etc/NetworkManager/conf.d/morning-pi-wifi-powersave.conf >/dev/null
+sudo iw dev wlan0 set power_save off 2>/dev/null || true
+
 # Never blank the screen (the service handles night-time dimming)
 sudo raspi-config nonint do_blanking 1 >/dev/null 2>&1 || true
 
