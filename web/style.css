@@ -72,7 +72,10 @@ button { font: inherit; color: inherit; cursor: none; }
 .slot-foot.wet { font-weight: 800; color: var(--blue); }
 .strip { background: #1C2433; border-radius: 14px; padding: 10px 16px; display: flex; align-items: center; gap: 14px; height: 62px; }
 .strip.alert { border: 1px solid var(--late); }
-.strip-text { font-size: 16px; font-weight: 700; }
+.strip-text { font-size: 16px; font-weight: 700; line-height: 1.2; }
+/* outfit / rain strip and the walk-or-transit advice share the bottom row of the weather column */
+.advice { display: flex; gap: 8px; height: 62px; }
+.advice > * { flex: 1; min-width: 0; height: 62px; }
 
 .bus-col { flex: 1; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
 .rec { background: var(--card); border-radius: 14px; padding: 8px 12px; display: flex; align-items: center; gap: 12px; height: 54px; }
@@ -91,12 +94,14 @@ button { font: inherit; color: inherit; cursor: none; }
 .chip { align-self: flex-start; margin-top: 3px; font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
 .go .chip { background: var(--go-ink); color: #7CF0B0; }
 .late .chip { background: var(--late-ink); color: #FFC58A; }
-.rows { background: var(--card); border-radius: 14px; padding: 2px 14px; display: flex; flex-direction: column; }
-.row { display: flex; align-items: center; gap: 10px; height: 40px; }
+.rows { background: var(--card); border-radius: 14px; padding: 2px 12px; display: flex; flex-direction: column; }
+.row { display: flex; align-items: center; gap: 6px; height: 40px; }
 .row + .row { border-top: 1px solid var(--line); }
-.row-main { font-size: 13px; font-weight: 600; flex: 1; white-space: nowrap; display: flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; letter-spacing: -0.2px; }
+.row-main { font-size: 13px; font-weight: 600; flex: 1; white-space: nowrap; display: flex; align-items: center; gap: 4px; min-width: 0; overflow: hidden; letter-spacing: -0.3px; }
 .row.missed .row-main { color: var(--dim); text-decoration: line-through; }
-.row-tag { font-size: 12px; font-weight: 800; white-space: nowrap; flex-shrink: 0; }
+.row-tag { font-size: 11.5px; font-weight: 800; white-space: nowrap; flex-shrink: 0; }
+.row-tag.hurry { color: var(--amber); }
+.row.hurry .row-main { color: var(--text); }
 .row-tag.late { color: var(--amber); } .row-tag.ok { color: #7CF0B0; } .row-tag.missed { color: var(--muted); font-weight: 700; }
 .other { background: var(--card); border-radius: 14px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; margin-top: auto; }
 .other-head { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; }

@@ -225,8 +225,8 @@
       <div style="display:flex;flex-direction:column;gap:1px;min-width:0"><span class="rec-title">${adv.title}</span><span class="rec-sub">${esc(adv.sub)}</span></div></div>` : '';
 
     return `<div class="school">${header(now, false)}<div class="school-body">
-      <section class="wx-col" aria-label="Weather">${nowCard}<div class="slots">${slots}</div>${strip}</section>
-      <section class="bus-col" aria-label="Getting to school">${rec}${busBlock(now)}${otherStops(now)}</section></div></div>`;
+      <section class="wx-col" aria-label="Weather">${nowCard}<div class="slots">${slots}</div><div class="advice">${strip}${rec}</div></section>
+      <section class="bus-col" aria-label="Getting to school">${busBlock(now)}${otherStops(now)}</section></div></div>`;
   }
 
   function busBlock(now) {
@@ -244,7 +244,7 @@
     });
     const live = buses.filter((b) => !b.missed);
     const hero = live[0];
-    const line = (b) => `Leave ${fmt(b.leave)} → ${badge(sr.route, 'sm')} ${fmt(b.depart)} → Seated ${fmt(b.seated)}`;
+    const line = (b) => `${fmt(b.leave)} → ${badge(sr.route, 'sm')} ${fmt(b.depart)} → seated ${fmt(b.seated)}`; // same order as the hero line: leave → bus → seated
     let heroHtml;
     if (!hero) {
       heroHtml = `<div class="hero none">${top}<span class="hero-title">No buses soon</span></div>`;
@@ -257,15 +257,23 @@
       heroHtml = `<div class="hero ${onTime ? 'go' : 'late'}">${top}<div class="hero-main"><span class="hero-title">${title}</span>${right}</div>
         <span class="hero-line">Leave ${fmt(hero.leave)} → bus ${fmt(hero.depart)} → seated ${fmt(hero.seated)}</span><span class="chip">${chip}</span></div>`;
     }
+    // The bus just before the hero, shown above it so the column reads in time order. Too late to walk to it,
+    // but while it hasn't reached the stop yet it's "Hurry"; once it has, it's "missed" (struck through).
+    let past = '';
+    const prev = buses.filter((b) => b.missed && now - b.leave < 10 * 60000).pop();
+    if (prev && prev.depart > now) {
+      const m = Math.max(1, minsBetween(now, prev.depart));
+      past = `<div class="rows"><div class="row hurry"><span class="row-main">${line(prev)}</span><span class="row-tag hurry">Hurry · ${m} min</span></div></div>`;
+    } else if (prev) {
+      past = `<div class="rows"><div class="row missed"><span class="row-main">${line(prev).replace(badge(sr.route, 'sm'), badge(sr.route, 'sm off'))}</span><span class="row-tag missed">missed</span></div></div>`;
+    }
     const rows = [];
-    const lastMissed = buses.filter((b) => b.missed && now - b.leave < 10 * 60000).pop();
-    if (lastMissed) rows.push(`<div class="row missed"><span class="row-main">${line(lastMissed).replace(badge(sr.route, 'sm'), badge(sr.route, 'sm off'))}</span><span class="row-tag missed">missed</span></div>`);
     for (const b of live.slice(1)) {
       if (rows.length >= 2) break;
       const tag = b.late > 0 ? `<span class="row-tag late">${b.late} min late</span>` : `<span class="row-tag ok">${-b.late} min spare</span>`;
       rows.push(`<div class="row"><span class="row-main">${line(b)}</span>${tag}</div>`);
     }
-    return heroHtml + (rows.length ? `<div class="rows">${rows.join('')}</div>` : '');
+    return past + heroHtml + (rows.length ? `<div class="rows">${rows.join('')}</div>` : '');
   }
 
   function otherStops(now) {
