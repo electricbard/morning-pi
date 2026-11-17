@@ -38,6 +38,7 @@ FAVOURITE_GAP_DAYS = 10  # a liked recipe returns at most this often
 _cache = {}
 _cache_lock = threading.Lock()
 _wake_until = 0.0
+_backlight_kick = threading.Event()  # set by a touch so the screen lights at once, not on the next 5 s poll
 
 
 def load_config():
@@ -218,7 +219,8 @@ def backlight_loop():
                 last = level
         except Exception as e:
             print("backlight:", e, flush=True)
-        time.sleep(5)
+        _backlight_kick.wait(5)
+        _backlight_kick.clear()
 
 
 # ---------------------------------------------------------------- dinner recipes (Spoonacular)
@@ -419,6 +421,7 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json({"error": str(e)}, 400)
         if self.path == "/api/wake":
             _wake_until = time.time() + 120
+            _backlight_kick.set()
             return self._json({"awakeUntil": int(_wake_until)})
         self.send_error(404)
 
