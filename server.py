@@ -203,6 +203,8 @@ def desired_brightness(cfg, now=None):
         return n["dimBrightness"] if time.time() < _wake_until else 0
     if m >= dim_at:
         return n["dimBrightness"]
+    if "brightAt" in n and on_at <= m < _mins(n["brightAt"]):  # early morning: on, but softer until brightAt
+        return n.get("earlyBrightness", n["dayBrightness"] // 2)
     return n["dayBrightness"]
 
 
