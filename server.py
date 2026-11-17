@@ -199,6 +199,10 @@ def desired_brightness(cfg, now=None):
     m = now.hour * 60 + now.minute
     dim_at, off_at, on_at = _mins(n["dimAt"]), _mins(n["offAt"]), _mins(n["onAt"])
     in_off = (m >= off_at or m < on_at) if off_at > on_at else (off_at <= m < on_at)
+    # Extra off windows, e.g. weekdays while everyone's out. days: 0 = Sunday … 6 = Saturday (same as school.days).
+    for w in n.get("sleep", []):
+        if now.isoweekday() % 7 in w.get("days", range(7)) and _mins(w["from"]) <= m < _mins(w["to"]):
+            in_off = True
     if in_off:
         return n["dimBrightness"] if time.time() < _wake_until else 0
     if m >= dim_at:
