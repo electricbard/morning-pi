@@ -49,7 +49,7 @@
     "dimAt": "19:30",
     "offAt": "22:00",
     "onAt": "06:30",
-    "sleep": [ { "days": [1, 2, 3, 4, 5], "from": "10:00", "to": "15:00" } ],
+    "sleep": [ { "schoolDays": true, "from": "10:00", "to": "15:00" } ],
     "dayBrightness": 255,
     "dimBrightness": 70
   },

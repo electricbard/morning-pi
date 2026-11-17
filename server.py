@@ -193,15 +193,29 @@ def _mins(hhmm):
     return int(h) * 60 + int(m)
 
 
+def is_school_day(cfg, d):
+    """Same rule as the display's isSchoolDay(): a school weekday that isn't a holiday/PA day/no-school day."""
+    if d.isoweekday() % 7 not in cfg["school"]["days"]:
+        return False
+    k = d.strftime("%Y-%m-%d")
+    if k in cfg["school"].get("noSchoolDates", []):
+        return False
+    off = ("holiday", "pa-day", "pa-day:sec", "no-school")
+    return not any(e["type"] in off and e.get("start") and e["start"] <= k <= e.get("end", e["start"]) for e in load_calendar()["entries"])
+
+
 def desired_brightness(cfg, now=None):
     now = now or datetime.now()
     n = cfg["night"]
     m = now.hour * 60 + now.minute
     dim_at, off_at, on_at = _mins(n["dimAt"]), _mins(n["offAt"]), _mins(n["onAt"])
     in_off = (m >= off_at or m < on_at) if off_at > on_at else (off_at <= m < on_at)
-    # Extra off windows, e.g. weekdays while everyone's out. days: 0 = Sunday … 6 = Saturday (same as school.days).
+    # Extra off windows while everyone's out: "schoolDays": true follows the school calendar,
+    # or "days": [0 = Sunday … 6 = Saturday].
     for w in n.get("sleep", []):
-        if now.isoweekday() % 7 in w.get("days", range(7)) and _mins(w["from"]) <= m < _mins(w["to"]):
+        if not (_mins(w["from"]) <= m < _mins(w["to"])):
+            continue
+        if (is_school_day(cfg, now) if w.get("schoolDays") else now.isoweekday() % 7 in w.get("days", range(7))):
             in_off = True
     if in_off:
         return n["dimBrightness"] if time.time() < _wake_until else 0
