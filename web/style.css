@@ -270,3 +270,37 @@ button { font: inherit; color: inherit; cursor: none; }
 .rc-vote { display: flex; align-items: center; justify-content: center; color: var(--text-2); }
 .rc-vote.on.up { color: var(--green); }
 .rc-vote.on.down { color: var(--late); }
+
+/* ---- clock 9: pets (dog / cat / mouse from the kids' sketches) */
+.c-pets { --ac: #F6A04D; --pencil: #EDE6DA; position: absolute; inset: 0; background: #0E1116; }
+.c-pets * { transform-box: view-box; }
+.c-pets .pl { fill: #171A21; stroke: var(--pencil); stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+.c-pets .pl.thin { fill: none; stroke-width: 3; opacity: .7; }
+.c-pets .pl.thin2 { fill: none; stroke-width: 5; }
+.c-pets .pl.fur { fill: color-mix(in srgb, var(--ac) 18%, #171A21); }
+.c-pets .head { fill: #171A21; }
+.c-pets .face { fill: #1D212A; }
+.c-pets .inner { fill: color-mix(in srgb, var(--ac) 30%, #171A21); stroke: var(--pencil); stroke-width: 3; }
+.c-pets .nose, .c-pets .eye { fill: var(--pencil); }
+.c-pets .bow { fill: var(--ac); stroke: var(--pencil); stroke-width: 3; }
+.c-pets .tag { fill: #0E1116; stroke: var(--pencil); stroke-width: 3; }
+.c-pets .bubl { fill: #0E1116; stroke: var(--ac); }
+.c-pets .hand { font-family: 'Gochi Hand', cursive; fill: var(--pencil); }
+.c-pets .bub .hand { fill: var(--ac); }
+.c-pets .num { font-family: 'Baloo 2', sans-serif; font-weight: 800; fill: color-mix(in srgb, var(--ac) 14%, #1D212A); stroke: var(--ac); stroke-width: 10; stroke-linejoin: round; paint-order: stroke; transition: fill 1s, stroke 1s; }
+.c-pets circle.num { fill: var(--ac); transition: opacity .4s; }
+.c-pets.tick circle.num { opacity: .35; }
+.c-pets .pet { opacity: 0; transform: scale(.7); transform-origin: 400px 268px; transition: opacity .7s, transform .9s cubic-bezier(.3, 1.5, .5, 1); }
+.c-pets .pet.on { opacity: 1; transform: none; }
+.c-pets .breathe { transform-origin: 400px 440px; animation: pbreathe 4s ease-in-out infinite; }
+@keyframes pbreathe { 50% { transform: scale(1.012, .99); } }
+.c-pets .pt-wag { transform-origin: 234px 330px; animation: pwag .32s ease-in-out infinite alternate; }
+@keyframes pwag { from { transform: rotate(-12deg); } to { transform: rotate(10deg); } }
+.c-pets .pt-swish { transform-origin: 262px 392px; animation: pswish 2.6s ease-in-out infinite alternate; }
+@keyframes pswish { from { transform: rotate(-10deg); } to { transform: rotate(14deg); } }
+.c-pets .pt-wiggle { transform-origin: 236px 330px; animation: pwiggle 1.1s ease-in-out infinite alternate; }
+@keyframes pwiggle { from { transform: rotate(-6deg) skewY(4deg); } to { transform: rotate(5deg) skewY(-4deg); } }
+.c-pets .pt-twitch { transform-origin: 300px 150px; animation: ptwitch 5s ease-in-out infinite; }
+@keyframes ptwitch { 0%, 86%, 100% { transform: none; } 89% { transform: rotate(-9deg); } 92% { transform: rotate(4deg); } 95% { transform: rotate(-5deg); } }
+.c-pets .bub { transform-origin: -120px 4px; animation: pbub 6s ease-in-out -2.5s infinite; }
+@keyframes pbub { 0%, 12% { transform: scale(0); opacity: 0; } 20% { transform: scale(1.12); opacity: 1; } 25%, 78% { transform: scale(1); opacity: 1; } 88%, 100% { transform: scale(.4); opacity: 0; } }

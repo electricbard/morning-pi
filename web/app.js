@@ -512,7 +512,67 @@
         $('#cx').innerHTML = html;
       };
     },
-    (el) => { el.innerHTML = '<span class="c-stripes" id="ct"></span>'; return (d, t) => { $('#ct').textContent = t; }; },
+    (el) => { el.innerHTML = '<span class="c-stripes" id="ct"></span>'; return (d, t) => { $('#ct').textContent = t; }; },    // 9 · Pets: the time inside a dog, cat or mouse body (from the kids' sketches), a new animal every 15 s.
+    (el) => {
+      const PETS = [
+        { k: 'dog', name: 'Dog', say: 'RRRuffff!', ac: '#F6A04D',
+          back: `<path class="pl" d="M258,160 C236,104 232,58 246,30 C280,46 316,74 338,100 Z"/>
+            <path class="pl" d="M468,86 C500,60 540,62 548,92 C552,118 530,140 506,128 Z"/>
+            <path class="pl" d="M520,112 C532,72 560,40 590,30 C614,28 620,56 602,82 C586,104 568,122 556,136 Z"/>
+            <g class="pt-wag"><path class="pl fur" d="M236,312 C200,300 170,286 150,272 C130,262 106,262 96,276 C84,288 94,300 82,312 C72,328 90,340 104,338 C118,352 140,352 156,344 C178,352 206,350 234,352"/>
+              <path class="pl thin" d="M150,296 C130,300 118,306 110,318 M178,306 C160,316 150,326 146,336"/></g>`,
+          front: `<ellipse cx="598" cy="38" rx="13" ry="9" class="nose"/><circle cx="566" cy="70" r="6" class="eye"/>` },
+        { k: 'cat', name: 'Cat', say: 'Meowwww', ac: '#F48FB1',
+          back: `<g class="pt-twitch"><path class="pl" d="M262,152 L270,26 L354,88 Z"/><path class="pl thin" d="M280,120 L284,62 L326,92"/></g>
+            <path class="pl" d="M446,88 L530,26 L540,152 Z"/><path class="pl thin" d="M474,92 L522,62 L524,120"/>
+            <g class="pt-swish"><path class="pl thin2" d="M262,392 C226,414 192,414 182,440 C176,460 196,472 212,460 C222,452 214,440 204,444"/></g>`,
+          front: `<path class="bow" d="M500,100 C484,80 456,92 470,110 C478,120 494,108 500,100 C506,92 522,80 532,92 C544,106 518,116 500,100 Z"/><circle cx="500" cy="100" r="7" class="bow"/>` },
+        { k: 'mouse', name: 'Mouse', say: 'Squeekkkk', ac: '#9EC9FF',
+          back: `<g class="pt-twitch"><circle cx="282" cy="104" r="70" class="pl"/><circle cx="282" cy="104" r="42" class="inner"/></g>
+            <circle cx="518" cy="104" r="70" class="pl"/><circle cx="518" cy="104" r="42" class="inner"/>
+            <g class="pt-wiggle"><path class="pl thin2" d="M236,330 C190,320 172,290 132,300 C96,308 94,342 58,336 C40,334 30,322 26,310"/></g>`,
+          front: '' },
+      ];
+      const tag = (p) => `<g transform="translate(${p.k === 'cat' ? 300 : 520} ${p.k === 'mouse' ? 128 : 120}) rotate(${p.k === 'cat' ? 8 : -8})">
+        <path class="tag" d="M-52,-4 C-60,-26 -30,-34 -12,-26 C4,-38 36,-32 44,-18 C66,-14 64,14 44,18 C34,34 2,30 -10,22 C-30,32 -60,22 -52,-4 Z" transform="scale(${p.name.length > 3 ? 1.3 : 1} 1)"/>
+        <text class="hand" text-anchor="middle" dominant-baseline="central" font-size="30">${p.name}</text></g>`;
+      const bubble = (p) => `<g transform="translate(688 236) rotate(-62)"><g class="bub">
+        <path class="pl bubl" d="M-112,-28 H100 A28,28 0 0 1 100,28 H-104 L-146,16 L-112,-4 Z"/>
+        <text class="hand" x="-6" y="2" text-anchor="middle" dominant-baseline="central" font-size="34">${p.say}</text></g></g>`;
+      el.innerHTML = `<svg class="c-pets" viewBox="0 0 800 480" width="800" height="480" aria-hidden="true">
+        ${PETS.map((p) => `<g class="pet" data-p="${p.k}"><g class="breathe">${p.back}</g></g>`).join('')}
+        <g class="breathe"><path class="pl head" d="M218,250 C214,140 300,72 410,72 C520,72 596,140 590,252 C586,370 510,438 400,440 C290,440 222,370 218,250 Z"/>
+          <circle cx="400" cy="268" r="166" class="pl face"/>
+          <text id="ph" class="num" y="272" dominant-baseline="central" font-size="136"></text>
+          <circle id="pc1" cy="236" r="9" class="num"/><circle id="pc2" cy="306" r="9" class="num"/>
+          <text id="pm" class="num" y="272" dominant-baseline="central" font-size="136"></text></g>
+        ${PETS.map((p) => `<g class="pet" data-p="${p.k}"><g class="breathe">${p.front}${tag(p)}</g>${bubble(p)}</g>`).join('')}</svg>`;
+      const svgEl = el.querySelector('svg');
+      let lastT = '', lastPet = -1;
+      const layout = (t) => {
+        const [h, m] = t.split(':'), ph = $('#ph'), pm = $('#pm');
+        ph.textContent = h; pm.textContent = m;
+        let size = 136;
+        ph.setAttribute('font-size', size); pm.setAttribute('font-size', size);
+        const gap = 36, measure = () => ph.getComputedTextLength() + gap + pm.getComputedTextLength();
+        let total = measure();
+        if (total > 296) { size = Math.floor(size * 296 / total); ph.setAttribute('font-size', size); pm.setAttribute('font-size', size); total = measure(); }
+        const x0 = 400 - total / 2, hw = ph.getComputedTextLength();
+        ph.setAttribute('x', x0.toFixed(1)); pm.setAttribute('x', (x0 + hw + gap).toFixed(1));
+        ['#pc1', '#pc2'].forEach((id) => $(id).setAttribute('cx', (x0 + hw + gap / 2).toFixed(1)));
+      };
+      if (document.fonts) document.fonts.ready.then(() => { if (lastT) layout(lastT); });
+      return (d, t) => {
+        const i = QS.get('pet') ? (Number(QS.get('pet')) - 1) % PETS.length : Math.floor(Date.now() / 15000) % PETS.length; // testing aid: ?pet=1|2|3
+        if (i !== lastPet) {
+          lastPet = i;
+          svgEl.style.setProperty('--ac', PETS[i].ac);
+          svgEl.querySelectorAll('.pet').forEach((g) => g.classList.toggle('on', g.dataset.p === PETS[i].k));
+        }
+        if (t !== lastT) { lastT = t; layout(t); }
+        svgEl.classList.toggle('tick', d.getSeconds() % 2 === 0);
+      };
+    },
   ];
   function clockTick() {
     if (!S.clockOn || !S.clockUpdate) return;
@@ -521,7 +581,7 @@
   }
   function enterClock() {
     let idx = 0;
-    const force = Number(QS.get('clock')); // testing aid: ?clock=N (1-8) opens that clock style
+    const force = Number(QS.get('clock')); // testing aid: ?clock=N (1-9) opens that clock style
     if (force >= 1 && force <= CLOCKS.length) idx = force - 1;
     else try { idx = (parseInt(localStorage.getItem('mp.clock') || '-1', 10) + 1) % CLOCKS.length; localStorage.setItem('mp.clock', String(idx)); }
     catch (e) { idx = Math.floor(Math.random() * CLOCKS.length); }
