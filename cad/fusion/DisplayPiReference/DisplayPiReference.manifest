@@ -1,8 +1,0 @@
-{
-  "autodeskProduct": "Fusion360",
-  "type": "script",
-  "author": "Morning Pi",
-  "description": {"": "Build a reference model of the Pi 7in Touch Display with a Raspberry Pi 4 on its back, from the official drawings."},
-  "supportedOS": "windows|mac",
-  "editEnabled": true
-}
