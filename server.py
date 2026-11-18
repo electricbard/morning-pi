@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Morning Pi: kitchen display backend.
 
-Serves the web UI, proxies + caches Open-Meteo weather and TTC (UmoIQ/NextBus)
+Serves the web UI, proxies + caches Open-Meteo weather and UmoIQ/NextBus (e.g. TTC)
 predictions, and drives the screen backlight on a day/evening/night schedule.
 Standard library only.
 """
@@ -132,8 +132,8 @@ def get_weather(cfg):
 
 
 # ---------------------------------------------------------------- transit
-def predictions(route, stop):
-    xml = fetch(f"{NEXTBUS}?command=predictions&a=ttc&r={route}&s={stop}")
+def predictions(agency, route, stop):
+    xml = fetch(f"{NEXTBUS}?command=predictions&a={agency}&r={route}&s={stop}")
     root = ET.fromstring(xml)
     out = []
     for p in root.iter("prediction"):
@@ -147,9 +147,10 @@ def predictions(route, stop):
 
 
 def get_transit(cfg):
+    agency = cfg.get("transitAgency", "ttc")  # UmoIQ/NextBus agency tag
     sr = cfg["schoolRoute"]
-    board = predictions(sr["route"], sr["board"])
-    alight = predictions(sr["route"], sr["alight"])
+    board = predictions(agency, sr["route"], sr["board"])
+    alight = predictions(agency, sr["route"], sr["alight"])
     by_trip = {a["trip"]: a["epoch"] for a in alight if a["trip"]}
     by_vehicle = {}
     for a in alight:
@@ -179,7 +180,7 @@ def get_transit(cfg):
     stops = []
     for s in cfg.get("otherStops", []):
         try:
-            times = [p["epoch"] for p in predictions(s["route"], s["stop"])]
+            times = [p["epoch"] for p in predictions(agency, s["route"], s["stop"])]
         except Exception:
             times = []
         stops.append({"label": s["label"], "times": times})

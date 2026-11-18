@@ -12,6 +12,8 @@
     "noSchoolDates": []
   },
 
+  "transitAgency": "ttc",
+
   "schoolRoute": {
     "route": "ROUTE_NUMBER",
     "direction": "South",
