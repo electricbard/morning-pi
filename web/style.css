@@ -192,10 +192,8 @@ button { font: inherit; color: inherit; cursor: none; }
 @keyframes warmshift { 0% { color: #FFB4A2; text-shadow: 0 0 30px #FF8A70, 0 0 70px #FF6A4D; } 100% { color: #FF5A2E; text-shadow: 0 0 30px #FF4A1C, 0 0 70px #E8300F; } }
 @keyframes warmglow { 0% { filter: drop-shadow(0 0 28px #FF8A70); } 100% { filter: drop-shadow(0 0 28px #FF4A1C); } }
 @keyframes breathewarm { 0%, 100% { opacity: .72; transform: scale(.985); } 50% { opacity: 1; transform: scale(1); } }
-@keyframes tw { 0%, 100% { opacity: 1; box-shadow: 0 0 14px rgba(255,226,180,.55); } 50% { opacity: .55; box-shadow: 0 0 2px rgba(255,226,180,.15); } }
 @keyframes slide { 0% { background-position: 0 0; } 100% { background-position: 79.2px 0; } }
 .c-aurora { font-family: Sora, sans-serif; font-weight: 800; font-size: 250px; letter-spacing: -12px; line-height: 1; background: linear-gradient(100deg, #5EEAD4 0%, #A78BFA 35%, #FB7185 65%, #5EEAD4 100%); background-size: 300% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: aurora 14s ease-in-out infinite alternate; }
-.c-orbit-t { position: relative; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 150px; letter-spacing: -6px; line-height: 1; color: #F5F0E6; }
 .c-stack { width: 800px; padding-left: 90px; display: flex; flex-direction: column; justify-content: center; font-family: 'Archivo Black', sans-serif; }
 .c-stack .h { display: flex; align-items: center; gap: 16px; }
 .c-stack span.n { font-size: 210px; line-height: .82; letter-spacing: -10px; }
@@ -205,11 +203,6 @@ button { font: inherit; color: inherit; cursor: none; }
 .c-fill .s { position: absolute; inset: 0; display: block; color: #34D399; transition: clip-path 1s linear; }
 .c-breathe-g { filter: drop-shadow(0 0 28px #FF4A1C); animation: warmglow 14s ease-in-out infinite alternate; }
 .c-breathe { display: block; font-family: Manrope, sans-serif; font-weight: 800; font-size: 270px; letter-spacing: -10px; line-height: 1; color: #FF5A2E; text-shadow: 0 0 30px #FF4A1C, 0 0 70px #E8300F; animation: breathewarm 7s ease-in-out infinite, warmshift 14s ease-in-out infinite alternate; }
-.c-rings-t { position: relative; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 112px; letter-spacing: -4px; line-height: 1; color: #F5F5F5; }
-.c-matrix { display: flex; flex-direction: column; gap: 7px; }
-.c-matrix .r { display: flex; gap: 7px; }
-.c-matrix i { width: 21px; height: 21px; border-radius: 50%; background: #17130E; }
-.c-matrix i.on { background: #FFF1DC; }
 .c-stripes { font-family: Anton, sans-serif; font-size: 330px; line-height: 1; letter-spacing: 2px; background: repeating-linear-gradient(-45deg, #FDE68A 0px, #FDE68A 14px, #000 14px, #000 28px); background-size: 79.2px 79.2px; -webkit-background-clip: text; background-clip: text; color: transparent; animation: slide 3s linear infinite; }
 
 /* ---------- last call: full screen when this is the last bus that arrives on time ---------- */

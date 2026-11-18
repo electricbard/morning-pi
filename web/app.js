@@ -452,19 +452,6 @@
   const CLOCKS = [
     (el) => { el.innerHTML = '<span class="c-aurora" id="ct"></span>'; return (d, t) => { $('#ct').textContent = t; }; },
     (el) => {
-      el.innerHTML = `<svg width="440" height="440" viewBox="0 0 440 440" aria-hidden="true" style="position:absolute;left:180px;top:20px">
-        <circle cx="220" cy="220" r="205" fill="none" stroke="#1C1712" stroke-width="2"/>
-        <circle id="co" cx="220" cy="220" r="205" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linecap="round" stroke-dasharray="1288.05" transform="rotate(-90 220 220)" style="transition:stroke-dashoffset 1s linear"/>
-        <circle id="cd" r="9" fill="#F59E0B" style="filter:drop-shadow(0 0 10px #F59E0B)"/></svg><span class="c-orbit-t" id="ct"></span>`;
-      return (d, t) => {
-        const s = d.getSeconds(), a = (s / 60) * Math.PI * 2;
-        $('#ct').textContent = t;
-        $('#co').setAttribute('stroke-dashoffset', (1288.05 * (1 - s / 60)).toFixed(1));
-        $('#cd').setAttribute('cx', (220 + 205 * Math.sin(a)).toFixed(1));
-        $('#cd').setAttribute('cy', (220 - 205 * Math.cos(a)).toFixed(1));
-      };
-    },
-    (el) => {
       el.innerHTML = '<div class="c-stack"><div class="h"><span class="n" id="ch" style="color:#FF6B4A"></span><span class="dot"></span></div><span class="n" id="cm" style="color:#F3E9DC"></span></div>';
       return (d) => { $('#ch').textContent = pad(d.getHours() % 12 || 12); $('#cm').textContent = pad(d.getMinutes()); };
     },
@@ -473,46 +460,8 @@
       return (d, t) => { $('#ct').textContent = t; $('#cs').textContent = t; $('#cs').style.clipPath = `inset(${(12 + 76 * (1 - d.getSeconds() / 59)).toFixed(1)}% 0 0 0)`; };
     },
     (el) => { el.innerHTML = '<div class="c-breathe-g"><span class="c-breathe" id="ct"></span></div>'; return (d, t) => { $('#ct').textContent = t; }; },
-    (el) => {
-      const ring = (r, track, color, id, extra = '') => `<circle cx="230" cy="230" r="${r}" stroke="${track}"/><circle id="${id}" cx="230" cy="230" r="${r}" stroke="${color}" stroke-dasharray="${(2 * Math.PI * r).toFixed(1)}" ${extra}/>`;
-      el.innerHTML = `<svg width="460" height="460" viewBox="0 0 460 460" aria-hidden="true" style="position:absolute;left:170px;top:10px"><g transform="rotate(-90 230 230)" fill="none" stroke-linecap="round" stroke-width="12">
-        ${ring(214, '#1A1608', '#FBBF24', 'rh')}${ring(190, '#0A1A18', '#2DD4BF', 'rm')}${ring(166, '#0B1720', '#38BDF8', 'rs', 'style="transition:stroke-dashoffset 1s linear"')}</g></svg><span class="c-rings-t" id="ct"></span>`;
-      return (d, t) => {
-        const h = d.getHours() % 12, m = d.getMinutes(), s = d.getSeconds();
-        const off = (r, frac) => (2 * Math.PI * r * (1 - frac)).toFixed(1);
-        $('#ct').textContent = t;
-        $('#rh').setAttribute('stroke-dashoffset', off(214, (h + m / 60) / 12));
-        $('#rm').setAttribute('stroke-dashoffset', off(190, (m + s / 60) / 60));
-        $('#rs').setAttribute('stroke-dashoffset', off(166, Math.max(s, 0.5) / 60));
-      };
-    },
-    (el) => {
-      const G = { 0: ['01110', '10001', '10011', '10101', '11001', '10001', '01110'], 1: ['00100', '01100', '00100', '00100', '00100', '00100', '01110'],
-        2: ['01110', '10001', '00001', '00010', '00100', '01000', '11111'], 3: ['11110', '00001', '00001', '01110', '00001', '00001', '11110'],
-        4: ['00010', '00110', '01010', '10010', '11111', '00010', '00010'], 5: ['11111', '10000', '11110', '00001', '00001', '10001', '01110'],
-        6: ['00110', '01000', '10000', '11110', '10001', '10001', '01110'], 7: ['11111', '00001', '00010', '00100', '01000', '01000', '01000'],
-        8: ['01110', '10001', '10001', '01110', '10001', '10001', '01110'], 9: ['01110', '10001', '10001', '01111', '00001', '00010', '01100'],
-        ':': ['0', '0', '1', '0', '1', '0', '0'] };
-      el.innerHTML = '<div class="c-matrix" id="cx"></div>';
-      let last = '';
-      return (d, t) => {
-        if (t === last) return; last = t;
-        let html = '';
-        for (let r = 0; r < 7; r++) {
-          html += '<div class="r">'; let i = 0;
-          t.split('').forEach((ch, ci) => {
-            if (ci > 0) html += '<i></i>';
-            for (const bit of G[ch][r]) {
-              i++;
-              html += bit === '1' ? `<i class="on" style="animation:tw ${(3 + ((i * 7 + r * 3) % 5) * 0.6).toFixed(1)}s ease-in-out ${(((i * 13 + r * 5) % 17) * 0.23).toFixed(2)}s infinite"></i>` : '<i></i>';
-            }
-          });
-          html += '</div>';
-        }
-        $('#cx').innerHTML = html;
-      };
-    },
-    (el) => { el.innerHTML = '<span class="c-stripes" id="ct"></span>'; return (d, t) => { $('#ct').textContent = t; }; },    // 9 · Pets: the time inside a dog, cat or mouse body (from the kids' sketches), a new animal every 15 s.
+    (el) => { el.innerHTML = '<span class="c-stripes" id="ct"></span>'; return (d, t) => { $('#ct').textContent = t; }; },
+    // Pets: the time inside a dog, cat or mouse body (from the kids' sketches), a new animal every 15 s.
     (el) => {
       const PETS = [
         { k: 'dog', name: 'Dog', say: 'RRRuffff!', ac: '#F6A04D',
@@ -532,7 +481,8 @@
             <circle cx="518" cy="104" r="70" class="pl"/><circle cx="518" cy="104" r="42" class="inner"/>
             <g class="pt-wiggle"><path class="pl thin2" d="M236,330 C190,320 172,290 132,300 C96,308 94,342 58,336 C40,334 30,322 26,310"/></g>`,
           front: '' },
-      ];
+    
+  ];
       const tag = (p) => `<g transform="translate(${p.k === 'cat' ? 300 : 520} ${p.k === 'mouse' ? 128 : 120}) rotate(${p.k === 'cat' ? 8 : -8})">
         <path class="tag" d="M-52,-4 C-60,-26 -30,-34 -12,-26 C4,-38 36,-32 44,-18 C66,-14 64,14 44,18 C34,34 2,30 -10,22 C-30,32 -60,22 -52,-4 Z" transform="scale(${p.name.length > 3 ? 1.3 : 1} 1)"/>
         <text class="hand" text-anchor="middle" dominant-baseline="central" font-size="30">${p.name}</text></g>`;
@@ -581,7 +531,7 @@
   }
   function enterClock() {
     let idx = 0;
-    const force = Number(QS.get('clock')); // testing aid: ?clock=N (1-9) opens that clock style
+    const force = Number(QS.get('clock')); // testing aid: ?clock=N (1-6: aurora, stacked, fill, breathe, stripes, pets) opens that clock style
     if (force >= 1 && force <= CLOCKS.length) idx = force - 1;
     else try { idx = (parseInt(localStorage.getItem('mp.clock') || '-1', 10) + 1) % CLOCKS.length; localStorage.setItem('mp.clock', String(idx)); }
     catch (e) { idx = Math.floor(Math.random() * CLOCKS.length); }
